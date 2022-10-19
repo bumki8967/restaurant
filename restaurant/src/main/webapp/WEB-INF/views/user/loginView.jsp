@@ -1,0 +1,196 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<!DOCTYPE html>
+<html class="no-js" lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   	<title>Kettle</title>
+   
+   	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="manifest" href="site.webmanifest">
+	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/image/favicon.ico">
+	<!-- Place favicon.ico in the root directory -->
+	<!-- CSS here -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/animate.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/nice-select.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/themify-icons.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/magnific-popup.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/meanmenu.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/slick.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/default.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/responsive.css">
+
+    <!-- BootStrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <!-- BootStrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <style>
+        .container {
+            /* border: 1px solid black; */
+            margin: auto;
+            padding: auto;
+        }
+
+        .header_inner {
+            position: relative;
+            margin: 0 auto;
+            box-sizing: border-box;
+            margin-top: 110px;
+            vertical-align: top;
+            text-align: center;
+        }
+
+
+        .menu_wrap {
+            /* border: 1px solid blue; */
+            display: table;
+            table-layout: fixed;
+            width: 40%;
+            margin: 3rem auto;
+            border-collapse: collapse;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: black;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+
+        .menu_item {
+            position: relative;
+            display: table-cell;
+            vertical-align: top;
+            text-decoration: none;
+        }
+
+        .meni_id {
+            display: block;
+            position: relative;
+            height: 61px;
+            padding-top: 17px;
+            border : 1px solid #e3e3e3;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .menu_text {
+            position: relative;
+            padding-left: 24px;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .id_pw_wrap, .keep_join_findPw_btn_area {
+            /* border: 1px solid blue; */
+            width: 35%;
+            margin: 2rem auto;
+        }
+
+        .keep_check {
+            margin: 2rem auto;
+            /* font-size: 10px; */
+        }
+
+        .join_findPw, .btn_row {
+            font-size: 15px;
+            /* border: 1px solid red; */
+            /* width: 100%; */
+            text-align: center;
+            /* margin: auto; */
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin: 3rem;
+        }
+    </style>
+
+</head>
+<body>
+
+	<header class="header3">
+		<c:import url="${pageContext.request.contextPath }/assets/include/header.jsp" />
+	</header>
+	
+	
+    <div class="container">
+        <div class="header_inner">
+            <h1> 로그인 </h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="login_wrap">
+            <form method="" action="">
+                <div class="id_pw_wrap">
+                    <!-- 아이디 입력 -->
+                    <div class="input_row id_area">
+                        <label for="inputId" class="visually-hidden">ID</label>
+                        <input type="text" id="email_id" class="form-control col-md-5" placeholder="아이디" required autofocus>
+                    </div>
+
+                    <!-- 비밀번호 입력 -->
+                    <div class="input_row pw_area">
+                        <label for="inputPassword" class="visually-hidden">Password</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
+                    </div>
+                </div>
+
+                <div class="keep_join_findPw_btn_area">
+                    <!-- 로그인 상태 유지 -->
+                    <div class="keep_check">
+                        <label> 
+                            <input type="checkbox" value="keep"> 로그인 상태 유지 
+                        </label>
+                    </div>
+
+                    <!-- 회원가입 | 비밀번호 찾기-->
+                    <div class="join_findPw">
+                        <div class="join_area">
+                            <label for="join" class="visually-hidden">
+                                <a href="${pagecontext.request.contextPath }/userRegistView">
+                                    회원가입
+                                </a>
+                            </label>
+                        </div>
+
+                        <div class="findPw_area">
+                            <label for="findPw" class="visually-hidden">
+                                <a href="${pagecontext.request.contextPath }/userFindPwView">
+                                    비밀번호 찾기
+                                </a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 로그인 버튼 -->
+                    <div class="btn_row">
+                        <button class="w-100 btn btn-lg btn-primary" type="submit"> 로그인 </button>
+                    </div>    
+                </div>    
+            </form>
+        </div>
+    </div>
+    
+   	<footer>
+		<c:import url="${pageContext.request.contextPath }/assets/include/footer.jsp" />
+	</footer>
+</body>
+</html>
