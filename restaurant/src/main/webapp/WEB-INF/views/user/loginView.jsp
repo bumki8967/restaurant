@@ -165,7 +165,7 @@
                     <div class="join_findPw">
                         <div class="join_area">
                             <label for="join" class="visually-hidden">
-                                <a href="${pagecontext.request.contextPath }/userRegistView">
+                                <a href="${pagecontext.request.contextPath }/user/userRegistView">
                                     회원가입
                                 </a>
                             </label>
@@ -173,7 +173,7 @@
 
                         <div class="findPw_area">
                             <label for="findPw" class="visually-hidden">
-                                <a href="${pagecontext.request.contextPath }/userFindPwView">
+                                <a href="${pagecontext.request.contextPath }/user/userFindPwView">
                                     비밀번호 찾기
                                 </a>
                             </label>

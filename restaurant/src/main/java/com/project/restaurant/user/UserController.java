@@ -3,16 +3,18 @@ package com.project.restaurant.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.restaurant.util.WebHelper;
 
 
 @Controller
-public class UserInfoController {
+@RequestMapping(value = "/user")
+public class UserController {
 
 	@Autowired
-	private UserInfoServiceImpl userInfoServiceImpl;
+	private UserServiceImpl userServiceImpl;
 	
 	@Autowired
 	private WebHelper web;
@@ -37,12 +39,33 @@ public class UserInfoController {
 	 * @param userInfo
 	 * @return
 	 */
-	@RequestMapping(value = "/user/userRegist.do")
-	public String userRegist(UserInfo userInfo) {
+	@RequestMapping(value = "/userRegist.do")
+	public String userRegist(User userInfo) {
 
 		// 회원가입
-		userInfoServiceImpl.insertUser(userInfo);
+		userServiceImpl.insertUser(userInfo);
 		
 		return "redirect:/";
+	}
+	
+	
+	/**
+	 * 회원가입 시 중복 아이디 체크
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value = "/duplicateUserId")
+	@ResponseBody
+	public int duplicateUserId(String user_id) {
+		
+		System.out.println("dulicateUserId	Start!!!!");
+		
+		int result = userServiceImpl.duplicationUserId(user_id);
+		
+		System.out.println(result);
+		
+		System.out.println("dulicateUserId	End!!!!");
+		
+		return result;
 	}
 }

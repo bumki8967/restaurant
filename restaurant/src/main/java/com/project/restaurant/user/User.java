@@ -1,6 +1,6 @@
 package com.project.restaurant.user;
 
-public class UserInfo {
+public class User {
 
 	private int user_seq;
 	private String user_id;

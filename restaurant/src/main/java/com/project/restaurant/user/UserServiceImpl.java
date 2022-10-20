@@ -6,17 +6,15 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.restaurant.util.WebHelper;
-
 @Service
-public class UserInfoServiceImpl implements UserInfoService {
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
-	private UserInfoService userInfoService;
+	private UserService userService;
 	
 
 	@Override
-	public void insertUser(UserInfo userInfo) {
+	public void insertUser(User userInfo) {
 		// 아이디 | 이메일 중복검사
 //		dupliecationUserId(userInfo);
 //		dupliecationEmail(userInfo);
@@ -34,22 +32,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 		userInfo.setReg_date(today);
 		
 //		int	result = userInfoService.insertUser(userInfo);
-		userInfoService.insertUser(userInfo);
+		userService.insertUser(userInfo);
 //		return result;
 	}
 
 	@Override
-	public int dupliecationUserId(UserInfo userInfo) {
+	public int duplicationUserId(String user_id) {
 
-		int result = userInfoService.dupliecationUserId(userInfo);
+		int result = userService.duplicationUserId(user_id);
 		
 		return result;
 	}
 
 	@Override
-	public int dupliecationEmail(UserInfo userInfo) {
+	public int duplicationEmail(String email) {
 		
-		int result = userInfoService.dupliecationEmail(userInfo);
+		int result = userService.duplicationEmail(email);
 		
 		return result;
 	}

@@ -48,6 +48,11 @@
 			display: inline-flex;
 		}
 	</style>
+	
+	
+	<script type="text/javascript">
+		
+	</script>
 </head>
 <body>
 
@@ -67,14 +72,14 @@
 	            <label for='userid' class="col-md-2">아이디*</label>
 	            <div class="col-md-8">
                 	<input type="text" name="user_id" id="user_id" class="form-control"/>
-                	<button type="button" class="btn btn-primary" id="chkUserId"> 중복아이디 확인</button>
+                	<button type="button" class="btn btn-primary" id="chkUserId" onClick="javascript:duplicationUserId();;"> 중복아이디 확인</button>
 	            </div>
 	        </div>
 	
 	        <div class="form-group">
 	            <label for='"password"' class="col-md-2">비밀번호*</label>
 	            <div class="col-md-8">
-	                <input type="password" name="user_pw" id="user_pw" class="form-control"/>
+	                <input type="password" name="user_pw" id="user_pw" class="form-control" placeholder="최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자"/>
 	            </div>
 	        </div>
 	
@@ -96,7 +101,7 @@
 	            <label for='email' class="col-md-2">이메일*</label>
 	            <div class="col-md-8">
                 	<input type="email" name="email" id="email" class="form-control"/>
-                	<button type="button" class="btn btn-primary" id="chkEmail"> 중복이메일 확인</button>
+                	<button type="button" class="btn btn-primary" id="chkEmail" onClick="javascript:alert('준비 중 입니다.');"> 중복이메일 확인</button>
 	            </div>
 	        </div>
 	
@@ -194,6 +199,8 @@
 	        
 	        
 	        <input type="hidden" name="type" id="type" value="normal" />
+	        <input type="hidden" id="userIdChk" value="N" />
+	        <input type="hidden" id="emailChk" value="N" />
 	    </form>
 	    <!-- 가입폼 끝 -->
 	</div>

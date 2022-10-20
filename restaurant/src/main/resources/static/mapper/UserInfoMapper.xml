@@ -5,8 +5,8 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
    
-<mapper namespace="com.project.restaurant.user.UserInfoService">
-	<resultMap type="com.project.restaurant.user.UserInfo" id="UserInfo">
+<mapper namespace="com.project.restaurant.user.UserService">
+	<resultMap type="com.project.restaurant.user.User" id="User">
 		<result property="user_seq"			column="user_seq" />
 		<result property="user_id"			column="user_id" />
 		<result property="user_pw"			column="user_pw" />
@@ -28,7 +28,7 @@
 
 
 	<!-- 회원가입 (INSERT) -->
-	<insert id="insertUser" parameterType="com.project.restaurant.user.UserInfo"
+	<insert id="insertUser" parameterType="com.project.restaurant.user.User"
 		useGeneratedKeys="true" keyProperty="user_seq">
 		INSERT INTO user_info (
 			user_id, user_pw, name, email, tel, birthday, gender, 
@@ -41,7 +41,7 @@
 		
 		
 	<!-- 중복회원가입 방지를 위해 아이디 중복검사 수행 -->
-	<select id="dupliecationUserId" parameterType="com.project.restaurant.user.UserInfo" resultType="int">
+	<select id="duplicationUserId" parameterType="com.project.restaurant.user.User" resultType="int">
 		SELECT	count(user_id)
 		FROM	user_info
 		WHERE	user_id = #{user_id}
@@ -49,7 +49,7 @@
 	
 	
 	<!-- 중복회원가입 방지를 위해 이메일 중복검사 수행 -->
-	<select id="duplicationEmail" parameterType="com.project.restaurant.user.UserInfo" resultType="int">
+	<select id="duplicationEmail" parameterType="com.project.restaurant.user.User" resultType="int">
 		SELECT	count(email)
 		FROM	user_info
 		WHERE	email = #{email}		
