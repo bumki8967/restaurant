@@ -34,6 +34,20 @@ public class UserController {
 	
 	
 	/**
+	 * 비밀번호 찾기 페이지
+	 * @return
+	 */
+	@RequestMapping(value = "/userFindPwView")
+	public ModelAndView userFindPwView() {
+		
+		System.out.println("LoginController userFindPwView");
+		ModelAndView mav = new ModelAndView("/user/findPwView");
+		
+		return mav;
+	}
+	
+	
+	/**
 	 * 회원가입 메소드
 	 * 회원가입 전 아이디 및 이메일 중복검사 실행
 	 * @param userInfo
@@ -50,11 +64,11 @@ public class UserController {
 	
 	
 	/**
-	 * 회원가입 시 중복 아이디 체크
+	 * 회원가입 시 중복 아이디 체크 Ajax
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/duplicateUserId")
+	@RequestMapping(value = "/duplicationUserId")
 	@ResponseBody
 	public int duplicateUserId(String user_id) {
 		
@@ -65,6 +79,28 @@ public class UserController {
 		System.out.println(result);
 		
 		System.out.println("dulicateUserId	End!!!!");
+		
+		return result;
+	}
+	
+	
+	
+	/**
+	 * 회원가입 시 중복 이메일 체크 Ajax
+	 * @param email
+	 * @return
+	 */
+	@RequestMapping(value = "/duplicationEmail")
+	@ResponseBody
+	public int duplicationEmail(String email) {
+		
+		System.out.println("duplicationEmail	Start!!!!!");
+		
+		int result = userServiceImpl.duplicationEmail(email);
+		
+		System.out.println(result);
+		
+		System.out.println("duplicationEmail	End!!!!!");
 		
 		return result;
 	}

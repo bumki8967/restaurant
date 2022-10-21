@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	var regexPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-	var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	var regexTel = /^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$/; 
+	const regexPw 		= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+	const regexEmail 	= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	const regexTel 		= /^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$/; 
 	
 	
 	$("#registBtn").click(function() {
@@ -74,35 +74,74 @@ $(document).ready(function() {
 });
 
 
+// 중복 아이디 확인 
 function duplicationUserId() {
-			var user_id = $("#user_id").val();
-			
-			if (user_id == "") {
-				alert("아이디를 입력해주세요.");
+	var user_id = $("#user_id").val();
+	
+	if (user_id == "") {
+		alert("아이디를 입력해주세요.");
+		return;
+	} else {
+		$.ajax({
+			type 	: "POST",
+			url		: "/user/duplicationUserId",
+			dataType: "JSON",
+			data	: {
+				user_id : user_id
+			},
+			success : function(data) {
+				if (data == "1") {
+					alert("이미 등록된 아이디 입니다.");
+					return;
+				} else {
+					alert("사용 가능한 아이디 입니다.");
+					$("#userIdChk").val("Y");
+					return;
+				}
+			},
+			error : function(error) {
+				alert("error!\n" + error);
 				return;
-			} else {
-				$.ajax({
-					type 	: "POST",
-					url		: "/user/duplicateUserId",
-					dataType: "JSON",
-					data	: {
-						user_id : user_id
-					},
-					success : function(data, status, xhr) {
-						if (data == "1") {
-							alert("이미 등록된 아이디 입니다.");
-							return;
-						} else {
-							alert("사용 가능한 아이디 입니다.");
-							$("#userIdChk").val("Y");
-							return;
-						}
-					},
-					error : function(error, status, xhr) {
-						alert("error!" + error);
-						return;
-					}
-				});
 			}
-		}
+		});
+	}
+}
 
+
+
+
+// 중복 이메일 확인
+function duplicationEmail() {
+	var email = $("#email").val();
+	
+	if (email == "") {
+		alert("이메일을 입력해주세요.");
+		return;
+	/**
+	} else if (email.match(regexEmail)) {
+		alert("이메일 형식을 확인해주세요.");
+		return;
+	 */
+	} else {
+		$.ajax({
+			type	:	"POST",
+			url		:	"/user/duplicationEmail",
+			dataType:	"JSON",
+			data	:	{
+				email : email
+			},
+			success : function(data) {
+				if (data == "1") {
+					alert("이미 등록된 이메일입니다.");
+					return;
+				} else {
+					alert("사용 가능한 이메일입니다.");
+					return;
+				}
+			},
+			error : function(error) {
+				alert("error!\n" + error);
+			}
+		});
+	}
+}

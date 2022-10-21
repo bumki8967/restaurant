@@ -61,8 +61,9 @@
                         <input type="text" name="email" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">
-                            비밀번호 재설정 하기</button>
+                        <button type="submit" class="btn btn-primary btn-block" onClick="javascript:findPw();">
+                            비밀번호 재설정 하기
+                        </button>
                     </div>
                 </form>
                 <!--// 이메일 주소 입력 폼 끝 -->

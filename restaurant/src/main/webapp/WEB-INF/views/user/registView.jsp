@@ -72,7 +72,7 @@
 	            <label for='userid' class="col-md-2">아이디*</label>
 	            <div class="col-md-8">
                 	<input type="text" name="user_id" id="user_id" class="form-control"/>
-                	<button type="button" class="btn btn-primary" id="chkUserId" onClick="javascript:duplicationUserId();;"> 중복아이디 확인</button>
+                	<button type="button" class="btn btn-primary" id="chkUserId" onClick="javascript:duplicationUserId();"> 중복아이디 확인</button>
 	            </div>
 	        </div>
 	
@@ -101,7 +101,7 @@
 	            <label for='email' class="col-md-2">이메일*</label>
 	            <div class="col-md-8">
                 	<input type="email" name="email" id="email" class="form-control"/>
-                	<button type="button" class="btn btn-primary" id="chkEmail" onClick="javascript:alert('준비 중 입니다.');"> 중복이메일 확인</button>
+                	<button type="button" class="btn btn-primary" id="chkEmail" onClick="javascript:duplicationEmail();"> 중복이메일 확인</button>
 	            </div>
 	        </div>
 	
