@@ -105,10 +105,14 @@
 	            </div>
 	        </div>
 	
-	        <div class="form-group">
+	        <div class="form-group" style="display: flex;">
 	            <label for='tel' class="col-md-2">연락처*</label>
-	            <div class="col-md-8">
-	                <input type="tel" name="tel" id="tel" class="form-control" placeholder="'-'없이 입력"/>
+	            <div class="col-md-8" style="display: flex;">
+	                <input type="tel" name="tel" id="tel_1" class="form-control col-md-3" maxlength="3" placeholder="010"/>
+	                &nbsp;&nbsp; - &nbsp;&nbsp;
+	                <input type="tel" name="tel" id="tel_2" class="form-control col-md-3" maxlength="4" placeholder="1234"/>
+	                &nbsp;&nbsp; - &nbsp;&nbsp;
+	                <input type="tel" name="tel" id="tel_3" class="form-control col-md-3" maxlength="4" placeholder="5678"/>
 	            </div>
 	        </div>
 	        

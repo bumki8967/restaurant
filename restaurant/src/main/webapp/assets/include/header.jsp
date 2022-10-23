@@ -1,10 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+	function logout() {
+		var con = confirm("로그아웃 하시겠습니까?");
+		
+		if (con) {
+			alert("로그아웃 되었습니다.");
+			location.href="/user/logout.do";
+		}
+	}
+</script>
 </head>
 <body>
 	<div id="sticky-header" class="header-top-area">
@@ -76,7 +88,14 @@
 				<div class="col-xl-3 col-lg-2">
 					<div class="header-right f-right d-none d-md-none d-lg-block">
 						<div class="header-button">
-							<a href="${pagecontext.request.contextPath }/loginView">로그인</a>
+							<c:choose>
+								<c:when test="${!empty sessionScope.user_id }">
+									<a onClick="javascript:logout();">로그아웃</a>	
+								</c:when>
+								<c:otherwise>
+									<a href="${pagecontext.request.contextPath }/loginView">로그인</a>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<ul>
 							<li>

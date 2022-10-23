@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
     <!-- BootStrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+   	<!-- Jquery -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <style>
         .container {
@@ -122,6 +124,53 @@
         }
     </style>
 
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$("#keep").click(function(){
+		         if( $(this).is(":checked")){
+		            $("#keep").val("Y");
+		         }else{
+		        	 $("#keep").val("N");
+		         }
+		      });
+			
+			$("#login-btn").click(function() {
+				var user_id = $("#user_id").val();
+				var user_pw = $("#user_pw").val();
+				var keep = $("#keep").val();
+				
+				if (user_id == "") {
+					alert("아이디를 입력해주세요.");
+					user_id.focus();
+					return;
+				} else if (user_pw == "") {
+					alert("비밀번호를 입력해주세요.");
+					usr_pw.focus();
+					return;
+				} else {
+					$.ajax({
+						Type	:	"POST",
+						url		:	"/user/login.do",
+						dataType:	"JSON",
+						data	:	{
+							user_id : user_id,
+							user_pw : user_pw,
+							keep	: keep
+						},
+						success : function(data) {
+							location.href="/";
+						},
+						error	: function(error) {
+							alert("아이디 또는 비밀번호가 틀립니다.");
+							//alert("통신오류!!\n" + error);
+							return;
+						}
+					});
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 
@@ -138,54 +187,52 @@
 
     <div class="container">
         <div class="login_wrap">
-            <form method="" action="">
-                <div class="id_pw_wrap">
-                    <!-- 아이디 입력 -->
-                    <div class="input_row id_area">
-                        <label for="inputId" class="visually-hidden">ID</label>
-                        <input type="text" id="email_id" class="form-control col-md-5" placeholder="아이디" required autofocus>
-                    </div>
-
-                    <!-- 비밀번호 입력 -->
-                    <div class="input_row pw_area">
-                        <label for="inputPassword" class="visually-hidden">Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
-                    </div>
-                </div>
-
-                <div class="keep_join_findPw_btn_area">
-                    <!-- 로그인 상태 유지 -->
-                    <div class="keep_check">
-                        <label> 
-                            <input type="checkbox" value="keep"> 로그인 상태 유지 
-                        </label>
-                    </div>
-
-                    <!-- 회원가입 | 비밀번호 찾기-->
-                    <div class="join_findPw">
-                        <div class="join_area">
-                            <label for="join" class="visually-hidden">
-                                <a href="${pagecontext.request.contextPath }/user/userRegistView">
-                                    회원가입
-                                </a>
-                            </label>
-                        </div>
-
-                        <div class="findPw_area">
-                            <label for="findPw" class="visually-hidden">
-                                <a href="${pagecontext.request.contextPath }/user/userFindPwView">
-                                    비밀번호 찾기
-                                </a>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- 로그인 버튼 -->
-                    <div class="btn_row">
-                        <button class="w-100 btn btn-lg btn-primary" type="submit"> 로그인 </button>
-                    </div>    
-                </div>    
-            </form>
+	        <div class="id_pw_wrap">
+	            <!-- 아이디 입력 -->
+	            <div class="input_row id_area">
+	                <label for="inputId" class="visually-hidden">ID</label>
+	                <input type="text" id="user_id" name="user_id" class="form-control col-md-5" placeholder="아이디" required autofocus>
+	            </div>
+	
+	            <!-- 비밀번호 입력 -->
+	            <div class="input_row pw_area">
+	                <label for="inputPassword" class="visually-hidden">Password</label>
+	                <input type="password" id="user_pw" name="user_pw" class="form-control" placeholder="비밀번호" required>
+	            </div>
+	        </div>
+	
+	        <div class="keep_join_findPw_btn_area">
+	            <!-- 로그인 상태 유지 -->
+	            <div class="keep_check">
+	                <label> 
+	                    <input type="checkbox" id="keep" name="keep" value="N"> 로그인 상태 유지 
+	                </label>
+	            </div>
+	
+	            <!-- 회원가입 | 비밀번호 찾기-->
+	            <div class="join_findPw">
+	                <div class="join_area">
+	                    <label for="join" class="visually-hidden">
+	                        <a href="${pagecontext.request.contextPath }/user/userRegistView">
+	                            회원가입
+	                        </a>
+	                    </label>
+	                </div>
+	
+	                <div class="findPw_area">
+	                    <label for="findPw" class="visually-hidden">
+	                        <a href="${pagecontext.request.contextPath }/user/userFindPwView">
+	                            비밀번호 찾기
+	                        </a>
+	                    </label>
+	                </div>
+	            </div>
+	
+	            <!-- 로그인 버튼 -->
+	            <div class="btn_row">
+	                <button type="submit" class="w-100 btn btn-lg btn-primary" id="login-btn"> 로그인 </button>
+	            </div>    
+	        </div>    
         </div>
     </div>
     
