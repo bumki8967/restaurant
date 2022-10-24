@@ -107,4 +107,15 @@ public class UserServiceImpl implements UserService {
 		
 		return list;
 	}
+
+
+	/**
+	 * 회원탈퇴
+	 */
+	@Override
+	public void deleteUser(int user_seq) {
+		
+		userService.deleteUser(user_seq);
+		
+	}
 }

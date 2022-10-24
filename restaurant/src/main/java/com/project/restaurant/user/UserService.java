@@ -35,4 +35,9 @@ public interface UserService {
 	 * 가입날짜순으로 회원검색
 	 */
 	public List selectUserAll();
+	
+	/**
+	 * 회원탈퇴
+	 */
+	public void deleteUser(int user_seq);
 }

@@ -9,6 +9,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Dashboard</title>
 
+  <!-- Jquery -->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <!-- DataTable -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/assets/DataTables/datatables.min.css">
+	<script type="text/javascript" charset="utf8" src="${pageContext.request.contextPath }/assets/DataTables/datatables.min.js"></script>
+  	<!-- jQuery UI 1.11.4 -->
+	<script src="${pageContext.request.contextPath }/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -27,12 +34,8 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/plugins/summernote/summernote-bs4.min.css">
-  <!-- Jquery -->
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  
-  <style type="text/css">
-  	
-  </style>
+
+	<script src="${pageConext.request.contextPath }/assets/js/admin/index.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
@@ -68,24 +71,75 @@
 					<!-- /.container-fluid -->
 				</div>
 				<!-- /.content-header -->
-
-				<!-- Main content -->
-				<div class="content">
-					<div class="container-fluid">
-						<div class="card">
-							<div class="card-header border-0">
-								<h3 class="title">Member List</h3>
+				
+				<form method="POST" class="form">
+					<!-- Main content -->
+					<div class="content">
+						<div class="container-fluid">
+							<div class="card">
+								<div class="card-header border-0">
+									<h3 class="title">Member List</h3>
+								</div>
+								<hr />
+								<div class="card-header">
+									<table id="data_list">
+										<thead>
+											<tr>
+												<th style="text-align: center;"> 번호 </th>
+												<th style="text-align: center;"> 이름 </th>
+												<th style="text-align: center;"> 핸드폰번호 </th>
+												<th style="text-align: center;"> 생일 </th>
+												<th style="text-align: center;"> 구분 </th>
+												<th style="text-align: center;"> 가입날짜 </th>
+												<th style="text-align: center;"> 비고 </th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="list" items="${userList }">
+												<tr style="text-align: center;">
+													<td>
+														${list.user_seq }
+													</td>	
+													<td>
+														${list.name }
+													</td>
+													<td>
+														${list.tel }
+													</td>
+													<td>
+														${list.birthday }
+													</td>
+													<td>
+														${list.peopleType }
+													</td>
+													<td>
+														${list.reg_date }
+													</td>
+													<td>
+														<span>
+															<a href="javascript:alert('준비 중 입니다.');">
+																<input type="button" class="btn btn-primary" value="수정" />
+															</a>
+														</span>
+														<span>
+														<a href="javascript:userDelete('${list.user_seq }');">
+															<input type="button" class="btn btn-danger" id="delete" value="삭제" />
+															<input type="hidden" name="user_seq" id="user_seq" value="${list.user_seq }" />
+														</a>
+													</span>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
 							</div>
-							<hr />
-							<div class="card-header">
-								데이터테이블 들어갈 부분
-							</div>
+							<!-- /.card -->
 						</div>
-						<!-- /.card -->
+						<!-- /.container-fluid -->
 					</div>
-					<!-- /.container-fluid -->
-				</div>
-				<!-- /.content -->
+					<!-- /.content -->
+				</form>
 			</div>
 		</div>
 		<!-- /.content-wrapper -->
@@ -108,10 +162,6 @@
 
 
 
-	<!-- jQuery -->
-<script src="${pageContext.request.contextPath }/assets/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="${pageContext.request.contextPath }/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -135,5 +185,28 @@
 <script src="${pageContext.request.contextPath }/assets/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="${pageContext.request.contextPath }/assets/dist/js/pages/dashboard.js"></script>
+
+<script type="text/javascript">
+	var table = $("#data_list").DataTable({
+			"destroy"	:	true,
+			"order"		:	[0, "DESC"],
+			//"autoWith"	:	true
+	});
+
+	$("#data_list").dataTable({
+		data : data,
+		columns : [
+			{ data : 'user_seq' },
+			{ data : 'name' },
+			{ data : 'tel' },
+			{ data : 'birthday' },
+			{ data : 'peopleType' },
+			{ data : 'reg_date' }
+		]
+	});
+</script>
+
+
+
 </body>
 </html>

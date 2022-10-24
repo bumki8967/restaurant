@@ -115,9 +115,10 @@
 	                <input type="tel" name="tel" id="tel_3" class="form-control col-md-3" maxlength="4" placeholder="5678"/>
 	            </div>
 	        </div>
-	        
+
 			<div class="form-group" style="display: flex; align-items: end;">
 				<label for="peopleType" class="col-md-2">구분*</label>
+				&emsp;
 				<label class="radio-inline">
 					<input type="radio" name="peopleType" id="corporater" value="corporater"> 자영업자
 				</label>
@@ -125,12 +126,13 @@
 				<label class="radio-inline">
 					<input type="radio" name="peopleType" id="consumer" value="consumer"> 개인 사용자
 				</label>
-				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				&emsp;&emsp;&emsp;&emsp;
 				<label for="birthdate" class="col-md-2">생년월일*</label>
 				<div class="col-md-3 text_area">
 					<input type="date" name="birthday" id="birthday" class="form-control" placeholder="yyyy-mm-dd">
 				</div>
 			</div>
+
 
 	        <div class="form-group">
 	            <label for='postcode' class="col-md-2">우편번호</label>

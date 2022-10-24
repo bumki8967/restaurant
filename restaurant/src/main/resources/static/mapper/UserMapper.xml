@@ -72,4 +72,10 @@
 		ORDER BY reg_date DESC
 	</select>
 
+
+	<!-- 회원탈퇴 -->
+	<delete id="deleteUser" parameterType="int">
+		DELETE 	FROM	user_info
+		WHERE	user_seq = #{user_seq}
+	</delete>
 </mapper>

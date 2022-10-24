@@ -2,15 +2,6 @@ var regexEmail 	= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z
 var regexPw 	= /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/; 
 
 $(document).ready(function() {
-	$("#corporater").click(function() {
-		var html = `
-				<input type="text" name="business" id="business" class="form-control" placeholder="ex)123-45-67890">
-				`
-		$("label[for='birthdate']").text("사업자등록증");
-		$("#birthday").hide();
-		$(".text_area").after(html);
-	});
-	
 	// 회원가입 버튼 클릭 시
 	$("#registBtn").click(function() {
 		if ($("#user_id").val() == "") {
@@ -59,6 +50,9 @@ $(document).ready(function() {
 		} else if ($("#tel_3").val() == "") {
 			alert("연락처를 입력해주세요");
 			$("#tel_3").focus();
+			return;
+		} else if (!$('input:radio[name=peopleType]').is(':checked')) {
+			alert("구분을 선택해주세요.");
 			return;
 		} else if ($("#birthday").val() == "") {
 			alert("생년월일을 입력해주세요.");
