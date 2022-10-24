@@ -14,7 +14,7 @@
 		<result property="email"			column="email" />
 		<result property="tel"				column="tel" />
 		<result property="birthday"			column="birthday" />
-		<result property="gender"			column="gender" />
+		<result property="peopleType"		column="peopleType" />
 		<result property="postcode"			column="postcode" />
 		<result property="addr1"			column="addr1" />
 		<result property="addr2"			column="addr2" />
@@ -31,10 +31,10 @@
 	<insert id="insertUser" parameterType="com.project.restaurant.user.User"
 		useGeneratedKeys="true" keyProperty="user_seq">
 		INSERT INTO user_info (
-			user_id, user_pw, name, email, tel, birthday, gender, 
+			user_id, user_pw, name, email, tel, birthday, peopleType, 
 			postcode, addr1, addr2, reg_date, type, etc1, etc2, etc3
 		) VALUES (
-			#{user_id}, #{user_pw}, #{name}, #{email}, #{tel}, #{birthday}, #{gender}, 
+			#{user_id}, #{user_pw}, #{name}, #{email}, #{tel}, #{birthday}, #{peopleType}, 
 			#{postcode}, #{addr1}, #{addr2}, #{reg_date}, #{type}, #{etc1}, #{etc2}, #{etc3}
 		)
 	</insert>	

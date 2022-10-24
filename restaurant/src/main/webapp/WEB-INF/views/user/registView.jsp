@@ -116,45 +116,22 @@
 	            </div>
 	        </div>
 	        
-	        <div class="form-group" style="display: flex; align-items: center;">
-	            <label for="birthdate" class="col-md-2">생년월일*</label>
-	            <div class="col-md-3">
-	                <input type="date" name="birthday" id="birthday" class="form-control" placeholder="yyyy-mm-dd">
-	            </div>
-    
-	            <div class="col-md-5">
-                    <label for="gender1" class="col-md-2">성별*</label>
-	            	<label class="radio-inline">
-	                	<input type="radio" name="gender" id="gender1" value="M"> 남자
-	                </label>
-	                <label class="radio-inline">
-	                	<input type="radio" name="gender" id="gender2" value="F"> 여자
-	                </label>
-	            </div>
-	        </div>
-	
-			<!-- 
-	        <div class="form-group">
-	            <label for='birthdate' class="col-md-2">생년월일*</label>
-	            <div class="col-md-3">
-	                <input type="date" name="birthday" id="birthday" class="form-control" placeholder="yyyy-mm-dd"/>
-	            </div>
-	        </div>
-	
-	        <div class="form-group">
-	            <label for='gender1' class="col-md-2">성별*</label>
-	            <div class="col-md-10">
-	            	<label class="radio-inline">
-	                	<input type="radio" name="gender" id="gender1" value="M"  /> 남자
-	                </label>
-	                <label class="radio-inline">
-	                	<input type="radio" name="gender" id="gender2" value="F" /> 여자
-	                </label>
-	            </div>
-	        </div>
-			 -->
-			 
-			 
+			<div class="form-group" style="display: flex; align-items: end;">
+				<label for="peopleType" class="col-md-2">구분*</label>
+				<label class="radio-inline">
+					<input type="radio" name="peopleType" id="corporater" value="corporater"> 자영업자
+				</label>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<label class="radio-inline">
+					<input type="radio" name="peopleType" id="consumer" value="consumer"> 개인 사용자
+				</label>
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<label for="birthdate" class="col-md-2">생년월일*</label>
+				<div class="col-md-3 text_area">
+					<input type="date" name="birthday" id="birthday" class="form-control" placeholder="yyyy-mm-dd">
+				</div>
+			</div>
+
 	        <div class="form-group">
 	            <label for='postcode' class="col-md-2">우편번호</label>
 	            <div class="col-md-10 clearfix" style="display: flex;">
@@ -164,9 +141,7 @@
 	            </div>
 	        </div>
 	
-	
 			<div class="form-group" style="display: flex;">
-	            
 	            <div class="col-md-5">
                     <label for="addr1" class="col-md-2">주소</label>
 	                <input type="text" name="addr1" id="addr1" class="form-control">
@@ -176,23 +151,6 @@
 	                <input type="text" name="addr2" id="addr2" class="form-control">
 	            </div>
 	        </div>
-	
-			<!-- 
-	        <div class="form-group">
-	            <label for='addr1' class="col-md-2">주소</label>
-	            <div class="col-md-10">
-	                <input type="text" name="addr1" id="addr1" class="form-control"/>
-	            </div>
-	        </div>
-	
-	        <div class="form-group">
-	            <label for='addr2' class="col-md-2">상세주소</label>
-	            <div class="col-md-10">
-	                <input type="text" name="addr2" id="addr2" class="form-control"/>
-	            </div>
-	        </div>
-			-->
-			
 			
 	        <div class="form-group">
 	            <div class="col-md-offset-2 col-md-10">
@@ -200,7 +158,6 @@
 	                <button type="reset" class="btn btn-danger">다시작성</button>
 	            </div>
 	        </div>
-	        
 	        
 	        <input type="hidden" name="type" id="type" value="normal" />
 	        <input type="hidden" id="userIdChk" value="N" />
