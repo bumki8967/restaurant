@@ -34,6 +34,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
    	<!-- Jquery -->
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- 카카로 로그인 -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <style>
         .container {
@@ -227,11 +229,47 @@
 	                    </label>
 	                </div>
 	            </div>
-	
+
+                
 	            <!-- 로그인 버튼 -->
 	            <div class="btn_row">
-	                <button type="submit" class="w-100 btn btn-lg btn-primary" id="login-btn"> 로그인 </button>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary" id="login-btn"> 로그인 </button>
 	            </div>    
+
+                <!-- SNS 로그인 -->
+                <div class="sns_login" style="width: 310px; margin: auto;">
+                    <span>
+                        <label for="kakao_login" class="visually-hidden">
+                            <a href="javascript:kakaoLogin();">
+                                <img src="${pageContext.request.contextPath }/assets/image/kakao.png"/>
+                            </a>
+                        </label>
+
+                        <label for="naver_login"  class="visually-hidden">
+                            <a href="javascript:alert('네이버 로그인 기능 준비 중 입니다.');">
+                                <img src="${pageContext.request.contextPath }/assets/image/naver.png"/>
+                            </a>
+                        </label>
+
+                        <label for="google_login"  class="visually-hidden">
+                            <a href="javascript:alert('구글 로그인 기능 준비 중 입니다.');">
+                                <img src="${pageContext.request.contextPath }/assets/image/google.png" />
+                            </a>
+                        </label>
+
+                        <label for="facebook_login"  class="visually-hidden">
+                            <a href="javascript:alert('페이스북 로그인 기능 준비 중 입니다.');">
+                                <img src="${pageContext.request.contextPath }/assets/image/facebook.png" />
+                            </a>
+                        </label>
+
+                        <label for="apple_login"  class="visually-hidden">
+                            <a href="javascript:alert('애플 로그인 기능 준비 중 입니다.');">
+                                <img src="${pageContext.request.contextPath }/assets/image/apple.png" style="width: 309px; height: 40px;">
+                            </a>
+                        </label>
+                    </span>
+                </div>
 	        </div>    
         </div>
     </div>
@@ -239,5 +277,37 @@
    	<footer>
 		<c:import url="${pageContext.request.contextPath }/assets/include/footer.jsp" />
 	</footer>
+	
+	
+	
+	<script type="text/javascript">
+		Kakao.init('7b99ff594cc2cef168bb1d8358a0c07f');
+		console.log("isInitialized	::	" + Kakao.isInitialized());	// sdk 초기화 여부 판단
+		
+		function kakaoLogin() {
+			Kakao.Auth.login({
+				success : function (auth) {
+					Kakao.API.request({
+						url	: '/v2/user/me',
+						success : function (response) {
+							var account = JSON.stringify(response.kakao_account);
+							
+							console.log("account	::	" + account);
+							
+							//console.log("nickname	::	" + account.profile.nickname);
+							//console.log("email	::	" + account.email);
+							//console.log("birthday	::	" + account.birthday);
+						},
+						fail : function (error) {
+							console.log("error!! :: " + error);
+						},
+					})
+				},
+				fail : function (error) {
+					console.log(error);
+				}
+			});
+		}
+	</script>
 </body>
 </html>
