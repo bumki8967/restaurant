@@ -118,4 +118,16 @@ public class UserServiceImpl implements UserService {
 		userService.deleteUser(user_seq);
 		
 	}
+
+
+	/**
+	 * 회원 시퀀스 번호 확인
+	 */
+	@Override
+	public User selectByUserSeq(int user_seq) {
+		
+		User user = userService.selectByUserSeq(user_seq);
+		
+		return user;
+	}
 }

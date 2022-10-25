@@ -78,4 +78,15 @@
 		DELETE 	FROM	user_info
 		WHERE	user_seq = #{user_seq}
 	</delete>
+	
+	
+	
+	
+	
+	<!-- (관리자) 회원 시퀀스 번호 확인 -->
+	<select id="selectByUserSeq" parameterType="int" resultMap="User">
+		SELECT	*
+		FROM	user_info
+		WHERE	user_seq = #{user_seq}
+	</select>
 </mapper>

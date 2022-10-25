@@ -69,7 +69,7 @@
 	    <form method="POST" class="form-horizontal" id="registForm" name="myform"   enctype="multipart/form-data">
 	
 	        <div class="form-group">
-	            <label for='userid' class="col-md-2">아이디*</label>
+	            <label for='user_id' class="col-md-2">아이디*</label>
 	            <div class="col-md-8">
                 	<input type="text" name="user_id" id="user_id" class="form-control"/>
                 	<button type="button" class="btn btn-primary" id="chkUserId" onClick="javascript:duplicationUserId();"> 중복아이디 확인</button>
@@ -127,7 +127,7 @@
 					<input type="radio" name="peopleType" id="consumer" value="consumer"> 개인 사용자
 				</label>
 				&emsp;&emsp;&emsp;&emsp;
-				<label for="birthdate" class="col-md-2">생년월일*</label>
+				<label for="birthday" class="col-md-2">생년월일*</label>
 				<div class="col-md-3 text_area">
 					<input type="date" name="birthday" id="birthday" class="form-control" placeholder="yyyy-mm-dd">
 				</div>

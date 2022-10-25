@@ -51,6 +51,11 @@ public class AdminController {
 		return mav;
 	}
 	
+	/**
+	 * 회원탈퇴
+	 * @param user_seq
+	 * @return
+	 */
 	@RequestMapping("/userDelete.do")
 	public String userDelete(@RequestParam(value = "user_seq") int user_seq) {
 		
@@ -61,6 +66,25 @@ public class AdminController {
 		System.out.println("AdminController		userDelete	End!!!!!");
 		
 		return "redirect:/admin/index";
+	}
+	
+	
+	@RequestMapping("/userEditView")
+	public ModelAndView userEditView(@RequestParam(value = "user_seq") int user_seq) {
+		
+		System.out.println("AdminController		userEditView	Start!!!!!");
+		
+		ModelAndView mav = new ModelAndView("/admin/userEditView");
+		
+		User user = userServiceImpl.selectByUserSeq(user_seq);
+		
+		System.out.println("USER_SEQ	::	" + user_seq);
+		System.out.println("USER	::	" + user);
+		mav.addObject("user", user);
+		
+		System.out.println("AdminController		userEditView	End!!!!!");
+		
+		return mav;
 	}
 	
 }

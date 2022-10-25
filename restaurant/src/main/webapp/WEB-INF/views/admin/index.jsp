@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>관리자 페이지</title>
 
   <!-- Jquery -->
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -110,14 +111,15 @@
 														${list.birthday }
 													</td>
 													<td>
+													
 														${list.peopleType }
 													</td>
 													<td>
-														${list.reg_date }
+														<fmt:formatDate value="${list.reg_date }" pattern="yyyy-MM-dd" />
 													</td>
 													<td>
 														<span>
-															<a href="javascript:alert('준비 중 입니다.');">
+															<a href="${pageConext.request.contextPath }/admin/userEditView?user_seq=${list.user_seq}">
 																<input type="button" class="btn btn-primary" value="수정" />
 															</a>
 														</span>
