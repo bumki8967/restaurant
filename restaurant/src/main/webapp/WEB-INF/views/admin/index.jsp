@@ -111,11 +111,18 @@
 														${list.birthday }
 													</td>
 													<td>
-													
-														${list.peopleType }
+														<c:choose>
+															<c:when test="${list.peopleType == 'corporater'}">
+																자영업자
+															</c:when>
+															<c:when test="${list.peopleType == 'consumer'}">
+																개인 사용자
+															</c:when>
+														</c:choose>
 													</td>
 													<td>
 														<fmt:formatDate value="${list.reg_date }" pattern="yyyy-MM-dd" />
+														<%-- ${list.reg_date } --%>
 													</td>
 													<td>
 														<span>

@@ -35,7 +35,7 @@
 			postcode, addr1, addr2, reg_date, type, etc1, etc2, etc3
 		) VALUES (
 			#{user_id}, #{user_pw}, #{name}, #{email}, #{tel}, #{birthday}, #{peopleType}, 
-			#{postcode}, #{addr1}, #{addr2}, #{reg_date}, #{type}, #{etc1}, #{etc2}, #{etc3}
+			#{postcode}, #{addr1}, #{addr2}, now(), #{type}, #{etc1}, #{etc2}, #{etc3}
 		)
 	</insert>	
 		
@@ -89,4 +89,14 @@
 		FROM	user_info
 		WHERE	user_seq = #{user_seq}
 	</select>
+	
+	
+	<!-- (관리자) 회원정보 수정 -->
+	<update id="updateUserData" parameterType="com.project.restaurant.user.User">
+		UPDATE	user_info
+		SET		user_id = #{user_id}, name = #{name}, email = #{email}, 
+				tel = #{tel}, birthday = #{birthday}, peopleType = #{peopleType}, 
+				postcode = #{postcode}, addr1 = #{addr1}, addr2 = #{addr2}
+		WHERE	user_seq = #{user_seq}  
+	</update>
 </mapper>

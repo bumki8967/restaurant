@@ -87,4 +87,13 @@ public class AdminController {
 		return mav;
 	}
 	
+	
+	@RequestMapping("/userEdit.do")
+	public String userEdit(User user, @RequestParam(value = "user_seq") int user_seq) {
+		
+		userServiceImpl.updateUserData(user);
+		
+		return "redirect:/admin/index";
+	}
+	
 }

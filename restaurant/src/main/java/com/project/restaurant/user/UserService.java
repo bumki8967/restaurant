@@ -45,4 +45,9 @@ public interface UserService {
 	 * 회원 시퀀스 번호 확인
 	 */
 	public User selectByUserSeq(int user_seq);
+	
+	/**
+	 * 회원정보 수정
+	 */
+	public void updateUserData(User user);
 }

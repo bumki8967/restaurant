@@ -46,7 +46,7 @@
   		
   		if (con) {
 			alert("내용이 수정되었습니다.");
-			$("#updateForm").attr('action', '/admin/informationEdit.do');
+			$("#updateForm").attr('action', '/admin/userEdit.do');
 			$("#updateForm").submit();	
   		} else {
   			alert("취소되었습니다.");
@@ -77,7 +77,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-2" style="width: 90%; margin: auto;">
           <div class="col-sm-6">
             <h1 class="m-0">
             	<strong>
@@ -97,7 +97,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body" style="width: 90%; margin: auto;">
 								<div class="form-group">
 						           	<label for='user_id' class="col-md-2">아이디</label>
 						            <div class="col-md-8">
@@ -153,28 +153,27 @@
 								<div class="form-group" style="display: flex; align-items: end;">
 									<label for="peopleType" class="col-md-1">구분*</label>
 									&emsp;
-									<label class="radio-inline">
-										<c:choose>
-											<c:when test="${user.peopleType == 'corporater'}">
+									<c:choose>
+										<c:when test="${user.peopleType == 'corporater'}">
+											<label class="radio-inline">
 												<input type="radio" name="peopleType" id="corporater" value="corporater" checked> 자영업자	
-												&emsp;&emsp;
+											</label>
+											&emsp;&emsp;
+											<label class="radio-inline">
 												<input type="radio" name="peopleType" id="consumer" value="consumer"> 개인 사용자
-											</c:when>
-											<c:when test="${user.peopleType == 'consumer'}">
+											</label>
+										</c:when>
+										<c:when test="${user.peopleType == 'consumer'}">
+											<label class="radio-inline">
 												<input type="radio" name="peopleType" id="corporater" value="corporater"> 자영업자
-												&emsp;&emsp;
+											</label>
+											&emsp;&emsp;
+											<label class="radio-inline">
 												<input type="radio" name="peopleType" id="consumer" value="consumer" checked> 개인 사용자
-											</c:when>
-										</c:choose>
-									</label>
-									&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-									<!--
-									&emsp;&emsp;
-									<label class="radio-inline">
-										
-									</label>
-									&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-									-->
+											</label>
+										</c:when>
+									</c:choose>
+									&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 									<label for="birthday" class="col-md-2">생년월일*</label>
 									<div class="col-md-2 text_area">
 										<input type="date" name="birthday" id="birthday" class="form-control" placeholder="yyyy-mm-dd" value="${user.birthday }">

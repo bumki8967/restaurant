@@ -33,15 +33,16 @@ public class UserServiceImpl implements UserService {
 			// 핸드폰 번호 합치기
 			String tel = user.getTel().replaceAll(",", "-");
 			// 현재 날짜 구하기        
-			LocalDate now = LocalDate.now();         
+//			LocalDate now = LocalDate.now();         
 			// 포맷 정의        
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");         
+//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");         
 			// 포맷 적용        
-			String today = now.format(formatter);         
+//			String today = now.format(formatter);     
+			System.out.println("11111111	" + user.getBirthday());
 			
 			user.setUser_pw(encryptPw);
 			user.setTel(tel);
-			user.setReg_date(today);
+//			user.setReg_date(today);
 			
 			userService.insertUser(user);
 			
@@ -129,5 +130,20 @@ public class UserServiceImpl implements UserService {
 		User user = userService.selectByUserSeq(user_seq);
 		
 		return user;
+	}
+
+
+	@Override
+	public void updateUserData(User user) {
+		
+		System.out.println("ServiceImpl	Update Start!!!!");
+		
+		System.out.println("USER peopleType	::	" + user.getPeopleType());
+		System.out.println("USER birthday	::	" + user.getBirthday());
+		System.out.println("USER tel	::	" + user.getTel());
+		userService.updateUserData(user);
+		
+		System.out.println("ServiceImpl	Update End!!!!");
+		
 	}
 }
