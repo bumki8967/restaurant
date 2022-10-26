@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserService {
 
 	/**
-	 * 회원가입 (아이디, 이메일 중복검사 후 가입)
-	 * @param userInfo
+	 * 회원가입 
+	 * @param User
 	 * @return 
 	 */
 	public void insertUser(User user);
@@ -24,7 +24,7 @@ public interface UserService {
 	/**
 	 * 이메일 중복검사
 	 */
-	public int duplicationEmail(String email);
+//	public int duplicationEmail(String email);
 	
 	/** 
 	 * 로그인 시 아이디와 비밀번호 체크

@@ -40,19 +40,39 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/daumPostCode.js"></script>
 	
-	<script src="${pageConext.request.contextPath }/assets/js/user/registView.js"></script>
+	<script src="${pageConext.request.contextPath }/assets/js/user/registView.js"></script> 
 	
 	
 	<style type="text/css">
 		.col-md-8 {
 			display: inline-flex;
 		}
+		
+		select {
+            width:155px;
+            padding:5px;
+            border:1px solid #999;
+            font-family:'Nanumgothic';
+            border-radius:3px;
+            background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance : none;
+        }
+
+        select::-ms-expand {
+    		display: none;
+    	}
+
+        .form-group {
+            display: flex;
+            margin-top : 2rem;
+    	}
 	</style>
 	
-	
 	<script type="text/javascript">
-		
-	</script>
+            
+        </script>
 </head>
 <body>
 
@@ -66,65 +86,68 @@
 	    </div>
 	    <hr />
 	    <!-- 가입폼 시작 -->
-	    <form method="POST" class="form-horizontal" id="registForm" name="myform"   enctype="multipart/form-data">
+	    <form method="POST" class="form-horizontal needs-validation"  id="registForm" name="myform" enctype="multipart/form-data" novalidate>
 	
 	        <div class="form-group">
 	            <label for='user_id' class="col-md-2">아이디*</label>
-	            <div class="col-md-8">
-                	<input type="text" name="user_id" id="user_id" class="form-control"/>
-                	<button type="button" class="btn btn-primary" id="chkUserId" onClick="javascript:duplicationUserId();"> 중복아이디 확인</button>
+	            <div class="col-md-3">
+                	<input type="text" name="user_id" id="user_id" class="form-control" required />
+                	
 	            </div>
+                <div class="col-md-5">
+                    <select class="selectEmail" name="user_id" id="selectEmail">
+                        <option value=""> 직접 입력 </option>
+                        <option value="@naver.com"> @naver.com </option>
+                        <option value="@gmail.com"> @gmail.com </option>
+                    </select>
+                    &emsp;
+                    <button type="button" class="btn btn-primary" id="chkUserId" onClick="javascript:duplicationUserId();"> 중복아이디 확인</button>
+                </div>
 	        </div>
 	
 	        <div class="form-group">
-	            <label for='"password"' class="col-md-2">비밀번호*</label>
-	            <div class="col-md-8">
-	                <input type="password" name="user_pw" id="user_pw" class="form-control" placeholder="최소 8 자, 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자"/>
+	            <label for='password' class="col-md-2">비밀번호*</label>
+	            <div class="col-md-5">
+	                <input type="password" name="user_pw" id="user_pw" class="form-control" placeholder="최소 8 자, 최소 하나의 문자, 숫자 및 하나의 특수 문자" required />
 	            </div>
 	        </div>
 	
 	        <div class="form-group">
 	            <label for='password_re' class="col-md-2">비밀번호 확인*</label>
-	            <div class="col-md-8">
-	                <input type="password" name="user_pw_re" id="user_pw_re" class="form-control"/>
+	            <div class="col-md-5" style="display: -webkit-box;">
+	                <input type="password" name="user_pw_re" id="user_pw_re" class="form-control" required />
+                    <div class="alert alert-success" id="alert-success" style="margin: 0 0 0 2rem; height: 0px; border: none; background: none;">비밀번호가 일치합니다.</div>
+                    <div class="alert alert-danger" id="alert-danger" style="margin: 0 0 0 2rem; height: 0px; border: none; background: none;">비밀번호가 일치하지 않습니다.</div>
 	            </div>
 	        </div>
 	
 	        <div class="form-group">
 	            <label for='name' class="col-md-2">이름*</label>
-	            <div class="col-md-8">
+	            <div class="col-md-5">
 	                <input type="text" name="name" id="name" class="form-control"/>
 	            </div>
 	        </div>
 	
 	        <div class="form-group">
-	            <label for='email' class="col-md-2">이메일*</label>
-	            <div class="col-md-8">
-                	<input type="email" name="email" id="email" class="form-control"/>
-                	<button type="button" class="btn btn-primary" id="chkEmail" onClick="javascript:duplicationEmail();"> 중복이메일 확인</button>
-	            </div>
-	        </div>
-	
-	        <div class="form-group" style="display: flex;">
 	            <label for='tel' class="col-md-2">연락처*</label>
 	            <div class="col-md-8" style="display: flex;">
-	                <input type="tel" name="tel" id="tel_1" class="form-control col-md-3" maxlength="3" placeholder="010"/>
+	                <input type="tel" name="tel" id="tel_1" class="form-control col-md-2" maxlength="3" placeholder="010"/>
 	                &nbsp;&nbsp; - &nbsp;&nbsp;
-	                <input type="tel" name="tel" id="tel_2" class="form-control col-md-3" maxlength="4" placeholder="1234"/>
+	                <input type="tel" name="tel" id="tel_2" class="form-control col-md-2" maxlength="4" placeholder="1234"/>
 	                &nbsp;&nbsp; - &nbsp;&nbsp;
-	                <input type="tel" name="tel" id="tel_3" class="form-control col-md-3" maxlength="4" placeholder="5678"/>
+	                <input type="tel" name="tel" id="tel_3" class="form-control col-md-2" maxlength="4" placeholder="5678"/>
 	            </div>
 	        </div>
 
-			<div class="form-group" style="display: flex; align-items: end;">
-				<label for="peopleType" class="col-md-2">구분*</label>
+			<div class="form-group" style="align-items: end;">
+				<label for="peopleType" class="col-md-2">성별*</label>
 				&emsp;
 				<label class="radio-inline">
-					<input type="radio" name="peopleType" id="corporater" value="corporater"> 자영업자
+					<input type="radio" name="gender" id="male" value="male"> 남자
 				</label>
-				&nbsp;&nbsp;&nbsp;&nbsp;
+				&emsp;&emsp;&emsp;&emsp;
 				<label class="radio-inline">
-					<input type="radio" name="peopleType" id="consumer" value="consumer"> 개인 사용자
+					<input type="radio" name="gender" id="female" value="female"> 여자
 				</label>
 				&emsp;&emsp;&emsp;&emsp;
 				<label for="birthday" class="col-md-2">생년월일*</label>
@@ -137,7 +160,8 @@
 	        <div class="form-group">
 	            <label for='postcode' class="col-md-2">우편번호</label>
 	            <div class="col-md-10 clearfix" style="display: flex;">
-	                <input type="text" name="postcode" id="postcode" class="form-control pull-left" style='width: 120px; margin-right: 5px'/>
+	                <input type="text" name="postcode" id="postcode" class="form-control" style='width: 120px; margin-right: 5px'/>
+                    &emsp;&emsp;
 	                <!-- 클릭 시, Javascript 함수 호출 : openDaumPostcode() -->
 	                <input type='button' value='우편번호 찾기' class='btn btn-warning' onclick='execDaumPostcode("postcode", "addr1", "addr2")'/>
 	            </div>
@@ -156,14 +180,15 @@
 			
 	        <div class="form-group">
 	            <div class="col-md-offset-2 col-md-10">
-	                <button type="button" id="registBtn" class="btn btn-primary">가입하기</button>
-	                <button type="reset" class="btn btn-danger">다시작성</button>
+	                <button type="button"  class="btn btn-primary" id="registBtn"> 가입하기 </button>
+                    &emsp;
+	                <button type="reset" class="btn btn-danger" onClick="javascript:back();"> 뒤로가기 </button>
 	            </div>
 	        </div>
 	        
-	        <input type="hidden" name="type" id="type" value="normal" />
+	        <input type="hidden" name="user_type" id="user_type" value="normal" />
+	        <input type="hidden" name="login_type" id="login_type" value="site" />
 	        <input type="hidden" id="userIdChk" value="N" />
-	        <input type="hidden" id="emailChk" value="N" />
 	    </form>
 	    <!-- 가입폼 끝 -->
 	</div>
@@ -171,5 +196,26 @@
 	<footer>
 		<c:import url="${pageContext.request.contextPath }/assets/include/footer.jsp" />
 	</footer>
+
+	<script>
+        (function () {
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation');
+
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                } 
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
+
+    </script>
 </body>
 </html>

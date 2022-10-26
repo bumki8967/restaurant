@@ -11,18 +11,19 @@
 		<result property="user_id"			column="user_id" />
 		<result property="user_pw"			column="user_pw" />
 		<result property="name"				column="name" />
-		<result property="email"			column="email" />
 		<result property="tel"				column="tel" />
 		<result property="birthday"			column="birthday" />
-		<result property="peopleType"		column="peopleType" />
+		<result property="gender"			column="gender" />
 		<result property="postcode"			column="postcode" />
 		<result property="addr1"			column="addr1" />
 		<result property="addr2"			column="addr2" />
 		<result property="reg_date"			column="reg_date" />
-		<result property="type"				column="type" />
-		<result property="etc1"				column="etc1" />
-		<result property="etc2"				column="etc2" />
-		<result property="etc3"				column="etc3" />
+		<result property="edit_date"		column="edit_date" />
+		<result property="user_type"		column="user_type" />
+		<result property="login_type"		column="login_type" />
+		<result property="add_item1"			column="add_item1" />
+		<result property="add_item2"			column="add_item2" />
+		<result property="add_item3"			column="add_item3" />
 	</resultMap>
 
 
@@ -31,11 +32,11 @@
 	<insert id="insertUser" parameterType="com.project.restaurant.user.User"
 		useGeneratedKeys="true" keyProperty="user_seq">
 		INSERT INTO user_info (
-			user_id, user_pw, name, email, tel, birthday, peopleType, 
-			postcode, addr1, addr2, reg_date, type, etc1, etc2, etc3
+			user_id, user_pw, name, tel, birthday, gender, postcode, addr1, addr2,
+			reg_date, edit_date, user_type, login_type, add_item1, add_item2, add_item3
 		) VALUES (
-			#{user_id}, #{user_pw}, #{name}, #{email}, #{tel}, #{birthday}, #{peopleType}, 
-			#{postcode}, #{addr1}, #{addr2}, now(), #{type}, #{etc1}, #{etc2}, #{etc3}
+			#{user_id}, #{user_pw}, #{name}, #{tel}, #{birthday}, #{gender}, #{postcode}, #{addr1}, #{addr2}, 
+			now(), now(), #{user_type}, #{login_type}, #{add_item1}, #{add_item2}, #{add_item3}
 		)
 	</insert>	
 		
@@ -48,13 +49,13 @@
 	</select>	
 	
 	
-	<!-- 중복회원가입 방지를 위해 이메일 중복검사 수행 -->
+	<!-- 중복회원가입 방지를 위해 이메일 중복검사 수행 
 	<select id="duplicationEmail" parameterType="com.project.restaurant.user.User" resultType="int">
 		SELECT	count(email)
 		FROM	user_info
 		WHERE	email = #{email}		
 	</select>
-	
+	-->
 	
 	<!-- 로그인 시 아이디와 비밀번호가 일치하는 회원을 조회 -->
 	<select id="loginUserInfo" resultMap="User" resultType="String">

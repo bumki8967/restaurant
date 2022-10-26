@@ -5,21 +5,41 @@ import java.util.Date;
 public class User {
 
 	private int user_seq;
+	
 	private String user_id;
+	
 	private String user_pw;
+	
 	private String name;
-	private String email;
+	
 	private String tel;
+	
 	private String birthday;
-	private String peopleType;
+	
+	private String gender;
+	
 	private String postcode;
+	
 	private String addr1;
+	
 	private String addr2;
+	
 	private Date reg_date;
-	private String type;
-	private String etc1;
-	private String etc2;
-	private String etc3;
+	
+	private Date edit_date;
+
+	private String user_type;
+	
+	private String login_type;
+	
+	private String add_item1;
+
+	private String add_item2;
+	
+	private String add_item3;
+	
+	
+	
 	public int getUser_seq() {
 		return user_seq;
 	}
@@ -44,12 +64,6 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public String getTel() {
 		return tel;
 	}
@@ -62,11 +76,11 @@ public class User {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	public String getPeopleType() {
-		return peopleType;
+	public String getGender() {
+		return gender;
 	}
-	public void setPeopleType(String peopleType) {
-		this.peopleType = peopleType;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public String getPostcode() {
 		return postcode;
@@ -92,42 +106,50 @@ public class User {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	public String getType() {
-		return type;
+	public Date getEdit_date() {
+		return edit_date;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setEdit_date(Date edit_date) {
+		this.edit_date = edit_date;
 	}
-	public String getEtc1() {
-		return etc1;
+	public String getUser_type() {
+		return user_type;
 	}
-	public void setEtc1(String etc1) {
-		this.etc1 = etc1;
+	public void setUser_type(String user_type) {
+		this.user_type = user_type;
 	}
-	public String getEtc2() {
-		return etc2;
+	public String getLogin_type() {
+		return login_type;
 	}
-	public void setEtc2(String etc2) {
-		this.etc2 = etc2;
+	public void setLogin_type(String login_type) {
+		this.login_type = login_type;
 	}
-	public String getEtc3() {
-		return etc3;
+	public String getAdd_item1() {
+		return add_item1;
 	}
-	public void setEtc3(String etc3) {
-		this.etc3 = etc3;
+	public void setAdd_item1(String add_item1) {
+		this.add_item1 = add_item1;
+	}
+	public String getAdd_item2() {
+		return add_item2;
+	}
+	public void setAdd_item2(String add_item2) {
+		this.add_item2 = add_item2;
+	}
+	public String getAdd_item3() {
+		return add_item3;
+	}
+	public void setAdd_item3(String add_item3) {
+		this.add_item3 = add_item3;
 	}
 	@Override
 	public String toString() {
 		return "User [user_seq=" + user_seq + ", user_id=" + user_id + ", user_pw=" + user_pw + ", name=" + name
-				+ ", email=" + email + ", tel=" + tel + ", birthday=" + birthday + ", peopleType=" + peopleType
-				+ ", postcode=" + postcode + ", addr1=" + addr1 + ", addr2=" + addr2 + ", reg_date=" + reg_date
-				+ ", type=" + type + ", etc1=" + etc1 + ", etc2=" + etc2 + ", etc3=" + etc3 + "]";
+				+ ", birthday=" + birthday + ", gender=" + gender + ", postcode=" + postcode + ", addr1=" + addr1
+				+ ", addr2=" + addr2 + ", reg_date=" + reg_date + ", edit_date=" + edit_date + ", user_type="
+				+ user_type + ", login_type=" + login_type + ", add_item1=" + add_item1 + ", add_item2=" + add_item2
+				+ ", add_item3=" + add_item3 + "]";
 	}
-	
-
-
-	
-	
 	
 	
 	

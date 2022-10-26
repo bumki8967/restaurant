@@ -28,24 +28,23 @@ public class UserServiceImpl implements UserService {
 	public void insertUser(User user) {
 		
 		try {
+			System.out.println("UserServiceImpl	insertUser Start!!!!");
+			
+			// 아이디 합치기
+			String userId = user.getUser_id().replaceAll(",", "");
 			// 비밀번호 암호화
 			String encryptPw = encrypt.encrypt(user.getUser_pw());
 			// 핸드폰 번호 합치기
 			String tel = user.getTel().replaceAll(",", "-");
-			// 현재 날짜 구하기        
-//			LocalDate now = LocalDate.now();         
-			// 포맷 정의        
-//			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");         
-			// 포맷 적용        
-//			String today = now.format(formatter);     
-			System.out.println("11111111	" + user.getBirthday());
 			
+			System.out.println("UserServiceImpl	insertUser		::	" + user);
+			
+			user.setUser_id(userId);
 			user.setUser_pw(encryptPw);
 			user.setTel(tel);
-//			user.setReg_date(today);
 			
 			userService.insertUser(user);
-			
+			System.out.println("UserServiceImpl	insertUser End!!!!");
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
@@ -67,7 +66,7 @@ public class UserServiceImpl implements UserService {
 	
 	/**
 	 * 이메일 중복 검사
-	 */
+	 
 	@Override
 	public int duplicationEmail(String email) {
 		
@@ -75,7 +74,9 @@ public class UserServiceImpl implements UserService {
 		
 		return result;
 	}
-
+*/
+	
+	
 	
 	/**
 	 * 로그인 시 아이디와 비밀번호 체크
@@ -138,9 +139,6 @@ public class UserServiceImpl implements UserService {
 		
 		System.out.println("ServiceImpl	Update Start!!!!");
 		
-		System.out.println("USER peopleType	::	" + user.getPeopleType());
-		System.out.println("USER birthday	::	" + user.getBirthday());
-		System.out.println("USER tel	::	" + user.getTel());
 		userService.updateUserData(user);
 		
 		System.out.println("ServiceImpl	Update End!!!!");

@@ -89,7 +89,7 @@ public class UserController {
 	 * 회원가입 시 중복 이메일 체크 Ajax
 	 * @param email
 	 * @return
-	 */
+	 
 	@RequestMapping(value = "/duplicationEmail")
 	@ResponseBody
 	public int duplicationEmail(String email) {
@@ -98,7 +98,7 @@ public class UserController {
 		
 		return result;
 	}
-	
+	*/
 	
 	
 	/**
@@ -118,14 +118,14 @@ public class UserController {
 		HttpSession session = request.getSession();
 		System.out.println("LoginController		::	" + keep);
 		
-		if (user != null && keep.equals("N")) {
-			session.setAttribute("user_id", user.getUser_id());
-			session.setAttribute("type", user.getType());
-		} else if (user != null && keep.equals("Y")) {
-			session.setAttribute("user_id", user.getUser_id());
-			session.setAttribute("type", user.getType());
-			session.setMaxInactiveInterval(60 * 10 * 1);
-		}
+//		if (user != null && keep.equals("N")) {
+//			session.setAttribute("user_id", user.getUser_id());
+//			session.setAttribute("type", user.getType());
+//		} else if (user != null && keep.equals("Y")) {
+//			session.setAttribute("user_id", user.getUser_id());
+//			session.setAttribute("type", user.getType());
+//			session.setMaxInactiveInterval(60 * 10 * 1);
+//		}
 		
 		return user;
 	}
