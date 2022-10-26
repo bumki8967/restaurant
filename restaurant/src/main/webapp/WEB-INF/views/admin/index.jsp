@@ -35,8 +35,42 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/plugins/summernote/summernote-bs4.min.css">
-
-	<script src="${pageConext.request.contextPath }/assets/js/admin/index.js"></script>
+  <!-- JS -->
+  <script src="${pageConext.request.contextPath }/assets/js/admin/index.js"></script>
+  
+  <script type="text/javascript">
+	  $(function() {
+			$("#allCheck").click(function() {
+				if ($("#allCheck").prop("checked")) {
+					$("input[name='chk']").prop("checked", true);
+				} else {
+					$("input[name='chk']").prop("checked", false);
+				}
+			});
+		});
+	  
+	  function selectUserDelete() {
+	  		var chkValueArr = [];
+		  
+			$("input:checkbox[name='chk']:checked").each(function() {
+				chkValueArr.push($(this).val());
+				console.log(chkValueArr);
+			})
+			
+			if (chkValueArr.length == 0) {
+				alert("탈퇴시킬 회원을 선택해주세요.");
+				return;
+			} else {
+				var con = confirm("선택한 회원을 탈퇴시키겠습니까?");
+				
+				if (con) {
+					$("#form").attr('action', '/admin/userDelete.do');
+					$("#form").submit();
+				}
+			}
+	  }
+  </script>
+	
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
@@ -62,7 +96,7 @@
 				<div class="content-header">
 					<div class="container-fluid">
 						<div class="row mb-2">
-							<div class="col-sm-6">
+							<div class="col-sm-10">
 								<h1 class="m-0">회원관리</h1>
 							</div>
 							<!-- /.col -->
@@ -73,21 +107,28 @@
 				</div>
 				<!-- /.content-header -->
 				
-				<form method="POST" class="form">
+				<form method="POST" class="form" id="form" name="viewForm">
 					<!-- Main content -->
 					<div class="content">
 						<div class="container-fluid">
 							<div class="card">
-								<div class="card-header border-0">
-									<h3 class="title">Member List</h3>
+								<div class="card-header border-0" style="display: flex;">
+									<h3 class="col-sm-10 title">Member List</h3>
+									<div>
+										<button type="button" class="btn btn-danger" onClick="javascript:selectUserDelete();"> 선택된 회원 삭제</button>
+									</div>
 								</div>
 								<hr />
-								<div class="card-header">
+								<div class="card-header table-responsive">
 									<table id="data_list">
 										<thead>
 											<tr>
+												<th style="text-align: center;">
+													<input type="checkbox" id="allCheck">
+											  	</th>
 												<th style="text-align: center;"> 번호 </th>
 												<th style="text-align: center;"> 이름 </th>
+												<th style="text-align: center;"> 아이디 </th>
 												<th style="text-align: center;"> 핸드폰번호 </th>
 												<th style="text-align: center;"> 생일 </th>
 												<th style="text-align: center;"> 구분 </th>
@@ -99,10 +140,16 @@
 											<c:forEach var="list" items="${userList }">
 												<tr style="text-align: center;">
 													<td>
+														<input type="checkbox" name="chk" />
+													</td>
+													<td>
 														${list.user_seq }
 													</td>	
 													<td>
 														${list.name }
+													</td>
+													<td>
+														${list.user_id }
 													</td>
 													<td>
 														${list.tel }
@@ -112,16 +159,16 @@
 													</td>
 													<td>
 														<c:choose>
-															<c:when test="${list.peopleType == 'corporater'}">
-																자영업자
+															<c:when test="${list.gender == 'male'}">
+																남자
 															</c:when>
-															<c:when test="${list.peopleType == 'consumer'}">
-																개인 사용자
+															<c:when test="${list.gender == 'female'}">
+																여자
 															</c:when>
 														</c:choose>
 													</td>
 													<td>
-														<fmt:formatDate value="${list.reg_date }" pattern="yyyy-MM-dd" />
+														<fmt:formatDate value="${list.reg_date }" pattern="yyyy-MM-dd" />  
 														<%-- ${list.reg_date } --%>
 													</td>
 													<td>
