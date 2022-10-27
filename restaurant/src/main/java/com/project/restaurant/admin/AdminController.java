@@ -2,10 +2,13 @@ package com.project.restaurant.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.restaurant.user.User;
@@ -42,8 +45,9 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("/admin/index");
 
 		List<User> userList = userServiceImpl.selectUserAll();
-		
+
 		mav.addObject("userList", userList);
+		
 		
 		System.out.println("Admin index");
 		
@@ -57,31 +61,40 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/userDelete.do")
-	public String userDelete(@RequestParam(value = "user_seq") int user_seq, @RequestParam(value = "chkArr", required = false) List<String> chkArr) {
+	public String userDelete(@RequestParam(value = "user_seq") int user_seq) {
 		
 		System.out.println("AdminController		userDelete	Start!!!!!");
-		System.out.println("AdminController		userDelete	chkArr1	::	" + chkArr);
-		System.out.println("AdminController		userDelete	chkArr2	::	" + chkArr.size());
 		
+		userServiceImpl.deleteUser(user_seq);
 		
+		System.out.println("AdminController		userDelete	End!!!!!");
 		
-		return null;
-//		if (chkArr.size() != 0) {
-//			for (int i = 0; i < chkArr.size(); i++) {
-//				int userSeqs = Integer.valueOf(chkArr.get(i));
-//				
-//				userServiceImpl.deleteUser(userSeqs);
-//			}
-//		} else {
-//			userServiceImpl.deleteUser(user_seq);
-//		}
-//		
-//		System.out.println("AdminController		userDelete	End!!!!!");
-//		
-//		return "redirect:/admin/index";
+		return "redirect:/admin/index";
 	}
 	
 	
+	@RequestMapping("/selectUserDelete.do")
+	@ResponseBody
+	public String selectUserDelete(@RequestParam(value = "valueArr") int[] valueArr) {
+		
+		System.out.println("AdminController		selectUserDelete	Start!!!!");
+		for (int i = 0; i < valueArr.length; i++) {
+			System.out.println("selectUserDelete	::	" + valueArr[i]);
+			userServiceImpl.deleteUser(valueArr[i]);
+		}
+		System.out.println("AdminController		selectUserDelete	End!!!!");
+		
+		
+		return "redirect:/admin/index";
+	}
+	
+	
+	
+	/**
+	 * 회원 수정페이지
+	 * @param user_seq
+	 * @return
+	 */
 	@RequestMapping("/userEditView")
 	public ModelAndView userEditView(@RequestParam(value = "user_seq") int user_seq) {
 		

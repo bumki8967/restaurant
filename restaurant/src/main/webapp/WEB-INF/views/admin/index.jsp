@@ -38,40 +38,49 @@
   <!-- JS -->
   <script src="${pageConext.request.contextPath }/assets/js/admin/index.js"></script>
   
-  <%-- <script type="text/javascript">
-	  $(function() {
-			$("#allCheck").click(function() {
-				if ($("#allCheck").prop("checked")) {
-					$("input[name='chk']").prop("checked", true);
-				} else {
-					$("input[name='chk']").prop("checked", false);
-				}
-			});
-		});
-	  
-	  function selectUserDelete() {
-	  		var chkValueArr = [];
-		  
-			$("input:checkbox[name='chk']:checked").each(function() {
-				chkValueArr.push($(this).val());
-				console.log(chkValueArr);
-			})
-			
-			if (chkValueArr.length == 0) {
-				alert("탈퇴시킬 회원을 선택해주세요.");
-				return;
-			} else {
-				var con = confirm("선택한 회원을 탈퇴시키겠습니까?");
-				
-				if (con) {
-					alert("삭제");
-					return;
-					$("#form").attr('action', '/admin/userDelete.do');
-					$("#form").submit();
-				}
+  <script type="text/javascript">
+	function selectUserDelete() {
+		var valueArr = new Array();
+		var list = $("input[name='rowCheck']");
+		
+		for (var i = 0; i < list.length; i++) {
+			// 선택된 체크박스가 있으면 배열에 값 저장
+			if (list[i].checked) {
+				valueArr.push(list[i].value);
 			}
-	  }
-  </script> --%>
+		}
+		if (valueArr.length == 0) {
+			alert("탈퇴시킬 회원을 선택해주세요.");
+			return;
+		} else {
+			if (confirm("선택한 회원을 탈퇴시키겠습니까?")) {
+				$.ajax ({
+					type	:	"POST",
+					url		:	"/admin/selectUserDelete.do",
+					traditional : true,		// 배열로 보낼때 사용
+					data	:	{
+						valueArr: valueArr
+					},
+					success : function(data) {
+						console.log("Data	::	" + data);
+						if (data = 1) {
+							alert("회원탈퇴가 완료되었습니다.");
+							location.reload();
+						} else {
+							alert("회원탈퇴를 실패하였습니다.");
+							return;
+						}
+					},
+					error : function(error, xhr) {
+						alert("error!!\n" + error + "	" + xhr);
+						return;
+					}
+				})	
+			}
+		}
+	}
+
+  </script>
 	
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -110,7 +119,7 @@
 				<!-- /.content-header -->
 				
 				<form method="POST" class="form" id="form" name="viewForm">
-					<input type="hidden" name="chkArr[]" />
+					<input type="hidden" name="chk" />
 					<!-- Main content -->
 					<div class="content">
 						<div class="container-fluid">
@@ -118,7 +127,7 @@
 								<div class="card-header border-0" style="display: flex;">
 									<h3 class="col-sm-10 title">Member List</h3>
 									<div>
-										<button type="button" class="btn btn-danger" id="deleteBtn" onClick="javascript:selectUserDelete();"> 선택된 회원 삭제</button>
+										<button type="button" class="btn btn-danger" id="deleteBtn" onClick="javascript:selectUserDelete();"> 선택회원 삭제</button>
 									</div>
 								</div>
 								<hr />
@@ -127,7 +136,7 @@
 										<thead>
 											<tr>
 												<th style="text-align: center;">
-													<input type="checkbox" id="allCheck">
+													<input type="checkbox" id="allCheck" name="allCheck">
 											  	</th>
 												<th style="text-align: center;"> 번호 </th>
 												<th style="text-align: center;"> 이름 </th>
@@ -143,7 +152,7 @@
 											<c:forEach var="list" items="${userList }" varStatus="stat">
 												<tr style="text-align: center;">
 													<td>
-														<input type="checkbox" name="chk['${stat.index}'].user_seq" class="deleteUserSeqs" value="${list.user_seq}" />
+														<input type="checkbox" name="rowCheck" class="deleteUserSeqs" value="${list.user_seq}" />
 													</td>
 													<td>
 														${list.user_seq }
