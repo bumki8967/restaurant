@@ -24,4 +24,44 @@ function userDelete(user_seq) {
 	});
 
 	
-
+// 선택한 회원 탈퇴
+function selectUserDelete() {
+		var valueArr = new Array();
+		var list = $("input[name='rowCheck']");
+		
+		for (var i = 0; i < list.length; i++) {
+			// 선택된 체크박스가 있으면 배열에 값 저장
+			if (list[i].checked) {
+				valueArr.push(list[i].value);
+			}
+		}
+		if (valueArr.length == 0) {
+			alert("탈퇴시킬 회원을 선택해주세요.");
+			return;
+		} else {
+			if (confirm("선택한 회원을 탈퇴시키겠습니까?")) {
+				$.ajax ({
+					type	:	"POST",
+					url		:	"/admin/selectUserDelete.do",
+					traditional : true,		// 배열로 보낼때 사용
+					data	:	{
+						valueArr: valueArr
+					},
+					success : function(data) {
+						console.log("Data	::	" + data);
+						if (data = 1) {
+							alert("회원탈퇴가 완료되었습니다.");
+							location.reload();
+						} else {
+							alert("회원탈퇴를 실패하였습니다.");
+							return;
+						}
+					},
+					error : function(error, xhr) {
+						alert("error!!\n" + error + "	" + xhr);
+						return;
+					}
+				})	
+			}
+		}
+	}
