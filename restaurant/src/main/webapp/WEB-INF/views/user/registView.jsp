@@ -40,7 +40,7 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/daumPostCode.js"></script>
 	
-	<script src="${pageConext.request.contextPath }/assets/js/user/registView.js"></script> 
+	<!-- <script src="${pageConext.request.contextPath }/assets/js/user/registView.js"></script> --> 
 	
 	
 	<style type="text/css">
@@ -109,6 +109,7 @@
 	            <label for='password' class="col-md-2">비밀번호*</label>
 	            <div class="col-md-5">
 	                <input type="password" name="user_pw" id="user_pw" class="form-control" placeholder="최소 8 자, 최소 하나의 문자, 숫자 및 하나의 특수 문자" required />
+	                <div class="invalid-feedback"> 비밀번호는 필수 입력값입니다.</div>
 	            </div>
 	        </div>
 	

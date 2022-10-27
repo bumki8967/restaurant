@@ -21,9 +21,9 @@
 		<result property="edit_date"		column="edit_date" />
 		<result property="user_type"		column="user_type" />
 		<result property="login_type"		column="login_type" />
-		<result property="add_item1"			column="add_item1" />
-		<result property="add_item2"			column="add_item2" />
-		<result property="add_item3"			column="add_item3" />
+		<result property="add_item1"		column="add_item1" />
+		<result property="add_item2"		column="add_item2" />
+		<result property="add_item3"		column="add_item3" />
 	</resultMap>
 
 

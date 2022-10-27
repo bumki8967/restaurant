@@ -1,6 +1,7 @@
 package com.project.restaurant.user;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
 
@@ -38,6 +39,7 @@ public class User {
 	
 	private String add_item3;
 	
+	private String chkArr;
 	
 	
 	public int getUser_seq() {
@@ -141,6 +143,12 @@ public class User {
 	}
 	public void setAdd_item3(String add_item3) {
 		this.add_item3 = add_item3;
+	}
+	public String getChkArr() {
+		return chkArr;
+	}
+	public void setChkArr(String chkArr) {
+		this.chkArr = chkArr;
 	}
 	@Override
 	public String toString() {

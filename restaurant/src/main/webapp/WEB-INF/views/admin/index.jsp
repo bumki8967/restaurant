@@ -38,7 +38,7 @@
   <!-- JS -->
   <script src="${pageConext.request.contextPath }/assets/js/admin/index.js"></script>
   
-  <script type="text/javascript">
+  <%-- <script type="text/javascript">
 	  $(function() {
 			$("#allCheck").click(function() {
 				if ($("#allCheck").prop("checked")) {
@@ -64,12 +64,14 @@
 				var con = confirm("선택한 회원을 탈퇴시키겠습니까?");
 				
 				if (con) {
+					alert("삭제");
+					return;
 					$("#form").attr('action', '/admin/userDelete.do');
 					$("#form").submit();
 				}
 			}
 	  }
-  </script>
+  </script> --%>
 	
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -108,6 +110,7 @@
 				<!-- /.content-header -->
 				
 				<form method="POST" class="form" id="form" name="viewForm">
+					<input type="hidden" name="chkArr[]" />
 					<!-- Main content -->
 					<div class="content">
 						<div class="container-fluid">
@@ -115,7 +118,7 @@
 								<div class="card-header border-0" style="display: flex;">
 									<h3 class="col-sm-10 title">Member List</h3>
 									<div>
-										<button type="button" class="btn btn-danger" onClick="javascript:selectUserDelete();"> 선택된 회원 삭제</button>
+										<button type="button" class="btn btn-danger" id="deleteBtn" onClick="javascript:selectUserDelete();"> 선택된 회원 삭제</button>
 									</div>
 								</div>
 								<hr />
@@ -137,10 +140,10 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="list" items="${userList }">
+											<c:forEach var="list" items="${userList }" varStatus="stat">
 												<tr style="text-align: center;">
 													<td>
-														<input type="checkbox" name="chk" />
+														<input type="checkbox" name="chk['${stat.index}'].user_seq" class="deleteUserSeqs" value="${list.user_seq}" />
 													</td>
 													<td>
 														${list.user_seq }

@@ -57,15 +57,28 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/userDelete.do")
-	public String userDelete(@RequestParam(value = "user_seq") int user_seq) {
+	public String userDelete(@RequestParam(value = "user_seq") int user_seq, @RequestParam(value = "chkArr", required = false) List<String> chkArr) {
 		
 		System.out.println("AdminController		userDelete	Start!!!!!");
+		System.out.println("AdminController		userDelete	chkArr1	::	" + chkArr);
+		System.out.println("AdminController		userDelete	chkArr2	::	" + chkArr.size());
 		
-		userServiceImpl.deleteUser(user_seq);
 		
-		System.out.println("AdminController		userDelete	End!!!!!");
 		
-		return "redirect:/admin/index";
+		return null;
+//		if (chkArr.size() != 0) {
+//			for (int i = 0; i < chkArr.size(); i++) {
+//				int userSeqs = Integer.valueOf(chkArr.get(i));
+//				
+//				userServiceImpl.deleteUser(userSeqs);
+//			}
+//		} else {
+//			userServiceImpl.deleteUser(user_seq);
+//		}
+//		
+//		System.out.println("AdminController		userDelete	End!!!!!");
+//		
+//		return "redirect:/admin/index";
 	}
 	
 	

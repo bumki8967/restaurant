@@ -50,4 +50,5 @@ public interface UserService {
 	 * 회원정보 수정
 	 */
 	public void updateUserData(User user);
+	
 }
