@@ -58,7 +58,7 @@
 	-->
 	
 	<!-- 로그인 시 아이디와 비밀번호가 일치하는 회원을 조회 -->
-	<select id="loginUserInfo" resultMap="User" resultType="String">
+	<select id="loginUserInfo" resultMap="User" resultType="int">
 		SELECT	*
 		FROM	user_info
 		WHERE	user_id = #{user_id}

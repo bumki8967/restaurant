@@ -14,7 +14,6 @@ public class LoginController {
 	@RequestMapping(value = "/loginView")
 	public ModelAndView userLoginView() {
 		
-		System.out.println("LoginController UserLoginView");
 		ModelAndView mav = new ModelAndView("/user/loginView");
 		
 		return mav;
@@ -30,7 +29,6 @@ public class LoginController {
 	@RequestMapping(value = "/findPwView")
 	public ModelAndView userFindPwView() {
 		
-		System.out.println("LoginController UserFindPwView");
 		ModelAndView mav = new ModelAndView("/user/findPwView");
 		
 		return mav;

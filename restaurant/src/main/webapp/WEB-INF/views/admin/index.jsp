@@ -106,6 +106,7 @@
 												<th style="text-align: center;"> 생일 </th>
 												<th style="text-align: center;"> 구분 </th>
 												<th style="text-align: center;"> 가입날짜 </th>
+												<th style="text-align: center;"> 로그인유형 </th>
 												<th style="text-align: center;"> 비고 </th>
 											</tr>
 										</thead>
@@ -143,6 +144,23 @@
 													<td>
 														<fmt:formatDate value="${list.reg_date }" pattern="yyyy-MM-dd" />  
 														<%-- ${list.reg_date } --%>
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${list.login_type == 'site'}">
+																사이트
+															</c:when>
+															<c:when test="${list.login_type == 'kakao'}">
+																카카오
+															</c:when>
+															<c:when test="${list.login_type == 'naver'}">
+																네이버
+															</c:when>
+															<c:when test="${list.login_type == 'google'}">
+																구글
+															</c:when>
+														</c:choose>
+														
 													</td>
 													<td>
 														<span>

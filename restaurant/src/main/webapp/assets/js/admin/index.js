@@ -48,7 +48,6 @@ function selectUserDelete() {
 						valueArr: valueArr
 					},
 					success : function(data) {
-						console.log("Data	::	" + data);
 						if (data = 1) {
 							alert("회원탈퇴가 완료되었습니다.");
 							location.reload();

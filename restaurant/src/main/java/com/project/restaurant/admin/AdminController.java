@@ -2,8 +2,6 @@ package com.project.restaurant.admin;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +23,10 @@ public class AdminController {
 	 * 관리자 로그인 화면
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/loginView")
 	public ModelAndView admin() {
 		
-		System.out.println("Admin login");
-		ModelAndView mav = new ModelAndView("/admin/login");
+		ModelAndView mav = new ModelAndView("/admin/loginView");
 		
 		return mav;
 	}
@@ -39,7 +36,6 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/index")
-//	@ResponseBody
 	public ModelAndView adminIndex() {
 		
 		ModelAndView mav = new ModelAndView("/admin/index");
@@ -47,10 +43,6 @@ public class AdminController {
 		List<User> userList = userServiceImpl.selectUserAll();
 
 		mav.addObject("userList", userList);
-		
-		
-		System.out.println("Admin index");
-		
 		
 		return mav;
 	}
@@ -63,27 +55,23 @@ public class AdminController {
 	@RequestMapping("/userDelete.do")
 	public String userDelete(@RequestParam(value = "user_seq") int user_seq) {
 		
-		System.out.println("AdminController		userDelete	Start!!!!!");
-		
 		userServiceImpl.deleteUser(user_seq);
-		
-		System.out.println("AdminController		userDelete	End!!!!!");
 		
 		return "redirect:/admin/index";
 	}
 	
-	
+	/**
+	 * 선택회원 탈퇴
+	 * @param valueArr
+	 * @return
+	 */
 	@RequestMapping("/selectUserDelete.do")
 	@ResponseBody
 	public String selectUserDelete(@RequestParam(value = "valueArr") int[] valueArr) {
 		
-		System.out.println("AdminController		selectUserDelete	Start!!!!");
 		for (int i = 0; i < valueArr.length; i++) {
-			System.out.println("selectUserDelete	::	" + valueArr[i]);
 			userServiceImpl.deleteUser(valueArr[i]);
 		}
-		System.out.println("AdminController		selectUserDelete	End!!!!");
-		
 		
 		return "redirect:/admin/index";
 	}
@@ -98,17 +86,11 @@ public class AdminController {
 	@RequestMapping("/userEditView")
 	public ModelAndView userEditView(@RequestParam(value = "user_seq") int user_seq) {
 		
-		System.out.println("AdminController		userEditView	Start!!!!!");
-		
 		ModelAndView mav = new ModelAndView("/admin/userEditView");
 		
 		User user = userServiceImpl.selectByUserSeq(user_seq);
 		
-		System.out.println("USER_SEQ	::	" + user_seq);
-		System.out.println("USER	::	" + user);
 		mav.addObject("user", user);
-		
-		System.out.println("AdminController		userEditView	End!!!!!");
 		
 		return mav;
 	}

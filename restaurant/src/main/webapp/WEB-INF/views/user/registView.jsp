@@ -40,7 +40,7 @@
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/daumPostCode.js"></script>
 	
-	<!-- <script src="${pageConext.request.contextPath }/assets/js/user/registView.js"></script> --> 
+	<script src="${pageConext.request.contextPath }/assets/js/user/registView.js"></script>
 	
 	
 	<style type="text/css">

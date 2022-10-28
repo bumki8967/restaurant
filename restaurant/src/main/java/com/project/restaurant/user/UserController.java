@@ -30,7 +30,6 @@ public class UserController {
 	@RequestMapping(value = "/userRegistView")
 	public ModelAndView userRegistView() {
 		
-		System.out.println("LoginController UserRegistView");
 		ModelAndView mav = new ModelAndView("/user/registView");
 		
 		return mav;
@@ -44,7 +43,6 @@ public class UserController {
 	@RequestMapping(value = "/userFindPwView")
 	public ModelAndView userFindPwView() {
 		
-		System.out.println("LoginController userFindPwView");
 		ModelAndView mav = new ModelAndView("/user/findPwView");
 		
 		return mav;
@@ -78,8 +76,6 @@ public class UserController {
 		
 		int result = userServiceImpl.duplicationUserId(user_id);
 		
-		System.out.println(result);
-		
 		return result;
 	}
 	
@@ -111,21 +107,23 @@ public class UserController {
 	@RequestMapping(value = "/login.do")
 	@ResponseBody
 	public User userLogin(HttpServletRequest request, @RequestParam(value = "user_id") String user_id, 
-						  @RequestParam(value = "user_pw") String user_pw, @RequestParam(value = "keep") String keep) {
+						  @RequestParam(value = "user_pw") String user_pw, @RequestParam(value = "keep", required = false) String keep) {
 		
 		User user = userServiceImpl.loginUserInfo(user_id, user_pw);
-		
 		HttpSession session = request.getSession();
-		System.out.println("LoginController		::	" + keep);
 		
-//		if (user != null && keep.equals("N")) {
-//			session.setAttribute("user_id", user.getUser_id());
-//			session.setAttribute("type", user.getType());
-//		} else if (user != null && keep.equals("Y")) {
-//			session.setAttribute("user_id", user.getUser_id());
-//			session.setAttribute("type", user.getType());
-//			session.setMaxInactiveInterval(60 * 10 * 1);
-//		}
+		if (user != null && keep.equals("N")) {
+			session.setAttribute("user_id", user.getUser_id());
+			session.setAttribute("name", user.getName());
+			session.setAttribute("user_type", user.getUser_type());
+			session.setAttribute("login_type", user.getLogin_type());
+		} else if (user != null && keep.equals("Y")) {
+			session.setAttribute("user_id", user.getUser_id());
+			session.setAttribute("name", user.getName());
+			session.setAttribute("user_type", user.getUser_type());
+			session.setAttribute("login_type", user.getLogin_type());
+			session.setMaxInactiveInterval(60 * 10 * 1);
+		}
 		
 		return user;
 	}

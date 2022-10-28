@@ -7,6 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<style>
+	a:hover {
+		cursor : pointer;
+	}
+</style>
+
 <script type="text/javascript">
 	function logout() {
 		var con = confirm("로그아웃 하시겠습니까?");

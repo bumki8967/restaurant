@@ -161,11 +161,11 @@
 							keep	: keep
 						},
 						success : function(data) {
+							console.log("data	::	" + data);
 							location.href="/";
 						},
 						error	: function(error) {
-							alert("아이디 또는 비밀번호가 틀립니다.");
-							//alert("통신오류!!\n" + error);
+							alert("통신오류!!\n" + error);
 							return;
 						}
 					});
@@ -187,90 +187,97 @@
         </div>
     </div>
 
+	
     <div class="container">
         <div class="login_wrap">
-	        <div class="id_pw_wrap">
-	            <!-- 아이디 입력 -->
-	            <div class="input_row id_area">
-	                <label for="inputId" class="visually-hidden">ID</label>
-	                <input type="text" id="user_id" name="user_id" class="form-control col-md-5" placeholder="아이디" required autofocus>
-	            </div>
-	
-	            <!-- 비밀번호 입력 -->
-	            <div class="input_row pw_area">
-	                <label for="inputPassword" class="visually-hidden">Password</label>
-	                <input type="password" id="user_pw" name="user_pw" class="form-control" placeholder="비밀번호" required>
-	            </div>
-	        </div>
-	
-	        <div class="keep_join_findPw_btn_area">
-	            <!-- 로그인 상태 유지 -->
-	            <div class="keep_check">
-	                <label> 
-	                    <input type="checkbox" id="keep" name="keep" value="N"> 로그인 상태 유지 
-	                </label>
-	            </div>
-	
-	            <!-- 회원가입 | 비밀번호 찾기-->
-	            <div class="join_findPw">
-	                <div class="join_area">
-	                    <label for="join" class="visually-hidden">
-	                        <a href="${pagecontext.request.contextPath }/user/userRegistView">
-	                            회원가입
-	                        </a>
-	                    </label>
-	                </div>
-	
-	                <div class="findPw_area">
-	                    <label for="findPw" class="visually-hidden">
-	                        <a href="${pagecontext.request.contextPath }/user/userFindPwView">
-	                            비밀번호 찾기
-	                        </a>
-	                    </label>
-	                </div>
-	            </div>
+			<form method="POST" id="loginForm">
+				<input type="hidden" name="name" id="name" />
+				<input type="hidden" name="birthday" id="birthday"/>
+				<input type="hidden" name="gender" id="gender" />
 
+				<div class="id_pw_wrap">
+					<!-- 아이디 입력 -->
+					<div class="input_row id_area">
+						<label for="inputId" class="visually-hidden">ID</label>
+						<input type="text" id="user_id" name="user_id" class="form-control col-md-5" placeholder="아이디" required autofocus>
+					</div>
+		
+					<!-- 비밀번호 입력 -->
+					<div class="input_row pw_area">
+						<label for="inputPassword" class="visually-hidden">Password</label>
+						<input type="password" id="user_pw" name="user_pw" class="form-control" placeholder="비밀번호" required>
+					</div>
+				</div>
+		
+				<div class="keep_join_findPw_btn_area">
+					<!-- 로그인 상태 유지 -->
+					<div class="keep_check">
+						<label> 
+							<input type="checkbox" id="keep" name="keep" value="N"> 로그인 상태 유지 
+						</label>
+					</div>
+		
+					<!-- 회원가입 | 비밀번호 찾기-->
+					<div class="join_findPw">
+						<div class="join_area">
+							<label for="join" class="visually-hidden">
+								<a href="${pagecontext.request.contextPath }/user/userRegistView">
+									회원가입
+								</a>
+							</label>
+						</div>
+		
+						<div class="findPw_area">
+							<label for="findPw" class="visually-hidden">
+								<a href="${pagecontext.request.contextPath }/user/userFindPwView">
+									비밀번호 찾기
+								</a>
+							</label>
+						</div>
+					</div>
+				</div>
+			</form>
                 
-	            <!-- 로그인 버튼 -->
-	            <div class="btn_row">
-                    <button type="submit" class="w-100 btn btn-lg btn-primary" id="login-btn"> 로그인 </button>
-	            </div>    
+			<!-- 로그인 버튼 -->
+			<div class="btn_row">
+				<button type="submit" class="w-100 btn btn-lg btn-primary" id="login-btn"> 로그인 </button>
+			</div>    
 
-                <!-- SNS 로그인 -->
-                <div class="sns_login" style="width: 310px; margin: auto;">
-                    <span>
-                        <label for="kakao_login" class="visually-hidden">
-                            <a href="javascript:kakaoLogin();">
-                                <img src="${pageContext.request.contextPath }/assets/image/kakao.png"/>
-                            </a>
-                        </label>
+			<!-- SNS 로그인 -->
+			<div class="sns_login" style="width: 310px; margin: auto;">
+				<span>
+					<label for="kakao_login" class="visually-hidden">
+						<a href="javascript:kakaoLogin();">
+							<img src="${pageContext.request.contextPath }/assets/image/kakao.png" alt="카카오로그인" />
+							<%-- <img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인" /> --%>
+						</a>
+					</label>
 
-                        <label for="naver_login"  class="visually-hidden">
-                            <a href="javascript:alert('네이버 로그인 기능 준비 중 입니다.');">
-                                <img src="${pageContext.request.contextPath }/assets/image/naver.png"/>
-                            </a>
-                        </label>
+					<label for="naver_login"  class="visually-hidden">
+						<a href="javascript:alert('네이버 로그인 기능 준비 중 입니다.');">
+							<img src="${pageContext.request.contextPath }/assets/image/naver.png"/>
+						</a>
+					</label>
 
-                        <label for="google_login"  class="visually-hidden">
-                            <a href="javascript:alert('구글 로그인 기능 준비 중 입니다.');">
-                                <img src="${pageContext.request.contextPath }/assets/image/google.png" />
-                            </a>
-                        </label>
+					<label for="google_login"  class="visually-hidden">
+						<a href="javascript:alert('구글 로그인 기능 준비 중 입니다.');">
+							<img src="${pageContext.request.contextPath }/assets/image/google.png" />
+						</a>
+					</label>
 
-                        <label for="facebook_login"  class="visually-hidden">
-                            <a href="javascript:alert('페이스북 로그인 기능 준비 중 입니다.');">
-                                <img src="${pageContext.request.contextPath }/assets/image/facebook.png" />
-                            </a>
-                        </label>
+					<label for="facebook_login"  class="visually-hidden">
+						<a href="javascript:alert('페이스북 로그인 기능 준비 중 입니다.');">
+							<img src="${pageContext.request.contextPath }/assets/image/facebook.png" />
+						</a>
+					</label>
 
-                        <label for="apple_login"  class="visually-hidden">
-                            <a href="javascript:alert('애플 로그인 기능 준비 중 입니다.');">
-                                <img src="${pageContext.request.contextPath }/assets/image/apple.png" style="width: 309px; height: 40px;">
-                            </a>
-                        </label>
-                    </span>
-                </div>
-	        </div>    
+					<label for="apple_login"  class="visually-hidden">
+						<a href="javascript:alert('애플 로그인 기능 준비 중 입니다.');">
+							<img src="${pageContext.request.contextPath }/assets/image/apple.png" style="width: 309px; height: 40px;">
+						</a>
+					</label>
+				</span>
+			</div>
         </div>
     </div>
     
@@ -282,7 +289,6 @@
 	
 	<script type="text/javascript">
 		Kakao.init('7b99ff594cc2cef168bb1d8358a0c07f');
-		console.log("isInitialized	::	" + Kakao.isInitialized());	// sdk 초기화 여부 판단
 		
 		function kakaoLogin() {
 			Kakao.Auth.login({
@@ -290,21 +296,23 @@
 					Kakao.API.request({
 						url	: '/v2/user/me',
 						success : function (response) {
-							var account = JSON.stringify(response.kakao_account);
+							var account = response.kakao_account;
 							
-							console.log("account	::	" + account);
-							
-							//console.log("nickname	::	" + account.profile.nickname);
-							//console.log("email	::	" + account.email);
-							//console.log("birthday	::	" + account.birthday);
+							$("#user_id").val(account.email);
+							$("#name").val(account.profile.nickname);
+							$("#birthday").val(account.birthday);
+							$("#gender").val(account.gender);
+
+							$("#loginForm").attr('action', '/oauth/kakao');
+							$("#loginForm").submit();
 						},
 						fail : function (error) {
-							console.log("error!! :: " + error);
+							alert("Error!!\n" + error);
 						},
 					})
 				},
 				fail : function (error) {
-					console.log(error);
+					alert("Error!!\n" + error);
 				}
 			});
 		}

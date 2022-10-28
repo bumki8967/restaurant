@@ -28,23 +28,22 @@ public class UserServiceImpl implements UserService {
 	public void insertUser(User user) {
 		
 		try {
-			System.out.println("UserServiceImpl	insertUser Start!!!!");
-			
 			// 아이디 합치기
 			String userId = user.getUser_id().replaceAll(",", "");
 			// 비밀번호 암호화
 			String encryptPw = encrypt.encrypt(user.getUser_pw());
-			// 핸드폰 번호 합치기
-			String tel = user.getTel().replaceAll(",", "-");
 			
-			System.out.println("UserServiceImpl	insertUser		::	" + user);
+			// 사이트에서 회원가입 시 핸드폰 번호 합치기
+			if (user.getLogin_type().equals("site")) {
+				String tel = user.getTel().replaceAll(",", "-");
+				
+				user.setTel(tel);
+			}
 			
 			user.setUser_id(userId);
 			user.setUser_pw(encryptPw);
-			user.setTel(tel);
 			
 			userService.insertUser(user);
-			System.out.println("UserServiceImpl	insertUser End!!!!");
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
@@ -137,11 +136,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUserData(User user) {
 		
-		System.out.println("ServiceImpl	Update Start!!!!");
-		
 		userService.updateUserData(user);
-		
-		System.out.println("ServiceImpl	Update End!!!!");
 		
 	}
 
