@@ -36,6 +36,8 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- 카카로 로그인 -->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<!-- 네이버 로그인 -->
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
     <style>
         .container {
@@ -194,6 +196,8 @@
 				<input type="hidden" name="name" id="name" />
 				<input type="hidden" name="birthday" id="birthday"/>
 				<input type="hidden" name="gender" id="gender" />
+				<input type="hidden" name="birthyear" id="birthyear" />
+				<input type="hidden" name="tel" id="tel" />
 
 				<div class="id_pw_wrap">
 					<!-- 아이디 입력 -->
@@ -244,19 +248,22 @@
 			</div>    
 
 			<!-- SNS 로그인 -->
-			<div class="sns_login" style="width: 310px; margin: auto;">
+			<div class="sns_login" style="width: 400px; margin: auto;">
 				<span>
 					<label for="kakao_login" class="visually-hidden">
 						<a href="javascript:kakaoLogin();">
-							<img src="${pageContext.request.contextPath }/assets/image/kakao.png" alt="카카오로그인" />
-							<%-- <img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인" /> --%>
+							<%-- <img src="${pageContext.request.contextPath }/assets/image/kakao.png" alt="카카오로그인" />  --%>
+							<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인" /> 
 						</a>
 					</label>
 
 					<label for="naver_login"  class="visually-hidden">
-						<a href="javascript:alert('네이버 로그인 기능 준비 중 입니다.');">
+						<div id="naverIdLogin"></div>
+						<!-- 
+						<a href="javascript:naverLogin();">
 							<img src="${pageContext.request.contextPath }/assets/image/naver.png"/>
 						</a>
+						 -->
 					</label>
 
 					<label for="google_login"  class="visually-hidden">
@@ -285,11 +292,25 @@
 		<c:import url="${pageContext.request.contextPath }/assets/include/footer.jsp" />
 	</footer>
 	
-	
+
 	
 	<script type="text/javascript">
 		Kakao.init('7b99ff594cc2cef168bb1d8358a0c07f');
 		
+		const naverLogin = new naver.LoginWithNaverId(
+				{
+					clientId	: "oQc3nNbiDdUptsCBn82b",
+					callbackUrl	: "http://localhost:8095/oauth/naver",
+					isPopup		: false,
+					callbackHandle: true,
+					loginButton	: {color: "green", type: 3, height: 45} /* 로그인 버튼의 타입을 지정 */
+				}
+			);
+		naverLogin.init();
+		console.log("login  ::  " + naverLogin.init());
+		
+
+		<!-- 카카오 로그인 스크립트 -->
 		function kakaoLogin() {
 			Kakao.Auth.login({
 				success : function (auth) {
@@ -316,6 +337,42 @@
 				}
 			});
 		}
+		
+		
+
+		console.log("1");
+		<!-- 네이버 로그인 스크립트 -->
+		naverLogin.getLoginStatus(function (status) {
+		      if (status) {
+		          const nickName=naverLogin.user.getNickName();
+		          const age=naverLogin.user.getAge();
+		          const birthday=naverLogin.user.getBirthday();
+
+		          if(nickName===null||nickName===undefined ){
+		            alert("별명이 필요합니다. 정보제공을 동의해주세요.");
+		            naverLogin.reprompt();
+		            return ;  
+		         }else{
+		          setLoginStatus();
+		         }
+			}
+		    });
+		    console.log(naverLogin);
+		<%--
+		naverLogin.getLoginStatus(function(status) {
+			console.log("2");
+			if (status) {
+				console.log("2");
+				const user_id = naverLogin.user.getNickName();
+				
+				$("#user_id").val(naverLogin.user.getNickName());
+				
+				//$("#loginForm").attr('action', '/oauth/kakao');
+				//$("#loginForm").submit();
+			}
+		});
+		--%>
 	</script>
+	
 </body>
 </html>
