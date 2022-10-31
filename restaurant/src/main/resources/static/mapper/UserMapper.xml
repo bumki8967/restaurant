@@ -41,12 +41,21 @@
 	</insert>	
 		
 		
-	<!-- 중복회원가입 방지를 위해 아이디 중복검사 수행 -->
+	<!-- 사이트에서 회원가입 시 중복회원가입 방지를 위해 아이디 중복검사 수행 -->
 	<select id="duplicationUserId" parameterType="com.project.restaurant.user.User" resultType="int">
 		SELECT	count(user_id)
 		FROM	user_info
 		WHERE	user_id = #{user_id}
 	</select>	
+	
+	
+	<!-- SNS 로그인으로 회원가입 시 중복회원가입 방지를 위해 아이디 & 로그인 타입 중복검사 수행 -->
+	<select id="duplicationUser"  parameterType="com.project.restaurant.user.User" resultType="int">
+		SELECT	count(user_id)
+		FROM	user_info
+		WHERE	user_id = #{user_id}
+		AND		login_type = #{login_type}
+	</select>
 	
 	
 	<!-- 중복회원가입 방지를 위해 이메일 중복검사 수행 
@@ -58,7 +67,7 @@
 	-->
 	
 	<!-- 로그인 시 아이디와 비밀번호가 일치하는 회원을 조회 -->
-	<select id="loginUserInfo" resultMap="User" resultType="int">
+	<select id="loginUserInfo" resultMap="User" resultType="String">
 		SELECT	*
 		FROM	user_info
 		WHERE	user_id = #{user_id}

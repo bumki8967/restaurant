@@ -198,6 +198,7 @@
 				<input type="hidden" name="gender" id="gender" />
 				<input type="hidden" name="birthyear" id="birthyear" />
 				<input type="hidden" name="tel" id="tel" />
+				<input type="hidden" name="login_type" id="login_type" />
 
 				<div class="id_pw_wrap">
 					<!-- 아이디 입력 -->
@@ -251,7 +252,7 @@
 			<div class="sns_login" style="width: 400px; margin: auto;">
 				<span>
 					<label for="kakao_login" class="visually-hidden">
-						<a href="javascript:kakaoLogin();">
+						<a href="javascript:kakao_Login();">
 							<%-- <img src="${pageContext.request.contextPath }/assets/image/kakao.png" alt="카카오로그인" />  --%>
 							<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인" /> 
 						</a>
@@ -259,11 +260,9 @@
 
 					<label for="naver_login"  class="visually-hidden">
 						<div id="naverIdLogin"></div>
-						<!-- 
-						<a href="javascript:naverLogin();">
-							<img src="${pageContext.request.contextPath }/assets/image/naver.png"/>
-						</a>
-						 -->
+						<%-- <a href="javascript:naverLogin();">
+							<img src="${pageContext.request.contextPath }/assets/image/naver.png" style="width: 183px; height: 45px;" alt="네이버로그인" />
+						</a> --%>
 					</label>
 
 					<label for="google_login"  class="visually-hidden">
@@ -296,22 +295,9 @@
 	
 	<script type="text/javascript">
 		Kakao.init('7b99ff594cc2cef168bb1d8358a0c07f');
-		
-		const naverLogin = new naver.LoginWithNaverId(
-				{
-					clientId	: "oQc3nNbiDdUptsCBn82b",
-					callbackUrl	: "http://localhost:8095/oauth/naver",
-					isPopup		: false,
-					callbackHandle: true,
-					loginButton	: {color: "green", type: 3, height: 45} /* 로그인 버튼의 타입을 지정 */
-				}
-			);
-		naverLogin.init();
-		console.log("login  ::  " + naverLogin.init());
-		
 
 		<!-- 카카오 로그인 스크립트 -->
-		function kakaoLogin() {
+		function kakao_Login() {
 			Kakao.Auth.login({
 				success : function (auth) {
 					Kakao.API.request({
@@ -323,6 +309,7 @@
 							$("#name").val(account.profile.nickname);
 							$("#birthday").val(account.birthday);
 							$("#gender").val(account.gender);
+							$("#login_type").val("kakao");
 
 							$("#loginForm").attr('action', '/oauth/kakao');
 							$("#loginForm").submit();
@@ -337,42 +324,76 @@
 				}
 			});
 		}
-		
-		
+	</script>
+
+	<script type="text/javascript">
+
+		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId	: "oQc3nNbiDdUptsCBn82b",
+				callbackUrl	: "http://localhost:8095/loginView",
+				isPopup		: false,
+				callbackHandle: true,
+				loginButton	: {color: "green", type: 3, height: 45}  // 로그인 버튼의 타입을 지정 
+			}
+		);
+		naverLogin.init();
+		console.log("login  ::  " + naverLogin.init());
+
 
 		console.log("1");
 		<!-- 네이버 로그인 스크립트 -->
-		naverLogin.getLoginStatus(function (status) {
-		      if (status) {
-		          const nickName=naverLogin.user.getNickName();
-		          const age=naverLogin.user.getAge();
-		          const birthday=naverLogin.user.getBirthday();
+		// window.addEventListener('load', function() {
+			naverLogin.getLoginStatus(function(status) {
+				console.log("status	::	" + status);
 
-		          if(nickName===null||nickName===undefined ){
-		            alert("별명이 필요합니다. 정보제공을 동의해주세요.");
-		            naverLogin.reprompt();
-		            return ;  
-		         }else{
-		          setLoginStatus();
-		         }
-			}
-		    });
-		    console.log(naverLogin);
-		<%--
-		naverLogin.getLoginStatus(function(status) {
-			console.log("2");
-			if (status) {
-				console.log("2");
-				const user_id = naverLogin.user.getNickName();
-				
-				$("#user_id").val(naverLogin.user.getNickName());
-				
-				//$("#loginForm").attr('action', '/oauth/kakao');
-				//$("#loginForm").submit();
-			}
+				if (status) {
+					window.addEventListener('click', function() {
+						$("#user_id").val(naverLogin.user.getEmail());
+						$("#name").val(naverLogin.user.getName());
+						$("#birthday").val(naverLogin.user.getBirthday());
+						$("#birthyear").val(naverLogin.user.getBirthyear());
+						$("#gender").val(naverLogin.user.getGender());
+						$("#tel").val(naverLogin.user.getMobile());
+						$("#login_type").val("naver");
+						
+						$("#loginForm").attr('action', '/oauth/naver');
+						$("#loginForm").submit();
+					});
+				} else {
+					console.log("Callback 처리에 실패하였습니다.");
+				}
+			});
+		// });
+
+		/**
+		window.addEventListener('load', function() {
+			naverLogin.getLoginStatus(function(status) {
+				console.log("status	::	" + status);
+
+				if (status) {
+					$("#user_id").val(naverLogin.user.getEmail());
+					$("#name").val(naverLogin.user.getName());
+					$("#birthday").val(naverLogin.user.getBirthday());
+					$("#birthyear").val(naverLogin.user.getBirthyear());
+					$("#gender").val(naverLogin.user.getGender());
+					$("#tel").val(naverLogin.user.getMobile());
+					$("#login_type").val("naver");
+					
+					$("#loginForm").attr('action', '/oauth/naver');
+					$("#loginForm").submit();
+				} else {
+					console.log("Callback 처리에 실패하였습니다.");
+				}
+			});
 		});
-		--%>
+		*/
+
+		
+
 	</script>
+	
+
 	
 </body>
 </html>

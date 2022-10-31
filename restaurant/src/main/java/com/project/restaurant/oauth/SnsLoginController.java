@@ -36,10 +36,13 @@ public class SnsLoginController {
 	@RequestMapping("/kakao")
 	public String kakaoLogin(User user, HttpServletRequest request, @RequestParam(value = "user_id") String user_id, 
 							 @RequestParam(value = "user_pw") String user_pw, @RequestParam(value = "name") String name, 
-							 @RequestParam(value = "birthday") String birthday, @RequestParam(value = "gender") String gender) {
+							 @RequestParam(value = "birthday") String birthday, @RequestParam(value = "gender") String gender,
+							 @RequestParam(value = "login_type") String login_type) {
 
 		HttpSession session = request.getSession();
-		int result = userServiceImpl.duplicationUserId(user_id);
+		int result = userServiceImpl.duplicationUser(user_id, login_type);
+		
+		System.out.println("kakao	::	" + result);
 		
 		if (result <= 0) {
 			user.setUser_id(user_id);
@@ -47,7 +50,7 @@ public class SnsLoginController {
 			user.setBirthday(birthday);
 			user.setGender(gender);
 			user.setUser_type("normal");
-			user.setLogin_type("kakao");
+			user.setLogin_type(login_type);
 			
 			userServiceImpl.insertUser(user);
 		} 
@@ -75,21 +78,17 @@ public class SnsLoginController {
 	 * @param tel
 	 * @return
 	 */
-	@GetMapping("/naver")
-	@ResponseBody
-	public String naverLogin(User user, HttpServletRequest request, @RequestParam(value = "state", required = false) String state,
-							 @RequestParam(value = "access_token", required = false) String access_token,
-							 @RequestParam(value = "user_id", required = false) String user_id, @RequestParam(value = "name", required = false) String name,
-							 @RequestParam(value = "birthyear", required = false) String birthYear, @RequestParam(value = "birthday", required = false) String birthday,
-							 @RequestParam(value = "gender", required = false) String gender, @RequestParam(value = "tel", required = false) String tel) {
+	@RequestMapping("/naver")
+	public String naverLogin(User user, HttpServletRequest request, @RequestParam(value = "user_id") String user_id, 
+							 @RequestParam(value = "name") String name, @RequestParam(value = "birthyear") String birthYear, 
+							 @RequestParam(value = "birthday") String birthday, @RequestParam(value = "gender") String gender, 
+							 @RequestParam(value = "tel") String tel, @RequestParam(value = "login_type") String login_type) {
 		
 		System.out.println("Naver Login Start!!!!!");
 		
 		HttpSession session = request.getSession();
-		int result = userServiceImpl.duplicationUserId(user_id);
+		int result = userServiceImpl.duplicationUser(user_id, login_type);
 		
-		System.out.println("access_token	::	" + access_token);
-		System.out.println("state	::	" + state);
 		System.out.println("result	::	" + result);
 		System.out.println("user	::	" + user);
 		System.out.println("user_id	::	" + user_id);
@@ -99,26 +98,32 @@ public class SnsLoginController {
 		System.out.println("gender	::	" + gender);
 		System.out.println("tel	::	" + tel);
 		
-		return null;
-//		if (result <= 0) {
-//			user.setUser_id(user_id);
-//			user.setName(name);
-//			user.setBirthday(birthYear+birthday);
-//			user.setGender(gender);
-//			user.setTel(tel);
-//			
-//			userServiceImpl.insertUser(user);
-//		}
-//		
-//		session.setAttribute("user_id", user_id);
-//		session.setAttribute("name", name);
-//		session.setAttribute("user_type", user.getUser_type());
-//		session.setAttribute("login_type", user.getLogin_type());
-//		session.setMaxInactiveInterval(60 * 10 * 1);
-//		
-//		
-//		System.out.println("Naver Login End!!!!!");
-//		
-//		return "redirect:/";
+		if (result <= 0) {
+			user.setUser_id(user_id);
+			user.setName(name);
+			user.setBirthday(birthYear + "-" + birthday);
+			
+			if ("M".equals(gender)) {
+				user.setGender("male");
+			} else {
+				user.setGender("female");
+			}
+			
+			user.setTel(tel);
+			user.setUser_type("normal");
+			user.setLogin_type(login_type);
+			
+			userServiceImpl.insertUser(user);
+		}
+		
+		session.setAttribute("user_id", user_id);
+		session.setAttribute("name", name);
+		session.setAttribute("user_type", user.getUser_type());
+		session.setAttribute("login_type", user.getLogin_type());
+		session.setMaxInactiveInterval(60 * 10 * 1);
+		
+		System.out.println("Naver Login End!!!!!");
+		
+		return "redirect:/";
 	}
 }

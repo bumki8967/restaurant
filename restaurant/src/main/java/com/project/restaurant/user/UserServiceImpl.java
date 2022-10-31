@@ -52,12 +52,24 @@ public class UserServiceImpl implements UserService {
 
 	
 	/**
-	 * 아이디 중복 검사
+	 * 사이트에서 회원가입 시 아이디 중복 검사
 	 */
 	@Override
 	public int duplicationUserId(String user_id) {
 
 		int result = userService.duplicationUserId(user_id);
+		
+		return result;
+	}
+	
+	
+	/**
+	 * SNS 로그인 시 아이디 & 로그인경로 검사
+	 */
+	@Override
+	public int duplicationUser(String user_id, String login_type) {
+		
+		int result = userService.duplicationUser(user_id, login_type);
 		
 		return result;
 	}
@@ -139,5 +151,8 @@ public class UserServiceImpl implements UserService {
 		userService.updateUserData(user);
 		
 	}
+
+
+
 
 }
