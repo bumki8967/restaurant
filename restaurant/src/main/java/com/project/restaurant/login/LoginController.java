@@ -33,4 +33,13 @@ public class LoginController {
 		
 		return mav;
 	}
+	
+	
+	@RequestMapping("/callback")
+	public ModelAndView naverCallback() {
+		
+		ModelAndView mav = new ModelAndView("/user/naver_callback");
+		
+		return mav;
+	}
 }

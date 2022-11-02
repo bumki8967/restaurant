@@ -36,9 +36,11 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- 카카로 로그인 -->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<!-- 네이버 로그인 -->
+	<!-- 네이버 로그인 
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-
+	-->
+	<%-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script> --%>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     <style>
         .container {
             /* border: 1px solid black; */
@@ -261,6 +263,7 @@
 					<label for="naver_login"  class="visually-hidden">
 						<a id="naverIdLogin_loginButton" href="javascript:void(0);">
 							<div id="naverIdLogin"></div>
+							<%-- <div id="naver_id_login"></div> --%>
 						</a>
 						<%-- <a href="javascript:naverLogin();">
 							<img src="${pageContext.request.contextPath }/assets/image/naver.png" style="width: 183px; height: 45px;" alt="네이버로그인" />
@@ -331,12 +334,13 @@
 	<!-- 네이버 로그인 초기화 스크립트 -->
 	<script type="text/javascript">
 	
+	console.log("loginView");
 	
 	var naverLogin = new naver.LoginWithNaverId(
 		{
 			clientId	: "oQc3nNbiDdUptsCBn82b",
 			//callbackUrl	: "http://localhost:8095/loginView",
-			callbackUrl	: "http://localhost:8095/naver_callback",
+			callbackUrl	: "http://localhost:8095/callback",
 			isPopup		: false,
 			callbackHandle: false,
 			loginButton	: {color: "green", type: 3, height: 45}  // 로그인 버튼의 타입을 지정 
@@ -345,7 +349,9 @@
 		
 	naverLogin.init();
 	console.log("loginView  ::  " + naverLogin.init());
-	<%--	
+	
+
+	<%--
 	window.addEventListener('load', function() {
 		naverLogin.getLoginStatus(function(status) {
 			console.log("Status    ::  " + status);
@@ -367,7 +373,7 @@
 			}
 		});
 	});
-	--%>
+		--%>
 	</script>
 	
 
