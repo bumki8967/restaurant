@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.restaurant.login.NaverLoginBO;
 import com.project.restaurant.util.Encrypt;
 
 @Service
@@ -26,7 +27,6 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void insertUser(User user) {
-		
 		try {
 			// 아이디 합치기
 			String userId = user.getUser_id().replaceAll(",", "");

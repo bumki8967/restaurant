@@ -259,15 +259,12 @@
 							<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인" /> 
 						</a>
 					</label>
-
+					
 					<label for="naver_login"  class="visually-hidden">
-						<a id="naverIdLogin_loginButton" href="javascript:void(0);">
-							<div id="naverIdLogin"></div>
-							<%-- <div id="naver_id_login"></div> --%>
-						</a>
-						<%-- <a href="javascript:naverLogin();">
+						<a href="${naverAuthUrl }">
 							<img src="${pageContext.request.contextPath }/assets/image/naver.png" style="width: 183px; height: 45px;" alt="네이버로그인" />
-						</a> --%>
+						</a>	
+							<%-- <div id="naverIdLogin"></div>  --%>
 					</label>
 
 					<label for="google_login"  class="visually-hidden">
@@ -333,47 +330,18 @@
 
 	<!-- 네이버 로그인 초기화 스크립트 -->
 	<script type="text/javascript">
-	
-	console.log("loginView");
-	
-	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId	: "oQc3nNbiDdUptsCBn82b",
-			//callbackUrl	: "http://localhost:8095/loginView",
-			callbackUrl	: "http://localhost:8095/callback",
-			isPopup		: false,
-			callbackHandle: false,
-			loginButton	: {color: "green", type: 3, height: 45}  // 로그인 버튼의 타입을 지정 
-		}
-	);
-		
-	naverLogin.init();
-	console.log("loginView  ::  " + naverLogin.init());
-	
-
 	<%--
-	window.addEventListener('load', function() {
-		naverLogin.getLoginStatus(function(status) {
-			console.log("Status    ::  " + status);
-			
-			if (status) {
-				console.log("Callback 처리 성공!!!");
-				$("#user_id").val(naverLogin.user.getEmail());
-				$("#name").val(naverLogin.user.getName());
-				$("#birthday").val(naverLogin.user.getBirthday());
-				$("#birthyear").val(naverLogin.user.getBirthyear());
-				$("#gender").val(naverLogin.user.getGender());
-				$("#tel").val(naverLogin.user.getMobile());
-				$("#login_type").val("naver");
-				
-				$("#loginForm").attr('action', '/oauth/naver');
-				$("#loginForm").submit();
-			} else {
-				console.log("Callback 처리 실패 ㅠ");
+		var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId	: "oQc3nNbiDdUptsCBn82b",
+				callbackUrl	: "http://localhost:8095/callback",
+				callbackHandle: false,
+				loginButton	: {color: "green", type: 3, height: 45}  // 로그인 버튼의 타입을 지정 
 			}
-		});
-	});
-		--%>
+		);
+			
+		naverLogin.init();
+	--%>	
 	</script>
 	
 
