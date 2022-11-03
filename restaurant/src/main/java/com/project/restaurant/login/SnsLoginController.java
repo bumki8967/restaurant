@@ -22,7 +22,6 @@ public class SnsLoginController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
-	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
@@ -53,8 +52,6 @@ public class SnsLoginController {
 
 		HttpSession session = request.getSession();
 		int result = userServiceImpl.duplicationUser(user_id, login_type);
-		
-		System.out.println("kakao	::	" + result);
 		
 		if (result <= 0) {
 			user.setUser_id(user_id);
@@ -96,7 +93,6 @@ public class SnsLoginController {
 		HttpSession session = request.getSession();
 		OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		JSONParser jsonParser = new JSONParser();
-		int result = userServiceImpl.duplicationUser(user.getUser_id(), user.getLogin_type());
         
         //로그인 사용자 정보를 읽어온다.
 	    apiResult = naverLoginBO.getUserProfile(oauthToken);
@@ -115,7 +111,10 @@ public class SnsLoginController {
 		String gender = (String) response_obj.get("gender");
 		Integer birthyear = Integer.valueOf((String)response_obj.get("birthyear")) ;
 		String birthday = (String) response_obj.get("birthday");
-		/**
+
+		int result = userServiceImpl.duplicationUser(email, "naver");
+		System.out.println("naverLogin	result	::	" + result);
+		
 		if (result <= 0) {
 			user.setUser_id(email);
 			user.setName(name);
@@ -136,12 +135,12 @@ public class SnsLoginController {
 			userServiceImpl.insertUser(user);
 		}
 		
-		session.setAttribute("user_id", user.getUser_id());
+		session.setAttribute("user_id", email);
 		session.setAttribute("name", name);
 		session.setAttribute("user_type", user.getUser_type());
 		session.setAttribute("login_type", user.getLogin_type());
 		session.setMaxInactiveInterval(60 * 10 * 1);
-		*/
+		
 		System.out.println("NaverLogin		End!!!!!!");
 		
 		return "redirect:/";
@@ -165,9 +164,10 @@ public class SnsLoginController {
 	 */
 //	@RequestMapping("/naver")
 //	public String naverLogin(User user, HttpServletRequest request, @RequestParam(value = "user_id") String user_id, 
-//							 @RequestParam(value = "name") String name, @RequestParam(value = "birthyear") String birthYear, 
-//							 @RequestParam(value = "birthday") String birthday, @RequestParam(value = "gender") String gender, 
-//							 @RequestParam(value = "tel") String tel, @RequestParam(value = "login_type") String login_type) {
+//							 @RequestParam(value = "user_pw") String user_pw, @RequestParam(value = "name") String name,
+//							 @ReqestParam(value = "birthyear") String birthYear, @RequestParam(value = "birthday") String birthday,
+//							 @RequestParam(value = "gender") String gender, @RequestParam(value = "tel") String tel,
+//							 @RequestParam(value = "login_type") String login_type) {
 //		
 //		System.out.println("Naver Login Start!!!!!");
 //		

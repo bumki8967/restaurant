@@ -28,26 +28,23 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insertUser(User user) {
 		try {
-			// 아이디 합치기
-			String userId = user.getUser_id().replaceAll(",", "");
-			// 비밀번호 암호화
-			String encryptPw = encrypt.encrypt(user.getUser_pw());
-			
-			// 사이트에서 회원가입 시 핸드폰 번호 합치기
-			if (user.getLogin_type().equals("site")) {
+			// 사이트에서 회원가입 시 
+			if ("site".equals(user.getLogin_type())) {
+				String userId = user.getUser_id().replaceAll(",", "");
+				String encryptPw = encrypt.encrypt(user.getUser_pw());
 				String tel = user.getTel().replaceAll(",", "-");
 				
+				user.setUser_id(userId);
+				user.setUser_pw(encryptPw);
 				user.setTel(tel);
+			} else {
+				user.setUser_pw("");
 			}
-			
-			user.setUser_id(userId);
-			user.setUser_pw(encryptPw);
-			
 			userService.insertUser(user);
+			
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	

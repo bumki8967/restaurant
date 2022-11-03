@@ -40,7 +40,7 @@
 					<div class="main-menu text-center">
 						<nav id="mobile-menu">
 							<ul>
-								<li class="active"><a href="${pageContext.request.contextPath }/">HOME</a>
+								<li class="active"><a href="${pageContext.request.contextPath }/loginView">LOGIN</a>
 								<!-- 
 								<ul class="sub-menu text-left">
 									<li><a href="index.html">home 1</a></li>

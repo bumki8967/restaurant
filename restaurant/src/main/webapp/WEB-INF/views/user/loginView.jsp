@@ -313,7 +313,7 @@
 							$("#gender").val(account.gender);
 							$("#login_type").val("kakao");
 
-							$("#loginForm").attr('action', '/oauth/kakao');
+							$("#loginForm").attr('action', '/login/kakao');
 							$("#loginForm").submit();
 						},
 						fail : function (error) {
@@ -341,7 +341,7 @@
 		);
 			
 		naverLogin.init();
-	--%>	
+	--%>
 	</script>
 	
 

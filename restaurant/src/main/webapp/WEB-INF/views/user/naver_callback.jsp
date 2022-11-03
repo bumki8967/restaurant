@@ -15,6 +15,7 @@
 
 <form method="POST" id="loginForm">
 	<input type="hidden" name="user_id" id="user_id" />
+	<input type="hidden" name="user_pw" id="user_pw" />
 	<input type="hidden" name="name" id="name" />
 	<input type="hidden" name="birthday" id="birthday"/>
 	<input type="hidden" name="gender" id="gender" />
@@ -61,7 +62,7 @@
 				//console.log("전소오오오오오오오옹");
 				//return;
 
-				$("#loginForm").attr('action', '/oauth/naver');
+				$("#loginForm").attr('action', '/login/naver');
 				$("#loginForm").submit();
 			} else {
 				console.log("Callback 처리 실패 ㅠ");
