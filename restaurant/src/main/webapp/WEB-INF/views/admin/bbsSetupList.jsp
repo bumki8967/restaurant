@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,15 +37,13 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/plugins/summernote/summernote-bs4.min.css">
   <!-- JS -->
   <script src="${pageConext.request.contextPath }/assets/js/admin/index.js"></script>
-  
-  <script type="text/javascript">
-	
-
-  </script>
-	
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
-	<div class="wrapper">
+<body>
+
+
+
+
+<div class="wrapper">
 
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
@@ -68,8 +66,18 @@
 				<div class="content-header">
 					<div class="container-fluid">
 						<div class="row mb-2">
-							<div class="col-sm-10">
-								<h1 class="m-0">메인 페이지</h1>
+							<div class="col-sm-10" style="display: flex; justify-content: space-between;">
+								<span>
+									<h1 class="m-0">게시판 리스트</h1>
+								</span>
+								<span>
+								<a href="#">
+									<button type="button" class="btn btn-primary">게시판 추가</button>
+								</a>
+								<a href="#">
+									<button type="button" class="btn btn-danger">게시판 삭제</button>
+								</a>
+								</span>
 							</div>
 							<!-- /.col -->
 						</div>
@@ -81,115 +89,6 @@
 				
 				
 				
-				<%--
-				<form method="POST" class="form" id="form" name="viewForm">
-					<input type="hidden" name="chk" />
-					<!-- Main content -->
-					<div class="content">
-						<div class="container-fluid">
-							<div class="card">
-								<div class="card-header border-0" style="display: flex;">
-									<h3 class="col-sm-10 title">Member List</h3>
-									<div>
-										<button type="button" class="btn btn-danger" id="deleteBtn" onClick="javascript:selectUserDelete();"> 선택회원 삭제</button>
-									</div>
-								</div>
-								<hr />
-								<div class="card-header table-responsive">
-									<table id="data_list">
-										<thead>
-											<tr>
-												<th style="text-align: center;">
-													<input type="checkbox" id="allCheck" name="allCheck">
-											  	</th>
-												<th style="text-align: center;"> 번호 </th>
-												<th style="text-align: center;"> 이름 </th>
-												<th style="text-align: center;"> 아이디 </th>
-												<th style="text-align: center;"> 핸드폰번호 </th>
-												<th style="text-align: center;"> 생일 </th>
-												<th style="text-align: center;"> 구분 </th>
-												<th style="text-align: center;"> 가입날짜 </th>
-												<th style="text-align: center;"> 로그인유형 </th>
-												<th style="text-align: center;"> 비고 </th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="list" items="${userList }" varStatus="stat">
-												<tr style="text-align: center;">
-													<td>
-														<input type="checkbox" name="rowCheck" class="deleteUserSeqs" value="${list.user_seq}" />
-													</td>
-													<td>
-														${list.user_seq }
-													</td>	
-													<td>
-														${list.name }
-													</td>
-													<td>
-														${list.user_id }
-													</td>
-													<td>
-														${list.tel }
-													</td>
-													<td>
-														${list.birthday }
-													</td>
-													<td>
-														<c:choose>
-															<c:when test="${list.gender == 'male'}">
-																남자
-															</c:when>
-															<c:when test="${list.gender == 'female'}">
-																여자
-															</c:when>
-														</c:choose>
-													</td>
-													<td>
-														<fmt:formatDate value="${list.reg_date }" pattern="yyyy-MM-dd" />  
-													</td>
-													<td>
-														<c:choose>
-															<c:when test="${list.login_type == 'site'}">
-																사이트
-															</c:when>
-															<c:when test="${list.login_type == 'kakao'}">
-																카카오
-															</c:when>
-															<c:when test="${list.login_type == 'naver'}">
-																네이버
-															</c:when>
-															<c:when test="${list.login_type == 'google'}">
-																구글
-															</c:when>
-														</c:choose>
-														
-													</td>
-													<td>
-														<span>
-															<a href="${pageConext.request.contextPath }/admin/userEditView?user_seq=${list.user_seq}">
-																<input type="button" class="btn btn-primary" value="수정" />
-															</a>
-														</span>
-														<span>
-														<a href="javascript:userDelete('${list.user_seq }');">
-															<input type="button" class="btn btn-danger" id="delete" value="삭제" />
-															<input type="hidden" name="user_seq" id="user_seq" value="${list.user_seq }" />
-														</a>
-													</span>
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<!-- /.card -->
-						</div>
-						<!-- /.container-fluid -->
-					</div>
-					<!-- /.content -->
-				</form>
-				 --%>
 				 
 				 
 			</div>
@@ -204,10 +103,6 @@
 		<!-- // footer 끝 -->
 	</div>
 	<!-- ./wrapper -->
-
-
-
-
 
 
 
@@ -237,28 +132,6 @@
 <script src="${pageContext.request.contextPath }/assets/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="${pageContext.request.contextPath }/assets/dist/js/pages/dashboard.js"></script>
-
-<script type="text/javascript">
-	var table = $("#data_list").DataTable({
-			"destroy"	:	true,
-			"order"		:	[0, "DESC"],
-			//"autoWith"	:	true
-	});
-
-	$("#data_list").dataTable({
-		data : data,
-		columns : [
-			{ data : 'user_seq' },
-			{ data : 'name' },
-			{ data : 'tel' },
-			{ data : 'birthday' },
-			{ data : 'peopleType' },
-			{ data : 'reg_date' }
-		]
-	});
-</script>
-
-
 
 </body>
 </html>

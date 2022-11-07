@@ -13,7 +13,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     
-    <a href="${pageContext.request.contextPath }/admin" class="brand-link" style="text-align: center">
+    <a href="${pageContext.request.contextPath }/admin/index" class="brand-link" style="text-align: center">
     	<h2>
 	    	<strong>
 	      		<span class="brand-text font-weight-light"><b>관리자 페이지</b></span>
@@ -50,7 +50,7 @@
 	            </a>
 	            <ul class="nav nav-treeview" style="display: none;">
 	              <li class="nav-item">
-	                <a href="/admin" class="nav-link">
+	                <a href="/admin/userList" class="nav-link">
 	                  <i class="far fa-circle nav-icon"></i>
 	                  <p>회원관리</p>
 	                </a>
@@ -71,9 +71,9 @@
 	            </a>
 	            <ul class="nav nav-treeview" style="display: none;">
 	              <li class="nav-item">
-	                <a href="${pageContext.request.contextPath }/admin/informationList" class="nav-link">
+	                <a href="${pageContext.request.contextPath }/admin/bbsSetupList" class="nav-link">
 	                  <i class="far fa-circle nav-icon"></i>
-	                  <p>단체관람 예약</p>
+	                  <p>게시판 리스트</p>
 	                </a>
 	              </li>
 	              <li class="nav-item">

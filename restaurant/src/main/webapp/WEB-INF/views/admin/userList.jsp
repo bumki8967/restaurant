@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
-<html lang="ko">
-<head>
+<html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>관리자 페이지</title>
@@ -37,15 +35,8 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath }/assets/plugins/summernote/summernote-bs4.min.css">
   <!-- JS -->
   <script src="${pageConext.request.contextPath }/assets/js/admin/index.js"></script>
-  
-  <script type="text/javascript">
-	
-
-  </script>
-	
-</head>
-<body class="hold-transition sidebar-mini layout-fixed">
-	<div class="wrapper">
+<body>
+<div class="wrapper">
 
 		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
@@ -61,6 +52,7 @@
 		<!-- // sidebar 끝 -->
 
 
+
 		<div class="content-container">
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper">
@@ -69,7 +61,7 @@
 					<div class="container-fluid">
 						<div class="row mb-2">
 							<div class="col-sm-10">
-								<h1 class="m-0">메인 페이지</h1>
+								<h1 class="m-0">회원관리</h1>
 							</div>
 							<!-- /.col -->
 						</div>
@@ -79,9 +71,6 @@
 				</div>
 				<!-- /.content-header -->
 				
-				
-				
-				<%--
 				<form method="POST" class="form" id="form" name="viewForm">
 					<input type="hidden" name="chk" />
 					<!-- Main content -->
@@ -189,9 +178,7 @@
 					</div>
 					<!-- /.content -->
 				</form>
-				 --%>
-				 
-				 
+				
 			</div>
 		</div>
 		<!-- /.content-wrapper -->
@@ -204,12 +191,6 @@
 		<!-- // footer 끝 -->
 	</div>
 	<!-- ./wrapper -->
-
-
-
-
-
-
 
 
 
@@ -257,8 +238,6 @@
 		]
 	});
 </script>
-
-
 
 </body>
 </html>

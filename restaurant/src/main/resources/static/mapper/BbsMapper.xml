@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   
+<mapper namespace="com.project.restaurant.bbs.BbsSetupService">
+	<resultMap type="com.project.restaurant.bbs.BbsSetup" id="BbsSetup">
+		<result property="bbs_setup_seq"	column="bbs_setup_seq" />
+		<result property="bbs_name"			column="bbs_name" />
+		<result property="bbs_use_yn"		column="bbs_use_yn" />
+		<result property="down_use_yn"		column="down_use_yn" />
+		<result property="answer_use_yn"	column="answer_use_yn" />
+		<result property="annymty_use_yn"	column="annymty_use_yn" />
+		<result property="secret_use_yn"	column="secret_use_yn" />
+		<result property="reg_date"			column="reg_date" />
+		<result property="edit_date"		column="edit_date" />
+		<result property="add_item1"		column="add_item1" />
+		<result property="add_item2"		column="add_item2" />
+		<result property="add_item3"		column="add_item3" />
+	</resultMap>
+
+
+	<!-- (관리자) 게시판 추가 -->
+	<insert id="insertBbsSetup" parameterType="com.project.restaurant.bbs.BbsSetup"
+		useGeneratedKeys="true" keyProperty="bbs_setup_seq">
+	
+		INSERT INTO bbs_setup (
+			bbs_name, bbs_use_yn, down_use_yn, answer_use_yn, annymty_use_yn, secret_use_yn,
+			reg_date, edit_date, add_item1, add_item2, add_item3
+		) VALUES (
+			#{bbs_name}, #{bbs_use_yn}, #{down_use_yn}, #{answer_use_yn}, #{annymty_use_yn}, #{secret_use_yn},
+			now(), now(), #{add_item1}, #{add_item2}, #{add_item3}
+		)
+	</insert>
+
+</mapper>

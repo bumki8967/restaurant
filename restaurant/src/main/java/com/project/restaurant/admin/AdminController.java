@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.restaurant.bbs.BbsServiceImpl;
 import com.project.restaurant.user.User;
 import com.project.restaurant.user.UserServiceImpl;
 
@@ -18,6 +19,9 @@ public class AdminController {
 	
 	@Autowired
 	private UserServiceImpl userServiceImpl;
+	
+	@Autowired
+	private BbsServiceImpl bbsServiceImpl;
 
 	/**
 	 * 관리자 로그인 화면
@@ -31,6 +35,9 @@ public class AdminController {
 		return mav;
 	}
 	
+	
+	/*************		회원관리		***************/
+	
 	/**
 	 * 관리자 메인 페이지 & 회원관리
 	 * @return
@@ -40,8 +47,17 @@ public class AdminController {
 		
 		ModelAndView mav = new ModelAndView("/admin/index");
 
+		return mav;
+	}
+	
+	
+	@RequestMapping("/userList")
+	public ModelAndView userList() {
+		
+		ModelAndView mav = new ModelAndView("/admin/userList");
+		
 		List<User> userList = userServiceImpl.selectUserAll();
-
+		
 		mav.addObject("userList", userList);
 		
 		return mav;
@@ -77,7 +93,6 @@ public class AdminController {
 	}
 	
 	
-	
 	/**
 	 * 회원 수정페이지
 	 * @param user_seq
@@ -95,7 +110,12 @@ public class AdminController {
 		return mav;
 	}
 	
-	
+	/**
+	 * 회원 수정
+	 * @param user
+	 * @param user_seq
+	 * @return
+	 */
 	@RequestMapping("/userEdit.do")
 	public String userEdit(User user, @RequestParam(value = "user_seq") int user_seq) {
 		
@@ -103,5 +123,24 @@ public class AdminController {
 		
 		return "redirect:/admin/index";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*************		게시판관리		***************/
+	@RequestMapping("/bbsSetupList")
+	public ModelAndView bbsSetupListView() {
+		
+		ModelAndView mav = new ModelAndView("/admin/bbsSetupList");
+		
+		return mav;
+	}
+	
+	
 	
 }
