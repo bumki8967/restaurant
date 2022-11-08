@@ -144,6 +144,10 @@ public class AdminController {
 		
 		ModelAndView mav = new ModelAndView("/admin/bbsSetupList");
 		
+		List<BbsSetup> setupList = bbsServiceImpl.selectBbsSetupList();
+		
+		mav.addObject("setupList", setupList);
+		
 		return mav;
 	}
 	
@@ -164,7 +168,11 @@ public class AdminController {
 	@RequestMapping("/bbsSetupRegist.do")
 	public String bbsSetupRegist(BbsSetup setup) {
 		
+		System.out.println("bbsSetupRegist	Controller	Start!!!!");
+		
 		bbsServiceImpl.insertBbsSetup(setup);
+		
+		System.out.println("bbsSetupRegist	Controller	End!!!!");		
 		
 		return "redirect:/admin/bbsSetupList";
 	}

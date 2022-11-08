@@ -9,6 +9,7 @@ public class BbsSetup {
 	private String bbs_use_yn;
 	private String down_use_yn;
 	private String answer_use_yn;
+	private String comment_use_yn;
 	private String annymty_use_yn;
 	private String secret_use_yn;
 	private Date reg_date;
@@ -47,6 +48,12 @@ public class BbsSetup {
 	}
 	public void setAnswer_use_yn(String answer_use_yn) {
 		this.answer_use_yn = answer_use_yn;
+	}
+	public String getComment_use_yn() {
+		return comment_use_yn;
+	}
+	public void setComment_use_yn(String comment_use_yn) {
+		this.comment_use_yn = comment_use_yn;
 	}
 	public String getAnnymty_use_yn() {
 		return annymty_use_yn;
@@ -94,10 +101,10 @@ public class BbsSetup {
 	@Override
 	public String toString() {
 		return "BbsSetup [bbs_setup_seq=" + bbs_setup_seq + ", bbs_name=" + bbs_name + ", bbs_use_yn=" + bbs_use_yn
-				+ ", down_use_yn=" + down_use_yn + ", answer_use_yn=" + answer_use_yn + ", annymty_use_yn="
-				+ annymty_use_yn + ", secret_use_yn=" + secret_use_yn + ", reg_date=" + reg_date + ", edit_date="
-				+ edit_date + ", add_item1=" + add_item1 + ", add_item2=" + add_item2 + ", add_item3=" + add_item3
-				+ "]";
+				+ ", down_use_yn=" + down_use_yn + ", answer_use_yn=" + answer_use_yn + ", comment_use_yn="
+				+ comment_use_yn + ", annymty_use_yn=" + annymty_use_yn + ", secret_use_yn=" + secret_use_yn
+				+ ", reg_date=" + reg_date + ", edit_date=" + edit_date + ", add_item1=" + add_item1 + ", add_item2="
+				+ add_item2 + ", add_item3=" + add_item3 + "]";
 	}
 	
 	

@@ -88,8 +88,142 @@
 				<!-- /.content-header -->
 				
 				
-				
-				 
+				<form method="POST" class="form" id="form" name="viewForm">
+					<!-- Main content -->
+					<div class="content">
+						<div class="container-fluid">
+							<div class="card">
+								<div class="card-header border-0" style="display: flex;">
+									<h3 class="col-sm-10 title"> Board List </h3>
+									<div class="col-md-3" style="display: flex;">
+										<button type="button" class="btn btn-warning" id="updateBtn" onClick="javascript:alert('구현 예정입니다.');"> 게시판 상태변경 </button>
+										&nbsp;&nbsp;
+										<button type="button" class="btn btn-danger" id="deleteBtn" onClick="javascript:alert('구현 예정입니다.');"> 게시판 삭제 </button>
+									</div>
+								</div>
+								<hr />
+								<div class="card-header table-responsive">
+									<table id="data_list">
+										<thead>
+											<tr>
+												<th style="text-align: center;">
+													<input type="checkbox" id="allCheck" name="allCheck">
+												</th>
+												<th style="text-align: center;"> 번호 </th>
+												<th style="text-align: center;"> 게시판 이름 </th>
+												<th style="text-align: center;"> 게시판 사용여부 </th>
+												<th style="text-align: center;"> 다운로드 사용여부 </th>
+												<th style="text-align: center;"> 답글 사용여부 </th>
+												<th style="text-align: center;"> 댓글 사용여부 </th>
+												<th style="text-align: center;"> 익명 사용여부 </th>
+												<th style="text-align: center;"> 비밀글 사용여부 </th>
+												<th style="text-align: center;"> 비고 </th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="list" items="${setupList }" varStatus="stat">
+												<tr style="text-align: center;">
+													<td>
+														<input type="checkbox" name="checkbox" class="deleteBbsSetupSeqs" value="${list.bbs_setup_seq }" />
+													</td>
+													<td>
+														${list.bbs_setup_seq }
+													</td>
+													<td>
+														${list.bbs_name }
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${list.bbs_use_yn == 'Y' }">
+																사용중
+															</c:when>
+															<c:otherwise>
+																미사용
+															</c:otherwise>															
+														</c:choose>
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${list.down_use_yn == 'Y' }">
+																사용중
+															</c:when>
+															<c:otherwise>
+																미사용
+															</c:otherwise>															
+														</c:choose>
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${list.answer_use_yn == 'Y' }">
+																사용중
+															</c:when>
+															<c:otherwise>
+																미사용
+															</c:otherwise>															
+														</c:choose>
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${list.comment_use_yn == 'Y' }">
+																사용중
+															</c:when>
+															<c:otherwise>
+																미사용
+															</c:otherwise>															
+														</c:choose>
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${list.annymty_use_yn == 'Y' }">
+																사용중
+															</c:when>
+															<c:otherwise>
+																미사용
+															</c:otherwise>															
+														</c:choose>
+													</td>
+													<td>
+														<c:choose>
+															<c:when test="${list.secret_use_yn == 'Y' }">
+																사용중
+															</c:when>
+															<c:otherwise>
+																미사용
+															</c:otherwise>															
+														</c:choose>
+													</td>
+													<td>
+														<span>
+															<a href="javascript:alert('구현 준비 중 입니다.');">
+																<input type="button" class="btn btn-primary" value="수정" />
+															</a>
+														</span>
+														<span>
+															<a href="javascript:alert('구현 준비 중 입니다.');">
+																<input type="button" class="btn btn-danger" id="delete" value="삭제" />
+															<input type="hidden" name="user_seq" id="user_seq" value="${list.bbs_setup_seq }" />
+															</a>
+														</span>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div style="display: flex; justify-content: flex-end; margin-right: 2rem;">
+					<span>
+						<a href="/admin/bbsSetupRegistView">
+							<button type="button" class="btn btn-primary">게시판 추가</button>
+						</a>
+						<a href="#">
+							<button type="button" class="btn btn-danger">게시판 삭제</button>
+						</a>
+					</span>
+				</div>
 				 
 			</div>
 		</div>
@@ -132,6 +266,27 @@
 <script src="${pageContext.request.contextPath }/assets/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="${pageContext.request.contextPath }/assets/dist/js/pages/dashboard.js"></script>
+
+<script type="text/javascript">
+	var table = $("#data_list").DataTable({
+		"destroy"	:	true,
+		"order"		:	[0, "DESC"]
+	});
+	
+	$("#data_list").dataTable({
+		data : data,
+		columns : [
+			{ data : 'bbs_setup_seq' },
+			{ data : 'bbs_name' },
+			{ data : 'bbs_use_yn' },
+			{ data : 'down_use_yn' },
+			{ data : 'answer_use_yn' },
+			{ data : 'comment_use_yn' },
+			{ data : 'annymty_use_yn' },
+			{ data : 'secret_use_yn' },
+		]
+	});
+</script>
 
 </body>
 </html>
