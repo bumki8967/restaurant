@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.restaurant.bbs.BbsServiceImpl;
+import com.project.restaurant.bbs.BbsSetup;
 import com.project.restaurant.user.User;
 import com.project.restaurant.user.UserServiceImpl;
 
@@ -133,6 +134,11 @@ public class AdminController {
 	
 	
 	/*************		게시판관리		***************/
+	
+	/**
+	 * 게시판 리스트
+	 * @return
+	 */
 	@RequestMapping("/bbsSetupList")
 	public ModelAndView bbsSetupListView() {
 		
@@ -142,5 +148,25 @@ public class AdminController {
 	}
 	
 	
+	/**
+	 * 게시판 생성 화면
+	 * @return
+	 */
+	@RequestMapping("/bbsSetupRegistView")
+	public ModelAndView bbsSetupRegistView() {
+		
+		ModelAndView mav = new ModelAndView("/admin/bbsSetupRegistView");
+		
+		return mav;
+	}
+	
+	
+	@RequestMapping("/bbsSetupRegist.do")
+	public String bbsSetupRegist(BbsSetup setup) {
+		
+		bbsServiceImpl.insertBbsSetup(setup);
+		
+		return "redirect:/admin/bbsSetupList";
+	}
 	
 }

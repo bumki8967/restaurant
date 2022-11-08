@@ -71,7 +71,7 @@
 									<h1 class="m-0">게시판 리스트</h1>
 								</span>
 								<span>
-								<a href="#">
+								<a href="${pageContext.request.contextPath }/admin/bbsSetupRegistView">
 									<button type="button" class="btn btn-primary">게시판 추가</button>
 								</a>
 								<a href="#">
