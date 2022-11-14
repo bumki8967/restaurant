@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html class="no-js" lang="kor">
@@ -172,7 +173,7 @@
     <!-- 제목 부분 -->
     <div class="clearfix">
         <span>
-            <h1 class="text-center"> Board! </h1>
+            <h1 class="text-center"> 공지사항 </h1>
         </span>
     </div>
 
@@ -201,6 +202,28 @@
                 </tr>
             </thead>
             <tbody>
+            	<c:forEach var="list" items="${artclList }">
+            		<tr>
+            			<td>
+            				${list.artclSeq }
+            			</td>
+            			<td>
+            				<a href="${pageContext.request.contextPath }/notice/artclRegistView?artclSeq=${list.artclSeq}">
+	            				${list.title }
+            				</a>
+            			</td>
+            			<td>
+            				${list.writer }
+            			</td>
+            			<td>
+            				<fmt:formatDate value="${list.reg_Date }" type="date"/>
+            			</td>
+            			<td>
+            				${list.hit }
+            			</td>
+            		</tr>
+            	</c:forEach>
+            	<!-- 
                 <tr>
                     <td>1</td>
                     <td>Title_1</td>
@@ -222,6 +245,7 @@
                     <td>2022-10-13</td>
                     <td>3</td>
                 </tr>
+                 -->
             </tbody>
         </table>
     </div>
@@ -229,12 +253,12 @@
     <!-- 버튼 부분 -->
     <div class="pull-right btn_area">
         <span>
-            <a href="javascript:alert('글쓰기버튼!');" class="btn btn-warning">
+            <a href="javascript:alert('글수정버튼!');" class="btn btn-warning">
                 <i class="glyphicon glyphicon-pencil"> 글수정 </i>
             </a>
         </span>
         <span>
-            <a href="javascript:alert('글쓰기버튼!');" class="btn btn-primary">
+            <a href="${pageContext.request.contextPath }/notice/artclRegistView" class="btn btn-primary">
                 <i class="glyphicon glyphicon-pencil"> 글쓰기 </i>
             </a>
         </span>

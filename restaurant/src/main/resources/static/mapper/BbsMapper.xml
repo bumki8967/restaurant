@@ -4,21 +4,48 @@
    
    
 <mapper namespace="com.project.restaurant.bbs.BbsService">
-	<resultMap type="com.project.restaurant.bbs.BbsSetup" id="BbsSetup">
-		<result property="bbs_setup_seq"	column="bbs_setup_seq" />
-		<result property="bbs_name"			column="bbs_name" />
-		<result property="bbs_use_yn"		column="bbs_use_yn" />
-		<result property="down_use_yn"		column="down_use_yn" />
-		<result property="answer_use_yn"	column="answer_use_yn" />
-		<result property="comment_use_yn"	column="comment_use_yn" />
-		<result property="annymty_use_yn"	column="annymty_use_yn" />
-		<result property="secret_use_yn"	column="secret_use_yn" />
-		<result property="reg_date"			column="reg_date" />
-		<result property="edit_date"		column="edit_date" />
-		<result property="add_item1"		column="add_item1" />
-		<result property="add_item2"		column="add_item2" />
-		<result property="add_item3"		column="add_item3" />
+	<resultMap type="com.project.restaurant.bbs.BbsArtcl" id="BbsArtcl">
+		<result property="artclSeq"			column="artcl_seq" />
+		<result property="title"			column="title" />
+		<result property="content"			column="content" />
+		<result property="writer"			column="writer" />
+		<result property="reg_Date"			column="reg_date" />
+		<result property="edit_Date"		column="edit_date" />
+		<result property="hit"				column="hit" />
+		<result property="img_Origin_Nm"	column="img_Origin_Nm" />
+		<result property="img_File_Nm"		column="img_file_nm" />
+		<result property="img_Path"			column="img_path" />
+		<result property="add_Item1"		column="add_item1" />
+		<result property="add_Item2"		column="add_item2" />
+		<result property="add_Item3"		column="add_item3" />
+		<result property="add_Item4"		column="add_item4" />
+		<result property="add_Item5"		column="add_item5" />
 	</resultMap>
 
 
+	<!-- (사용자) 게시글 작성 - INSERT -->
+	<insert id="artclRegist" parameterType="com.project.restaurant.bbs.BbsArtcl"
+		useGeneratedKeys="true" keyProperty="artclSeq">
+		INSERT INTO bbs_artcl (
+			title, content, writer, reg_date, edit_date, hit, img_Origin_Nm, img_File_Nm, img_Path,
+			add_Item1, add_Item2, add_Item3, add_Item4, add_Item5
+		) VALUES (
+			#{title}, #{content}, #{writer}, now(), now(), 0, #{img_Origin_Nm}, #{img_File_Nm}, #{img_Path},
+			#{add_Item1}, #{add_Item2}, #{add_Item3}, #{add_Item4}, #{add_Item5}
+		)
+	</insert>
+	
+	<!-- (사용자 & 관리자) 게시글 목록 - SELECT -->
+	<select id="getArtclList" resultMap="BbsArtcl">
+		SELECT	*
+		FROM	bbs_artcl
+		ORDER BY artcl_seq DESC;
+	</select>
+	
+	<!-- (사용자 & 관리자) 게시글 시퀀스 번호 확인 -->
+	<select id="selectByArtclSeq" parameterType="int" resultMap="BbsArtcl">
+		SELECT	*
+		FROM	bbs_artcl
+		WHERE	artclSeq = #{artcl_seq}
+	</select>
 </mapper>

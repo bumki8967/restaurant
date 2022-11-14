@@ -12,4 +12,34 @@ public class BbsServiceImpl implements BbsService {
 	@Autowired
 	private BbsService bbsService;
 
+	/**
+	 * (사용자) 게시글 작성 
+	 */
+	@Override
+	public void artclRegist(BbsArtcl artcl) {
+		
+		bbsService.artclRegist(artcl);
+		
+	}
+
+	/**
+	 * (사용자 & 관리자) 게시글 목록 
+	 */
+	@Override
+	public List getArtclList() {
+		
+		ArrayList<BbsArtcl> list = (ArrayList<BbsArtcl>) bbsService.getArtclList();
+		
+		return list;
+	}
+
+	/**
+	 * (사용자 & 관리자) 게시글 시퀀스 번호 확인
+	 */
+	@Override
+	public BbsArtcl selectByArtclSeq(int artclSeq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

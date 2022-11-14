@@ -74,13 +74,19 @@
         <!-- 제목부분 -->
         <div class="clearfix subject_area">
             <span>
-                <h1 class="text-center"> Board Regist </h1>
+                <h1 class="text-center"> 공지사항 작성 </h1>
             </span>
         </div>
+        
+        <hr />
 
         <div class="regist_area">
             <!-- form 시작 -->
-            <form method="" action="" class="form-horizontal">
+            <form method="POST" action="${pageContext.request.contextPath }/notice/artclEdit.do" class="form-horizontal">
+            	<input type="hidden" id="11" name="type" value="${artcl.type }" />
+            	<input type="text" value="${artcl.title }" />
+            	<input type="text" value="${artcl.writer }" />
+            	
                 <div class="artclItem writeForm">
                     <!-- 제목 입력 부분 -->
                     <div class="form-group">
@@ -88,7 +94,7 @@
                             <mark class="glyphicon glyphicon-asterisk"></mark> 제목
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="subject" id="subject" value="" />
+                            <input type="text" class="form-control" name="title" id="title" value="${artcl.title }" />
                         </div>
                     </div>
                     <!-- 작성자 입력 부분 -->
@@ -129,7 +135,7 @@
                             <button type="button" class="btn btn-warning"> 작성취소 </button>
                         </span>
                         <span class="pull-right submitBtn">
-                            <button type="button" class="btn btn-primary"> 작성하기 </button>
+                            <input type="submit" class="btn btn-primary" value="작성하기" />
                         </span>
                     </div>
                 </div>

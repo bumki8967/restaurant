@@ -74,16 +74,16 @@
 								</li>
 								
 								<li>
-									<a href="blog-standard.html">게시판</a>
+									<a href="${pageContext.request.contextPath }/notice/artclList">게시판</a>
 									<ul class="sub-menu text-left">
 											<li>
-												<a href="blog-standard.html">공지사항</a>
+												<a href="${pageContext.request.contextPath }/notice/artclList">공지사항</a>
 											</li>
 											<li>
-												<a href="blog-list.html">자유게시판</a>
+												<a href="${pageContext.request.contextPath }/free/artclList">자유게시판</a>
 											</li>
 											<li>
-												<a href="blog-details.html">Q&A</a>
+												<a href="${pageContext.request.contextPath }/qna/artclList">Q&A</a>
 											</li>
 									</ul>
 								</li>
