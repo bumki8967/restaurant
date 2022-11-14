@@ -74,11 +74,17 @@
 								</li>
 								
 								<li>
-									<a href="blog-standard.html">blog</a>
+									<a href="blog-standard.html">게시판</a>
 									<ul class="sub-menu text-left">
-											<li><a href="blog-standard.html">blog standard</a></li>
-											<li><a href="blog-list.html">blog list</a></li>
-											<li><a href="blog-details.html">blog details</a></li>
+											<li>
+												<a href="blog-standard.html">공지사항</a>
+											</li>
+											<li>
+												<a href="blog-list.html">자유게시판</a>
+											</li>
+											<li>
+												<a href="blog-details.html">Q&A</a>
+											</li>
 									</ul>
 								</li>
 								<li>

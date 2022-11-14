@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.restaurant.bbs.BbsServiceImpl;
-import com.project.restaurant.bbs.BbsSetup;
 import com.project.restaurant.user.User;
 import com.project.restaurant.user.UserServiceImpl;
 
@@ -144,37 +143,9 @@ public class AdminController {
 		
 		ModelAndView mav = new ModelAndView("/admin/bbsSetupList");
 		
-		List<BbsSetup> setupList = bbsServiceImpl.selectBbsSetupList();
-		
-		mav.addObject("setupList", setupList);
-		
 		return mav;
 	}
 	
 	
-	/**
-	 * 게시판 생성 화면
-	 * @return
-	 */
-	@RequestMapping("/bbsSetupRegistView")
-	public ModelAndView bbsSetupRegistView() {
-		
-		ModelAndView mav = new ModelAndView("/admin/bbsSetupRegistView");
-		
-		return mav;
-	}
-	
-	
-	@RequestMapping("/bbsSetupRegist.do")
-	public String bbsSetupRegist(BbsSetup setup) {
-		
-		System.out.println("bbsSetupRegist	Controller	Start!!!!");
-		
-		bbsServiceImpl.insertBbsSetup(setup);
-		
-		System.out.println("bbsSetupRegist	Controller	End!!!!");		
-		
-		return "redirect:/admin/bbsSetupList";
-	}
 	
 }

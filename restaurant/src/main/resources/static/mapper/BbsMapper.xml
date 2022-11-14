@@ -21,24 +21,4 @@
 	</resultMap>
 
 
-	<!-- (관리자) 게시판 추가 -->
-	<insert id="insertBbsSetup" parameterType="com.project.restaurant.bbs.BbsSetup"
-		useGeneratedKeys="true" keyProperty="bbs_setup_seq">
-	
-		INSERT INTO bbs_setup (
-			bbs_name, bbs_use_yn, down_use_yn, answer_use_yn, comment_use_yn, annymty_use_yn, secret_use_yn,
-			reg_date, edit_date, add_item1, add_item2, add_item3
-		) VALUES (
-			#{bbs_name}, #{bbs_use_yn}, #{down_use_yn}, #{answer_use_yn}, #{comment_use_yn}, #{annymty_use_yn}, #{secret_use_yn},
-			now(), now(), #{add_item1}, #{add_item2}, #{add_item3}
-		)
-	</insert>
-
-
-	<!-- (관리자) 생성된 게시판 리스트 -->
-	<select id="selectBbsSetupList" resultMap="BbsSetup">
-		SELECT	*
-		FROM	bbs_setup
-		ORDER BY bbs_setup_seq DESC
-	</select>
 </mapper>

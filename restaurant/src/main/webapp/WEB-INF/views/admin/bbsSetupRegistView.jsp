@@ -111,6 +111,8 @@
 										</div>
 									</div>
 
+									<hr />
+
 									<!-- 게시판 사용 여부 -->
 									<div class="form-group">
 										<label for="bbs_use_yn" class="col-md-2"> 게시판 사용여부 </label>
@@ -129,6 +131,9 @@
 										</div>
 									</div>
  
+ 
+ 									<hr />
+ 
 									<!-- 다운로드 사용 여부 -->
 									<div class="form-group">
 										<label for="down_use_yn" class="col-md-2"> 다운로드 사용여부 </label>
@@ -146,6 +151,8 @@
 											</span>
 										</div>
 									</div>
+									
+ 									<hr />									
 
 									<!-- 답변 사용 여부 -->
 									<div class="form-group">
@@ -165,6 +172,8 @@
 										</div>
 									</div>
 									
+ 									<hr />									
+									
 									<!-- 댓글 사용 여부 -->
 									<div class="form-group">
 										<label for="comment_use_yn" class="col-md-2"> 댓글 사용여부 </label>
@@ -182,6 +191,8 @@
 											</span>
 										</div>
 									</div>
+
+ 									<hr />
 
 									<!-- 익명 사용 여부 -->
 									<div class="form-group">
@@ -201,6 +212,8 @@
 										</div>
 									</div>
 
+ 									<hr />
+
 									<!-- 비밀글 사용 여부 -->
 									<div class="form-group">
 										<label for="secret_use_yn" class="col-md-2"> 비밀글 사용여부 </label>
@@ -218,6 +231,8 @@
 											</span>
 										</div>
 									</div>
+
+ 									<hr />
 
 									<div class="form-group">
 										<div class="col-md-offset-2 col-md-10">
