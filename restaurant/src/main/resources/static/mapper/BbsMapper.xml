@@ -5,7 +5,7 @@
    
 <mapper namespace="com.project.restaurant.bbs.BbsService">
 	<resultMap type="com.project.restaurant.bbs.BbsArtcl" id="BbsArtcl">
-		<result property="artclSeq"			column="artcl_seq" />
+		<result property="artcl_Seq"		column="artcl_seq" />
 		<result property="title"			column="title" />
 		<result property="content"			column="content" />
 		<result property="writer"			column="writer" />
@@ -25,7 +25,7 @@
 
 	<!-- (사용자) 게시글 작성 - INSERT -->
 	<insert id="artclRegist" parameterType="com.project.restaurant.bbs.BbsArtcl"
-		useGeneratedKeys="true" keyProperty="artclSeq">
+		useGeneratedKeys="true" keyProperty="artcl_Seq">
 		INSERT INTO bbs_artcl (
 			title, content, writer, reg_date, edit_date, hit, img_Origin_Nm, img_File_Nm, img_Path,
 			add_Item1, add_Item2, add_Item3, add_Item4, add_Item5
@@ -35,17 +35,29 @@
 		)
 	</insert>
 	
+	
 	<!-- (사용자 & 관리자) 게시글 목록 - SELECT -->
 	<select id="getArtclList" resultMap="BbsArtcl">
 		SELECT	*
 		FROM	bbs_artcl
-		ORDER BY artcl_seq DESC;
+		ORDER BY artcl_Seq DESC;
 	</select>
+	
 	
 	<!-- (사용자 & 관리자) 게시글 시퀀스 번호 확인 -->
 	<select id="selectByArtclSeq" parameterType="int" resultMap="BbsArtcl">
 		SELECT	*
 		FROM	bbs_artcl
-		WHERE	artclSeq = #{artcl_seq}
+		WHERE	artcl_Seq = #{artcl_Seq}
 	</select>
+	
+	
+	<!-- (사용자 & 관리자) 게시글 수정 -->
+	<update id="artclUpdate" parameterType="com.project.restaurant.bbs.BbsArtcl">
+		UPDATE	bbs_artcl
+		SET		title = #{title}, content = #{content}, edit_date = now(), hit = #{hit}
+				img_Origin_Nm = #{img_Origin_Nm}, img_File_Nm = #{img_File_Nm}, img_Path = #{img_Path},
+				add_Item1 = #{add_Item1}, add_Item2 = #{add_Item2}, add_Item3 = #{add_Item3}, add_Item4 = #{add_Item4}, add_Item5 = #{add_Item5},
+		WHERE	artcl_Seq = #{artcl_Seq}					
+	</update>
 </mapper>

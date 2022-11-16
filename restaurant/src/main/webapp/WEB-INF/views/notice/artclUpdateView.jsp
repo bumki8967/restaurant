@@ -13,6 +13,8 @@
 	<link rel="manifest" href="site.webmanifest">
 	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/image/favicon.ico">
 	<!-- Place favicon.ico in the root directory -->
+    <!-- Jquery -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- CSS here -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.carousel.min.css">
@@ -34,6 +36,8 @@
     <!-- CKEditor -->
     <!-- <script src="http://cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script> -->
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    
+
 	
 	<style>
         .container{
@@ -61,6 +65,24 @@
             margin: 0 0 0 1rem;
         }
     </style>
+    
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		$("#updateBtn").click(function() {
+    			<%--
+    			var con = confirm("글을 수정하시겠습니까?");
+        		
+        		if (con) {
+        			alert("수정이 완료되었습니다..");
+        			$("#updateForm").attr('action', '/notice/artclUpdate.do');
+        			$("#updateForm").submit();
+        		}
+        		--%>
+        		alert("기능 개발중입니다!!!!");
+        		return;
+    		});
+    	});
+    </script>
 </head>
 <body>
 
@@ -82,10 +104,9 @@
 
         <div class="regist_area">
             <!-- form 시작 -->
-            <form method="POST" action="${pageContext.request.contextPath }/notice/artclEdit.do" class="form-horizontal">
-            	<input type="hidden" id="11" name="type" value="${artcl.type }" />
-            	<input type="text" value="${artcl.title }" />
-            	<input type="text" value="${artcl.writer }" />
+            <form method="POST" id="updateForm" class="form-horizontal">
+            	<input type="hidden" name="type" value="${artcl.type }" />
+            	<input type="hidden" id="artcl_Seq" name="artcl_Seq" value="${artcl_Seq }" />
             	
                 <div class="artclItem writeForm">
                     <!-- 제목 입력 부분 -->
@@ -103,7 +124,7 @@
                             <mark class="glyphicon glyphicon-asterisk"></mark> 작성자
                         </label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" name="writer" id="writer" value="" />
+                            <input type="text" class="form-control" name="writer" id="writer" value="${artcl.writer }" />
                         </div>
                     </div>
                     <!-- 내용 입력 부분 -->
@@ -112,7 +133,9 @@
                             <mark class="glyphicon glyphicon-asterisk"></mark> 내용
                         </label>
                         <div class="col-sm-10">
-                            <textarea name="content" id="content" class="ckedditor"></textarea>
+                            <textarea name="content" id="content" class="ckedditor">
+                            	${artcl.content }
+                           	</textarea>
                             <!-- CKEditor 사용할때 꼭 넣어야되는 스크립트 -->
                             <script>
                                 /** CKEditor 4 */
@@ -132,10 +155,10 @@
                     <!-- 작성 버튼 부분 -->
                     <div class="form-group btn-group-justified">
                         <span class="pull-right cancelBtn">
-                            <button type="button" class="btn btn-warning"> 작성취소 </button>
+                            <button type="button" class="btn btn-warning"> 수정취소 </button>
                         </span>
                         <span class="pull-right submitBtn">
-                            <input type="submit" class="btn btn-primary" value="작성하기" />
+                            <button type="button" id="updateBtn" class="btn btn-primary"> 수정하기 </button>
                         </span>
                     </div>
                 </div>

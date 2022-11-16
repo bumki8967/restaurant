@@ -5,7 +5,7 @@ import java.util.Date;
 public class BbsArtcl {
 
 	/** 게시글 번호 */
-	private int artclSeq;
+	private int artcl_Seq;
 	
 	/** 제목 */
 	private String title;
@@ -43,11 +43,11 @@ public class BbsArtcl {
 	private String add_Item4;
 	private String add_Item5;
 	
-	public int getArtclSeq() {
-		return artclSeq;
+	public int getArtcl_Seq() {
+		return artcl_Seq;
 	}
-	public void setArtclSeq(int artclSeq) {
-		this.artclSeq = artclSeq;
+	public void setArtcl_Seq(int artcl_Seq) {
+		this.artcl_Seq = artcl_Seq;
 	}
 	public String getTitle() {
 		return title;
@@ -142,12 +142,13 @@ public class BbsArtcl {
 	
 	@Override
 	public String toString() {
-		return "BbsArtcl [artclSeq=" + artclSeq + ", title=" + title + ", content=" + content + ", writer=" + writer
+		return "BbsArtcl [artcl_Seq=" + artcl_Seq + ", title=" + title + ", content=" + content + ", writer=" + writer
 				+ ", reg_Date=" + reg_Date + ", edit_Date=" + edit_Date + ", hit=" + hit + ", img_Origin_Nm="
 				+ img_Origin_Nm + ", img_File_Nm=" + img_File_Nm + ", img_Path=" + img_Path + ", type=" + type
 				+ ", add_Item1=" + add_Item1 + ", add_Item2=" + add_Item2 + ", add_Item3=" + add_Item3 + ", add_Item4="
 				+ add_Item4 + ", add_Item5=" + add_Item5 + "]";
 	}
+	
 	
 	
 	

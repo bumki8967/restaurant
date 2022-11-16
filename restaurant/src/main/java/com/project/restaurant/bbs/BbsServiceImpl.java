@@ -37,9 +37,20 @@ public class BbsServiceImpl implements BbsService {
 	 * (사용자 & 관리자) 게시글 시퀀스 번호 확인
 	 */
 	@Override
-	public BbsArtcl selectByArtclSeq(int artclSeq) {
-		// TODO Auto-generated method stub
-		return null;
+	public BbsArtcl selectByArtclSeq(int artcl_Seq) {
+
+		BbsArtcl artcl = bbsService.selectByArtclSeq(artcl_Seq);
+		
+		return artcl;
+	}
+
+	/**
+	 * (사용자 & 관리자) 게시글 수정
+	 */
+	@Override
+	public void artclUpdate(BbsArtcl artcl) {
+		
+		bbsService.artclUpdate(artcl);
 	}
 
 }

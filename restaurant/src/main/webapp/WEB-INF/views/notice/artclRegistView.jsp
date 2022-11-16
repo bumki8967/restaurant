@@ -13,6 +13,8 @@
 	<link rel="manifest" href="site.webmanifest">
 	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/image/favicon.ico">
 	<!-- Place favicon.ico in the root directory -->
+    <!-- Jquery -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- CSS here -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.carousel.min.css">
@@ -34,6 +36,9 @@
     <!-- CKEditor -->
     <!-- <script src="http://cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script> -->
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+	<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+    
+
 	
 	<style>
         .container{
@@ -61,6 +66,38 @@
             margin: 0 0 0 1rem;
         }
     </style>
+    
+    
+    <script type="text/javascript">
+    
+    <%--
+	    ClassicEditor
+		.create(document.querySelector('#content'), {
+			ckfinder: {
+				uploadUrl : '/notice/artclRegist.do'
+			}
+		})
+		.then(editor => {
+			console.log('Editor was initialized');
+		})
+		.catch(error => {
+			console.error(error);
+		});
+    --%>
+    
+    $(document).ready(function() {
+    	$("#registBtn").click(function() {
+    		var con = confirm("글을 등록하시겠습니까?");
+    		
+    		if (con) {
+    			alert("등록을 완료하였습니다.");
+    			$("#registForm").attr('action', '/notice/artclRegist.do');
+    			$("#registForm").submit();
+    		}
+    	});
+    });
+    	
+    </script>
 </head>
 <body>
 
@@ -82,7 +119,7 @@
 
         <div class="regist_area">
             <!-- form 시작 -->
-            <form method="POST" action="${pageContext.request.contextPath }/notice/artclRegist.do" class="form-horizontal">
+            <form method="POST" id="registForm" class="form-horizontal">
             	<input type="hidden" name="type" value="공지사항" />
             
                 <div class="artclItem writeForm">
@@ -119,9 +156,15 @@
                                 //     filebrowserImageUploadUrl   : '/image/imageUpload.do',
                                 //     height : '500px'
                                 // });
+                                function MyCustomUploadAdapterPlugin(editor) {
+                                    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                                        return new UploadAdapter(loader)
+                                    }
+                                }
                                 
                                 /** CKEditor 5 */
                                 ClassicEditor.create( document.querySelector( '#content' ), {
+                                	extraPlugins: [MyCustomUploadAdapterPlugin],
                                     language: "ko"
                                 } );
                             </script>
@@ -133,7 +176,7 @@
                             <button type="button" class="btn btn-warning"> 작성취소 </button>
                         </span>
                         <span class="pull-right submitBtn">
-                            <input type="submit" class="btn btn-primary" value="작성하기" />
+                            <button type="button" id="registBtn" class="btn btn-primary"> 작성하기 </button>
                         </span>
                     </div>
                 </div>

@@ -14,6 +14,8 @@
 	<link rel="manifest" href="site.webmanifest">
 	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/image/favicon.ico">
 	<!-- Place favicon.ico in the root directory -->
+    <!-- Jquery -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- CSS here -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.carousel.min.css">
@@ -32,6 +34,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
     <!-- BootStrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    
+
 
     <style>
         .container{
@@ -205,10 +209,10 @@
             	<c:forEach var="list" items="${artclList }">
             		<tr>
             			<td>
-            				${list.artclSeq }
+            				${list.artcl_Seq }
             			</td>
             			<td>
-            				<a href="${pageContext.request.contextPath }/notice/artclRegistView?artclSeq=${list.artclSeq}">
+            				<a href="${pageContext.request.contextPath }/notice/artclUpdateView?artcl_Seq=${list.artcl_Seq}">
 	            				${list.title }
             				</a>
             			</td>

@@ -24,5 +24,11 @@ public interface BbsService {
 	 * @param artclSeq
 	 * @return
 	 */
-	public BbsArtcl selectByArtclSeq(int artclSeq);
+	public BbsArtcl selectByArtclSeq(int artcl_Seq);
+	
+	/**
+	 * (사용자 & 관리자) 게시글 수정
+	 * @param artcl_Seq
+	 */
+	public void artclUpdate(BbsArtcl artcl);
 }

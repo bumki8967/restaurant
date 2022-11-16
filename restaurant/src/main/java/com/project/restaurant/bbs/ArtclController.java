@@ -23,7 +23,6 @@ public class ArtclController {
 	@RequestMapping("/{board}/artclList")
 	public ModelAndView artclList(@PathVariable("board") String board) {
 		
-		System.out.println("Controller artclList");
 		ModelAndView mav = new ModelAndView(board + "/artclList");
 		
 		List<BbsArtcl> artclList = bbsServiceImpl.getArtclList();
@@ -41,7 +40,6 @@ public class ArtclController {
 	@RequestMapping("/{board}/artclRegistView")
 	public ModelAndView artclRegistView(@PathVariable("board") String board) {
 		
-		System.out.println("Controller artclRegistView");
 		ModelAndView mav = new ModelAndView(board + "/artclRegistView");
 		
 		return mav;
@@ -56,11 +54,7 @@ public class ArtclController {
 	@RequestMapping("/{board}/artclRegist.do")
 	public String artclRegist(@PathVariable("board") String board, BbsArtcl artcl) {
 		
-		System.out.println("Controller	artclRegist		Start!!!!!");
-		
 		bbsServiceImpl.artclRegist(artcl);
-		
-		System.out.println("Controller	artclRegist		End!!!!!");
 		
 		return "redirect:/{board}/artclList";
 	}
@@ -68,22 +62,39 @@ public class ArtclController {
 	/**
 	 * 게시글 수정 화면
 	 * @param board
-	 * @param artclSeq
+	 * @param artcl_Seq
 	 * @return
 	 */
-	@RequestMapping("/{board}/artclEditView")
-	public ModelAndView artclEditView(@PathVariable("board") String board, @RequestParam(value = "artclSeq") int artclSeq) {
+	@RequestMapping("/{board}/artclUpdateView")
+	public ModelAndView artclEditView(@PathVariable("board") String board, @RequestParam(value = "artcl_Seq") int artcl_Seq) {
 		
-		System.out.println("Controller artclEditView");
-		ModelAndView mav = new ModelAndView(board + "/artclEditView");
+		ModelAndView mav = new ModelAndView(board + "/artclUpdateView");
 		
-		BbsArtcl artcl = bbsServiceImpl.selectByArtclSeq(artclSeq);
-		System.out.println("Controller artclEditView artcl	::	" + artcl);
+		BbsArtcl artcl = bbsServiceImpl.selectByArtclSeq(artcl_Seq);
 		
 		mav.addObject("artcl", artcl);
 		
 		return mav;
-		
 	}
 	
+	// 22.11.16 게시글 수정 메소드 개발 미완료
+	/**
+	 * 게시글 수정
+	 * @param board
+	 * @param artcl
+	 * @return
+	 */
+//	@RequestMapping("/{board}/artclUpdate.do")
+//	public String artclUpdate(@PathVariable("board") String board, BbsArtcl artcl, @RequestParam(value = "artcl_Seq") int artcl_Seq) {
+//		
+//		System.out.println("Controller artclUpdate	Start!!!!");
+//		System.out.println("Controller artclUpdate	::	" + artcl);
+//		System.out.println("Controller artclUpdate	::	" + artcl.getArtcl_Seq());
+//		
+//		bbsServiceImpl.artclUpdate(artcl);
+//		
+//		System.out.println("Controller artclUpdate	End!!!!");
+//		
+//		return "redirect:/{board}/artclList";
+//	}
 }
