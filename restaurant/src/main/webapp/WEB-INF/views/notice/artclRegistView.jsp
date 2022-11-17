@@ -33,10 +33,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <!-- BootStrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- CKEditor -->
-    <!-- <script src="http://cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script> -->
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-	<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
+    <!-- CKEditor4 -->
+    <script src="http://cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+    <!-- CKEditor5 -->
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>  -->
     
 
 	
@@ -151,22 +151,21 @@
                             <!-- CKEditor 사용할때 꼭 넣어야되는 스크립트 -->
                             <script>
                                 /** CKEditor 4 */
-                                // CKEDITOR.replace('content', {
-                                //     filebrowserUploadUrl        : '/file/fileUpload.do',
-                                //     filebrowserImageUploadUrl   : '/image/imageUpload.do',
-                                //     height : '500px'
-                                // });
-                                function MyCustomUploadAdapterPlugin(editor) {
-                                    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-                                        return new UploadAdapter(loader)
-                                    }
-                                }
+                                CKEDITOR.replace('content', {
+                                     //filebrowserUploadUrl        : '${pageContext.request.contextPath }/notice/imgUpload.do',
+                                     filebrowserImageUploadUrl   : '${pageContext.request.contextPath }/notice/imgUpload.do',
+                                     height : '500px'
+                                 });
                                 
                                 /** CKEditor 5 */
+                                /**
                                 ClassicEditor.create( document.querySelector( '#content' ), {
-                                	extraPlugins: [MyCustomUploadAdapterPlugin],
-                                    language: "ko"
+                                    simpleUpload : {
+                                    	uploadUrl : '/notice/artclRegist.do'
+                                    },
+                                	language: "ko"
                                 } );
+                                */
                             </script>
                         </div>
                     </div>
