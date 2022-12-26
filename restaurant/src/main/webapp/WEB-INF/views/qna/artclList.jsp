@@ -201,38 +201,51 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Title_1</td>
-                    <td>User1</td>
-                    <td>2022-10-13</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Title_2</td>
-                    <td>User2</td>
-                    <td>2022-10-13</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Title_3</td>
-                    <td>User3</td>
-                    <td>2022-10-13</td>
-                    <td>3</td>
-                </tr>
+              <c:choose>
+                <c:when test='${artclList != null}'>
+                  <c:forEach var="list" items="${artclList }">
+                    <c:if test="${list.type == 'Q&A'}">
+                      <tr>
+                        <td>
+                          ${list.artcl_Seq }
+                        </td>
+                        <td>
+                          <a href="${pageContext.request.contextPath }/notice/artclUpdateView?artcl_Seq=${list.artcl_Seq}">
+                            ${list.title }
+                          </a>
+                        </td>
+                        <td>
+                          ${list.writer }
+                        </td>
+                        <td>
+                          <fmt:formatDate value="${list.reg_Date }" type="date"/>
+                        </td>
+                        <td>
+                          ${list.hit }
+                        </td>
+                      </tr>
+                    </c:if>
+                  </c:forEach>
+                </c:when>
+                <c:otherwise>
+                  <tr>
+                    <td colspan="5">
+                      등록된 글이 없습니다.
+                    </td>
+                  </tr>
+                </c:otherwise>
+              </c:choose>
             </tbody>
         </table>
     </div>
 
     <!-- 버튼 부분 -->
     <div class="pull-right btn_area">
-        <span>
+        <%-- <span>
             <a href="javascript:alert('글수정버튼!');" class="btn btn-warning">
                 <i class="glyphicon glyphicon-pencil"> 글수정 </i>
             </a>
-        </span>
+        </span> --%>
         <span>
             <a href="${pageContext.request.contextPath }/qna/artclRegistView" class="btn btn-primary">
                 <i class="glyphicon glyphicon-pencil"> 글쓰기 </i>

@@ -18,6 +18,7 @@ public class ArtclController {
 	
 	/**
 	 * 게시글 리스트
+	 * @param board
 	 * @return
 	 */
 	@RequestMapping("/{board}/artclList")
@@ -28,6 +29,21 @@ public class ArtclController {
 		List<BbsArtcl> artclList = bbsServiceImpl.getArtclList();
 		
 		mav.addObject("artclList", artclList);
+		
+		return mav;
+	}
+	
+	
+	/**
+	 * 게시글 상세보기 화면
+	 * @param board
+	 * @param artcl
+	 * @return
+	 */
+	@RequestMapping("/{board}/artclDetailView")
+	public ModelAndView artclDetailView(@PathVariable("board") String board, BbsArtcl artcl) {
+		
+		ModelAndView mav = new ModelAndView(board + "/artclDetailView");
 		
 		return mav;
 	}
@@ -54,7 +70,13 @@ public class ArtclController {
 	@RequestMapping("/{board}/artclRegist.do")
 	public String artclRegist(@PathVariable("board") String board, BbsArtcl artcl) {
 		
+		System.out.println("artclRegist	Start!!!");
+		
 		bbsServiceImpl.artclRegist(artcl);
+		
+		System.out.println("artcl	Type	::	" + artcl.getType());
+		
+		System.out.println("artclRegist	End!!!");
 		
 		return "redirect:/{board}/artclList";
 	}

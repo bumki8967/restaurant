@@ -156,15 +156,16 @@
                                 //     filebrowserImageUploadUrl   : '/image/imageUpload.do',
                                 //     height : '500px'
                                 // });
-                                function MyCustomUploadAdapterPlugin(editor) {
-                                    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-                                        return new UploadAdapter(loader)
-                                    }
-                                }
+
+                                // function MyCustomUploadAdapterPlugin(editor) {
+                                //     editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                                //         return new UploadAdapter(loader)
+                                //     }
+                                // }
                                 
                                 /** CKEditor 5 */
                                 ClassicEditor.create( document.querySelector( '#content' ), {
-                                	extraPlugins: [MyCustomUploadAdapterPlugin],
+                                	// extraPlugins: [MyCustomUploadAdapterPlugin],
                                     language: "ko"
                                 } );
                             </script>

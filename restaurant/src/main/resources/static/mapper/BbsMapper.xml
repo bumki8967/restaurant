@@ -15,6 +15,7 @@
 		<result property="img_Origin_Nm"	column="img_Origin_Nm" />
 		<result property="img_File_Nm"		column="img_file_nm" />
 		<result property="img_Path"			column="img_path" />
+		<result property="type"				column="type" />
 		<result property="add_Item1"		column="add_item1" />
 		<result property="add_Item2"		column="add_item2" />
 		<result property="add_Item3"		column="add_item3" />
@@ -27,10 +28,10 @@
 	<insert id="artclRegist" parameterType="com.project.restaurant.bbs.BbsArtcl"
 		useGeneratedKeys="true" keyProperty="artcl_Seq">
 		INSERT INTO bbs_artcl (
-			title, content, writer, reg_date, edit_date, hit, img_Origin_Nm, img_File_Nm, img_Path,
+			title, content, writer, reg_date, edit_date, hit, img_Origin_Nm, img_File_Nm, img_Path, type,
 			add_Item1, add_Item2, add_Item3, add_Item4, add_Item5
 		) VALUES (
-			#{title}, #{content}, #{writer}, now(), now(), 0, #{img_Origin_Nm}, #{img_File_Nm}, #{img_Path},
+			#{title}, #{content}, #{writer}, now(), now(), 0, #{img_Origin_Nm}, #{img_File_Nm}, #{img_Path}, #{type},
 			#{add_Item1}, #{add_Item2}, #{add_Item3}, #{add_Item4}, #{add_Item5}
 		)
 	</insert>
@@ -56,7 +57,7 @@
 	<update id="artclUpdate" parameterType="com.project.restaurant.bbs.BbsArtcl">
 		UPDATE	bbs_artcl
 		SET		title = #{title}, content = #{content}, edit_date = now(), hit = #{hit}
-				img_Origin_Nm = #{img_Origin_Nm}, img_File_Nm = #{img_File_Nm}, img_Path = #{img_Path},
+				img_Origin_Nm = #{img_Origin_Nm}, img_File_Nm = #{img_File_Nm}, img_Path = #{img_Path}, #{type},
 				add_Item1 = #{add_Item1}, add_Item2 = #{add_Item2}, add_Item3 = #{add_Item3}, add_Item4 = #{add_Item4}, add_Item5 = #{add_Item5},
 		WHERE	artcl_Seq = #{artcl_Seq}					
 	</update>
