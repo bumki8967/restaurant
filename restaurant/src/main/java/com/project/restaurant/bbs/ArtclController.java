@@ -1,12 +1,19 @@
 package com.project.restaurant.bbs;
 
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -119,4 +126,35 @@ public class ArtclController {
 //		
 //		return "redirect:/{board}/artclList";
 //	}
+	
+	
+	
+	@RequestMapping("/{board}/imgUpload.do")
+	public String imgUpload(@PathVariable("board") String board, BbsArtcl artcl, HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest multiFile) {
+		
+		System.out.println("Controller	imgUpload	Start!!!!");
+		
+//		JsonObject json = new JsonObject();
+//		PrintWriter printWriter = null;
+//		OutputStream out = null;
+		MultipartFile file = multiFile.getFile("upload");
+		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+		String fileRoot;
+		
+		if (file.getSize() > 0) {
+			System.out.println("contextRoot		::	" + contextRoot);
+			fileRoot = contextRoot + "1";
+			File imgDir = new File(fileRoot);
+			System.out.println("contextPath		::	" + fileRoot);
+			
+			if (!imgDir.exists()) {
+				System.out.println("폴더생성!");
+				imgDir.mkdir();
+			}
+		}
+		
+		System.out.println("Controller	imgUpload	End!!!!");
+		
+		return null;
+	}
 }
