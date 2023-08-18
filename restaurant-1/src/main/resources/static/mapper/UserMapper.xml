@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   
+<mapper namespace="com.project.restaurant.user.UserService">
+	<resultMap type="com.project.restaurant.user.User" id="User">
+		<result property="userSeq"			column="user_seq" />
+		<result property="userId"			column="user_id" />
+		<result property="userPw"			column="user_pw" />
+		<result property="name"				column="name" />
+		<result property="tel"				column="tel" />
+		<result property="birthday"			column="birthday" />
+		<result property="gender"			column="gender" />
+		<result property="postcode"			column="postcode" />
+		<result property="addr1"			column="addr1" />
+		<result property="addr2"			column="addr2" />
+		<result property="regDate"			column="reg_date" />
+		<result property="editDate"			column="edit_date" />
+		<result property="userType"			column="user_type" />
+		<result property="loginType"		column="login_type" />
+		<result property="addItem1"			column="add_item1" />
+		<result property="addItem2"			column="add_item2" />
+		<result property="addItem3"			column="add_item3" />
+	</resultMap>
+
+
+
+	<!-- 회원가입 (INSERT) -->
+	<insert id="insertUser" parameterType="com.project.restaurant.user.User"
+		useGeneratedKeys="true" keyProperty="userSeq">
+		INSERT INTO user_info (
+			user_id, user_pw, name, tel, birthday, gender, postcode, addr1, addr2,
+			reg_date, edit_date, user_type, login_type, add_item1, add_item2, add_item3
+		) VALUES (
+			#{userId}, #{userPw}, #{name}, #{tel}, #{birthday}, #{gender}, #{postcode}, #{addr1}, #{addr2}, 
+			now(), now(), #{userType}, #{loginType}, #{addItem1}, #{addItem2}, #{addItem3}
+		)
+	</insert>	
+		
+		
+	<!-- 사이트에서 회원가입 시 중복회원가입 방지를 위해 아이디 중복검사 수행 -->
+	<select id="duplicationUserId" parameterType="com.project.restaurant.user.User" resultType="int">
+		SELECT	count(user_id)
+		FROM	user_info
+		WHERE	user_id = #{userId}
+	</select>	
+	
+	
+	<!-- SNS 로그인으로 회원가입 시 중복회원가입 방지를 위해 아이디 & 로그인 타입 중복검사 수행 -->
+	<select id="duplicationUser"  parameterType="com.project.restaurant.user.User" resultType="int">
+		SELECT	count(user_id)
+		FROM	user_info
+		WHERE	user_id = #{userId}
+		AND		login_type = #{loginType}
+	</select>
+	
+	
+	<!-- 중복회원가입 방지를 위해 이메일 중복검사 수행 
+	<select id="duplicationEmail" parameterType="com.project.restaurant.user.User" resultType="int">
+		SELECT	count(email)
+		FROM	user_info
+		WHERE	email = #{email}		
+	</select>
+	-->
+	
+	<!-- 로그인 시 아이디와 비밀번호가 일치하는 회원을 조회 -->
+	<select id="loginUserInfo" resultMap="User" resultType="String">
+		SELECT	*
+		FROM	user_info
+		WHERE	user_id = #{userId}
+		AND		user_pw = #{userPw}
+	</select>
+
+
+	<!-- 가입날짜순으로 회원검색 -->
+	<select id="selectUserAll" resultMap="User">
+		SELECT	*
+		FROM	user_info
+		ORDER BY reg_date DESC
+	</select>
+
+
+	<!-- 회원탈퇴 -->
+	<delete id="deleteUser" parameterType="int">
+		DELETE 	FROM	user_info
+		WHERE	user_seq = #{userSeq}
+	</delete>
+	
+	
+	
+	
+	
+	<!-- (관리자) 회원 시퀀스 번호 확인 -->
+	<select id="selectByUserSeq" parameterType="int" resultMap="User">
+		SELECT	*
+		FROM	user_info
+		WHERE	user_seq = #{userSeq}
+	</select>
+	
+	
+	<!-- (관리자) 회원정보 수정 -->
+	<update id="updateUserData" parameterType="com.project.restaurant.user.User">
+		UPDATE	user_info
+		SET		user_id = #{userId}, name = #{name}, email = #{email}, 
+				tel = #{tel}, birthday = #{birthday}, gender = #{gender}, 
+				postcode = #{postcode}, addr1 = #{addr1}, addr2 = #{addr2}
+		WHERE	user_seq = #{userSeq}  
+	</update>
+	
+	<select id="getUserListByUserSeq" parameterType="int" resultMap="User">
+		SELECT	*
+		FROM	user_info
+		WHERE	user_seq = #{userSeq}
+	</select>
+</mapper>

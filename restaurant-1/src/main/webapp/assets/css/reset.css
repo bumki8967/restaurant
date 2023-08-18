@@ -1,0 +1,118 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-weight: 500;
+	line-height: 1.4;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    color: #333333;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a{
+	color: inherit;
+	text-decoration: none;
+}
+
+.ellipsis {
+    /* width값 고정되어야 함 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  /* 말줄임 적용 */
+}
+
+.ellipsis-box {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+    /* ★★ 설정이 필요한 영역 ★★ */
+    /* ★★ 3줄 이상은 말줄임 처리 ★★ */
+    -webkit-line-clamp: 2;
+}
+
+ /* scrollbar 꾸미기 */
+ .scrollbar::-webkit-scrollbar {
+    width: 0px; /*스크롤바의 너비*/
+    height: auto;
+    cursor: pointer;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(233, 233, 233); /*스크롤바의 색상*/
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0); /*스크롤바 트랙 색상*/
+}
+
+
+select {
+
+    -webkit-appearance:none; /* for chrome */
+ 
+    -moz-appearance:none; /*for firefox*/
+ 
+    appearance:none;
+ 
+    box-sizing: border-box;
+ 
+    background:transparent;
+
+    background:url('../images/select.png') no-repeat 90% 50%/11px auto !important;
+ 
+ }
+ select.white{
+    background:url('../images/select.png') no-repeat #fff 90% 50%/11px auto !important;
+ }
+
+ select::-ms-expand{
+ 
+    display:none;/*for IE10,11*/
+ 
+ }
+button{
+    cursor: pointer;
+}

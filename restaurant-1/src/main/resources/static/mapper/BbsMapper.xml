@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper 
+   PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   
+<mapper namespace="com.project.restaurant.bbs.BbsService">
+	<resultMap type="com.project.restaurant.bbs.BbsArtcl" id="BbsArtcl">
+		<result property="artclSeq"			column="ARTCL_SEQ" />
+		<result property="title"			column="title" />
+		<result property="content"			column="content" />
+		<result property="writer"			column="writer" />
+		<result property="regDate"			column="reg_Date" />
+		<result property="editDate"			column="edit_Date" />
+		<result property="hit"				column="hit" />
+		<result property="type"				column="type" />
+		<result property="ip"				column="ip" />
+		<result property="addItem1"			column="add_Item1" />
+		<result property="addItem2"			column="add_Item2" />
+		<result property="addItem3"			column="add_Item3" />
+		<result property="addItem4"			column="add_Item4" />
+		<result property="addItem5"			column="add_Item5" />
+	</resultMap>
+
+
+	<resultMap type="com.project.restaurant.bbs.BbsAtchmnfl" id="BbsAtchmnfl">
+		<result property="atchmnflSeq"		column="atchmnfl_Seq" />
+		<result property="artclSeq"			column="ARTCL_SEQ" />
+		<result property="writer"			column="writer" />
+		<result property="regDate"			column="reg_Date" />
+		<result property="editDate"			column="edit_Date" />
+		<result property="originNm"			column="origin_Nm" />
+		<result property="fileNm"			column="file_Nm" />
+		<result property="path"				column="path" />
+		<result property="type"				column="type" />
+		<result property="addItem1"			column="add_Item1" />
+		<result property="addItem2"			column="add_Item2" />
+		<result property="addItem3"			column="add_Item3" />
+		<result property="addItem4"			column="add_Item4" />
+		<result property="addItem5"			column="add_Item5" />
+	</resultMap>
+
+
+
+	<!-- (사용자) 게시글 작성 - INSERT -->
+	<insert id="artclRegist" parameterType="com.project.restaurant.bbs.BbsArtcl"
+		useGeneratedKeys="true" keyProperty="artcl_Seq">
+		INSERT INTO bbs_artcl (
+			title, content, writer, reg_date, edit_date, hit, type, ip,
+			add_Item1, add_Item2, add_Item3, add_Item4, add_Item5
+		) VALUES (
+			#{title}, #{content}, #{writer}, now(), now(), 0, #{type}, #{ip},
+			#{addItem1}, #{addItem2}, #{addItem3}, #{addItem4}, #{addItem5}
+		)
+	</insert>
+	
+	
+	<!-- (사용자 & 관리자) 게시글 목록 - SELECT -->
+	<select id="getArtclList" resultMap="BbsArtcl">
+		SELECT	*
+		FROM	bbs_artcl
+		ORDER BY artcl_Seq DESC;
+	</select>
+	
+	
+	<!-- (사용자 & 관리자) 게시글 시퀀스 번호 확인 -->
+	<select id="selectByArtclSeq" parameterType="int" resultMap="BbsArtcl">
+		SELECT	*
+		FROM	bbs_artcl
+		WHERE	artcl_Seq = #{artclSeq}
+	</select>
+	
+	
+	<!-- (사용자 & 관리자) 게시글 수정 -->
+	<update id="artclUpdate" parameterType="com.project.restaurant.bbs.BbsArtcl">
+		UPDATE	bbs_artcl
+		SET		title = #{title}, content = #{content}, edit_date = now(), hit = #{hit}, type = #{type}, ip = #{ip},
+				add_Item1 = #{addItem1}, add_Item2 = #{addItem2}, add_Item3 = #{addItem3}, add_Item4 = #{addItem4}, add_Item5 = #{addItem5},
+		WHERE	artcl_Seq = #{artclSeq}					
+	</update>
+</mapper>

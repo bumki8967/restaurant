@@ -1,0 +1,112 @@
+{"properties": [
+  {
+    "name": "kakao.auth.requestUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.requestUrl'"
+  },
+  {
+    "name": "kakao.auth.profileApiUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.profileApiUrl'"
+  },
+  {
+    "name": "kakao.auth.sessionState",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.sessionState'"
+  },
+  {
+    "name": "kakao.auth.redirectUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.redirectUrl'"
+  },
+  {
+    "name": "kakao.auth.grantType",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.grantType'"
+  },
+  {
+    "name": "kakao.auth.clientId",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.clientId'"
+  },
+  {
+    "name": "kakao.auth.clientSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.clientSecret'"
+  },
+  {
+    "name": "kakao.auth.code",
+    "type": "java.lang.String",
+    "description": "A description for 'kakao.auth.code'"
+  },
+  {
+    "name": "naver.auth.redirectUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'naver.auth.redirectUrl'"
+  },
+  {
+    "name": "naver.auth.profileApiUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'naver.auth.profileApiUrl'"
+  },
+  {
+    "name": "naver.auth.sessionState",
+    "type": "java.lang.String",
+    "description": "A description for 'naver.auth.sessionState'"
+  },
+  {
+    "name": "naver.auth.clientId",
+    "type": "java.lang.String",
+    "description": "A description for 'naver.auth.clientId'"
+  },
+  {
+    "name": "naver.auth.clientSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'naver.auth.clientSecret'"
+  },
+  {
+    "name": "google.auth.requestUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.requestUrl'"
+  },
+  {
+    "name": "google.auth.redirectUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.redirectUrl'"
+  },
+  {
+    "name": "google.auth.clientId",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.clientId'"
+  },
+  {
+    "name": "google.auth.clientSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.clientSecret'"
+  },
+  {
+    "name": "google.auth.grantType",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.grantType'"
+  },
+  {
+    "name": "google.auth.sessionState",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.sessionState'"
+  },
+  {
+    "name": "google.auth.responseType",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.responseType'"
+  },
+  {
+    "name": "google.auth.scope",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.scope'"
+  },
+  {
+    "name": "google.auth.profileApiUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'google.auth.profileApiUrl'"
+  }
+]}
