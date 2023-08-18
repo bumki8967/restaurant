@@ -39,19 +39,10 @@ public class SnsLoginController {
 	private UserServiceImpl userService;
 	
 	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
-	private HttpServletResponse response;
-	
-	@Autowired
 	private WebHelper web;
 	
 	@Autowired
 	private Decrypt decrypt;
-	
-//	private String apiResult = null;
-	
 	
 	@Value("${google.auth.requestUrl}")
 	private String requestUrl;
@@ -59,20 +50,11 @@ public class SnsLoginController {
 	@Value("${google.auth.redirectUrl}")
 	private String redirectUrl;
 	
-	@Value("${google.auth.profileApiUrl}")
-	private String profileApiUrl;
-	
 	@Value("${google.auth.clientId}")
 	private String clientId;
 	
 	@Value("${google.auth.clientSecret}")
 	private String clientSecret;
-	
-	@Value("${google.auth.sessionState}")
-	private String sessionState;
-    
-	@Value("${google.auth.scope}")
-	private String scope;
 	
 	@Value("${google.auth.grantType}")
 	private String grantType;
@@ -84,7 +66,7 @@ public class SnsLoginController {
 	private KakaoLoginBO kakaoLoginBO;
 	
 	/* GoogleLoginBO */
-	private GoogleLoginBO googleLoginBO;
+//	private GoogleLoginBO googleLoginBO;
 	
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
@@ -96,10 +78,10 @@ public class SnsLoginController {
 		this.kakaoLoginBO = kakaoLoginBO;
 	}
 	
-	@Autowired
-	private void setGoogleLoginBO(GoogleLoginBO googleLoginBO) {
-		this.googleLoginBO = googleLoginBO;
-	}
+//	@Autowired
+//	private void setGoogleLoginBO(GoogleLoginBO googleLoginBO) {
+//		this.googleLoginBO = googleLoginBO;
+//	}
 	
 	
 	
@@ -151,7 +133,7 @@ public class SnsLoginController {
 	
 	@ResponseBody
 	@RequestMapping(value= "/kakao")
-	public ModelAndView kakaoLogin(User user, Model model, @RequestParam String code, @RequestParam String state) 
+	public ModelAndView kakaoLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) 
 			throws Exception {
 		
 		ModelAndView mav = new ModelAndView("/index");
@@ -226,7 +208,7 @@ public class SnsLoginController {
 	
 	@ResponseBody
 	@RequestMapping("/naver")
-	public ModelAndView naverLogin(User user, Model model, @RequestParam String code, @RequestParam String state) 
+	public ModelAndView naverLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) 
 			throws Exception {
 		
 		ModelAndView mav = new ModelAndView("/index");
@@ -357,8 +339,9 @@ public class SnsLoginController {
 	@GetMapping("/google")
 	@ResponseBody
 //	public ModelAndView googleLogin(User user, Model model, @RequestParam String code, @RequestParam String state) throws Exception {
-	public ResponseEntity<GoogleResponse> googleLogin(User user, Model model, @RequestParam String code, @RequestParam String state) throws Exception {
+	public ResponseEntity<GoogleResponse> googleLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) throws Exception {
 		
+		HttpSession session = request.getSession();
 		RestTemplate restTemplate = new RestTemplate();
 		Map<String, String> params = new HashMap<>();
 		
@@ -368,7 +351,7 @@ public class SnsLoginController {
 		params.put("redirect_uri", redirectUrl);
 		params.put("grant_type", grantType);
 		
-		ResponseEntity<GoogleResponse> responseEntity = restTemplate.postForEntity("https://oauth2.googleapis.com/token", params, GoogleResponse.class);
+		ResponseEntity<GoogleResponse> responseEntity = restTemplate.postForEntity(requestUrl, params, GoogleResponse.class);
 		
 		if (responseEntity.getStatusCode() == HttpStatus.OK) {
 			String decodeInfo = decrypt.decryptBase64UrlToken(responseEntity.getBody().getId_token().split("\\.")[1]);
@@ -377,18 +360,11 @@ public class SnsLoginController {
 			JSONObject jsonObj = (JSONObject) jsonParser.parse(decodeInfo);
 			JSONObject response_obj = (JSONObject) jsonObj.get("response");
 			
-			String str = (String) jsonObj.get("name");
-			String str1 = (String) jsonObj.get("email");
-			
-			System.out.println("jsonObj		::	" + jsonObj);
-			System.out.println("response_obj		::	" + response_obj);
-			System.out.println("str		::	" + str);
-			System.out.println("str1		::	" + str1);
-			
-			
+			String name = (String) jsonObj.get("name");
+			String email = (String) jsonObj.get("email");
+
 			return responseEntity;
 		}
-		
 		
 		return null;
 	}
