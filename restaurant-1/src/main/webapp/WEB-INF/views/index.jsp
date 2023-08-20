@@ -26,6 +26,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/default.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/responsive.css">
+
+<script type="text/javascript">
+	history.replaceState({}, null, location.pathname);
+</script>
+
+</head>
 <body>
 	<!--[if lte IE 9]><p class="browserupgrade">You are using an <strong>outdated</strong>browser. Please <a href="https://browsehappy.com/">upgrade your browser</a>to improve your experience and security.</p><![endif]-->
 	<!-- header-start -->

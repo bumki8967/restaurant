@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.project.restaurant.user.GoogleResponse;
@@ -208,7 +209,8 @@ public class SnsLoginController {
 	
 	@ResponseBody
 	@RequestMapping("/naver")
-	public ModelAndView naverLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) 
+//	public ModelAndView naverLogin(User user, Model model, HttpServletRequest request, RedirectAttributes rttr, @RequestParam String code, @RequestParam String state) 
+	public ModelAndView naverLogin(User user, Model model, HttpServletRequest request, RedirectAttributes rttr, @RequestParam String code, @RequestParam String state) 
 			throws Exception {
 		
 		ModelAndView mav = new ModelAndView("/index");
@@ -256,6 +258,9 @@ public class SnsLoginController {
 			
 			userService.insertUser(user);
 		}
+		
+		rttr.addFlashAttribute("apiResult", apiResult);
+		session.setAttribute("user", user);
 		
 		session.setAttribute("userId", email);
 		session.setAttribute("name", name);
@@ -335,11 +340,12 @@ public class SnsLoginController {
 //	}
 	
 	
-//	@RequestMapping("/google")
 	@GetMapping("/google")
 	@ResponseBody
-//	public ModelAndView googleLogin(User user, Model model, @RequestParam String code, @RequestParam String state) throws Exception {
-	public ResponseEntity<GoogleResponse> googleLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) throws Exception {
+//	public ResponseEntity<GoogleResponse> googleLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) throws Exception {
+	public ModelAndView googleLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) throws Exception {
+		
+		ModelAndView mav = new ModelAndView("/index");
 		
 		HttpSession session = request.getSession();
 		RestTemplate restTemplate = new RestTemplate();
@@ -363,74 +369,29 @@ public class SnsLoginController {
 			String name = (String) jsonObj.get("name");
 			String email = (String) jsonObj.get("email");
 
-			return responseEntity;
+			System.out.println("여기 지나가지??");
+			
+			int result = userService.duplicationUser(email, "google");
+			
+			if (result <= 0) {
+				user.setUserId(email);
+				user.setName(name);
+				user.setUserType("normal");
+				user.setLoginType("google");
+				
+				userService.insertUser(user);
+			}
+			
+			model.addAttribute("decodeInfo", decodeInfo);
+			
+			session.setAttribute("userId", email);
+			session.setAttribute("name", name);
+			session.setAttribute("userType", user.getUserType());
+			session.setAttribute("loginType", user.getLoginType());
+			session.setMaxInactiveInterval(60 * 10 * 1);
+			
+			return mav;
 		}
-		
 		return null;
 	}
 }
-		
-//		ModelAndView mav = new ModelAndView("/index");
-//
-//		HttpSession session = request.getSession();
-//		OAuth2AccessToken oauthToken = googleLoginBO.getAccessToken(session, code, state);
-////		ResponseEntity<String> idToken = googleLoginBO.getAccessToken(session, code, state);
-//		
-//        //로그인 사용자 정보를 읽어온다.
-//		String apiResult = googleLoginBO.getUserProfile(oauthToken);
-//		
-//		System.out.println("apiResult		::	" + apiResult);
-//		
-////		return null;
-//		
-//        // apiResult값을 JSON형태로 변환
-//	    JSONParser jsonParser = new JSONParser();
-//	    System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
-//	    JSONObject jsonObj = (JSONObject) jsonParser.parse(apiResult);
-//	    System.out.println("bbbbbbbbbbbbbbbbbbbbbb");
-//		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-//		System.out.println("cccccccccccccccccccccc");
-//		
-//		// response의 데이터 파싱
-//		String name = (String) response_obj.get("name");
-//		String email = (String) response_obj.get("email");
-//		String age = (String) response_obj.get("age");
-//		String mobile = (String) response_obj.get("mobile");
-//		String gender = (String) response_obj.get("gender");
-//		String birthyear = (String)response_obj.get("birthyear");
-//		String birthday = (String) response_obj.get("birthday");
-//
-//		// 네이버로 회원가입 시 중복회원 검사 
-//		// 미가입 시 INSERT , 가입되어 있을 시 로그인
-//		int result = userService.duplicationUser(email, "naver");
-//		
-//		if (result <= 0) {
-//			user.setUserId(email);
-//			user.setName(name);
-//			user.setTel(mobile);
-//			
-//			if ("M".equals(gender)) {
-//				user.setGender("male");
-//			} else if ("W".equals(gender)) {
-//				user.setGender("female");
-//			} else {
-//				user.setGender("none");
-//			}
-//			
-//			user.setBirthday(birthyear + "-" + birthday);
-//			user.setUserType("normal");
-//			user.setLoginType("naver");
-//			
-//			userService.insertUser(user);
-//		}
-//		
-//		session.setAttribute("userId", email);
-//		session.setAttribute("name", name);
-//		session.setAttribute("userType", user.getUserType());
-//		session.setAttribute("loginType", user.getLoginType());
-//		session.setMaxInactiveInterval(60 * 10 * 1);
-//		
-//		return mav;
-//	}
-//	
-//}

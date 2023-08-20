@@ -36,33 +36,6 @@ public class UserController {
 	@Autowired
 	private WebHelper web;
 	
-	@Value("${google.auth.requestUrl}")
-	private String requestUrl;
-	
-	@Value("${google.auth.redirectUrl}")
-	private String redirectUrl;
-	
-	@Value("${google.auth.profileApiUrl}")
-	private String profileApiUrl;
-	
-	@Value("${google.auth.clientId}")
-	private String clientId;
-	
-	@Value("${google.auth.clientSecret}")
-	private String clientSecret;
-	
-	@Value("${google.auth.sessionState}")
-	private String sessionState;
-    
-	@Value("${google.auth.scope}")
-	private String scope;
-	
-	@Value("${google.auth.grantType}")
-	private String grantType;
-	
-	@Value("${google.auth.responseType}")
-	private String responseType;
-	
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
@@ -222,8 +195,8 @@ public class UserController {
 	public String logout(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession(false);
-//		session.removeAttribute("userId");
-//		session.removeAttribute("userType");
+		session.removeAttribute("userId");
+		session.removeAttribute("userType");
 		session.invalidate();
 		
 		return "redirect:/";

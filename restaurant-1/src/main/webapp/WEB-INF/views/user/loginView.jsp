@@ -253,17 +253,15 @@
 			<div class="sns_login" style="width: 400px; margin: auto;">
 				<span>
 					<label for="kakao_login" class="visually-hidden">
-						 <!-- <a href="${kakaoAuthUrl }">  -->
+						<a href="${kakaoAuthUrl }">
 						 <!--<a href="javascript:kakao_Login();"> -->
-						 <a href="${oauth2/authorization/kakao }">
 							<%-- <img src="${pageContext.request.contextPath }/assets/image/kakao.png" alt="카카오로그인" />  --%>
 							<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인" /> 
 						</a>
 					</label>
 					
 					<label for="naver_login"  class="visually-hidden">
-						<!-- <a href="${naverAuthUrl }">  -->
-						<a href="${oauth2/authorization/naver }">
+						<a href="${naverAuthUrl }">
 							<img src="${pageContext.request.contextPath }/assets/image/naver.png" style="width: 183px; height: 45px;" alt="네이버로그인" />
 						</a>	
 							<%-- <div id="naverIdLogin"></div>  --%>
