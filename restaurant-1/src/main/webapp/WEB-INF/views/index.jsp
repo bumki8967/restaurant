@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/responsive.css">
 
+<!-- URL에 파라미터 없애는 스크립트 -->
 <script type="text/javascript">
 	history.replaceState({}, null, location.pathname);
 </script>

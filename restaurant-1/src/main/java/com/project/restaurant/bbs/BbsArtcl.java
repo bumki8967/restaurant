@@ -25,6 +25,15 @@ public class BbsArtcl {
 	/** 조회수 */
 	private String hit;
 	
+	/** 이미지 파일 원본 이름 */
+	private String imgOriginNm;
+	
+	/** 이미지 파일 변경 이름 */
+	private String imgFileNm;
+	
+	/** 이미지 경로 */
+	private String imgPath;
+	
 	/** 게시판 구분 */
 	private String type;
 	
@@ -79,6 +88,24 @@ public class BbsArtcl {
 	public void setHit(String hit) {
 		this.hit = hit;
 	}
+	public String getImgOriginNm() {
+		return imgOriginNm;
+	}
+	public void setImgOriginNm(String imgOriginNm) {
+		this.imgOriginNm = imgOriginNm;
+	}
+	public String getImgFileNm() {
+		return imgFileNm;
+	}
+	public void setImgFileNm(String imgFileNm) {
+		this.imgFileNm = imgFileNm;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
 	public String getType() {
 		return type;
 	}
@@ -125,10 +152,12 @@ public class BbsArtcl {
 	@Override
 	public String toString() {
 		return "BbsArtcl [artclSeq=" + artclSeq + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regDate=" + regDate + ", editDate=" + editDate + ", hit=" + hit + ", type=" + type + ", ip=" + ip
-				+ ", addItem1=" + addItem1 + ", addItem2=" + addItem2 + ", addItem3=" + addItem3 + ", addItem4="
-				+ addItem4 + ", addItem5=" + addItem5 + "]";
+				+ ", regDate=" + regDate + ", editDate=" + editDate + ", hit=" + hit + ", imgOriginNm=" + imgOriginNm
+				+ ", imgFileNm=" + imgFileNm + ", imgPath=" + imgPath + ", type=" + type + ", ip=" + ip + ", addItem1="
+				+ addItem1 + ", addItem2=" + addItem2 + ", addItem3=" + addItem3 + ", addItem4=" + addItem4
+				+ ", addItem5=" + addItem5 + "]";
 	}
+	
 	
 	
 	

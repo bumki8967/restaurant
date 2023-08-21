@@ -101,7 +101,7 @@
 					<div class="header-right f-right d-none d-md-none d-lg-block">
 						<div class="header-button">
 							<c:choose>
-								<c:when test="${!empty sessionScope.userId }">
+								<c:when test="${!empty sessionScope.user }">
 									<a onClick="javascript:logout();">로그아웃</a>	
 								</c:when>
 								<c:otherwise>

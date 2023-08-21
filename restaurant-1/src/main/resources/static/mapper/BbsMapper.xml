@@ -12,6 +12,9 @@
 		<result property="regDate"			column="reg_Date" />
 		<result property="editDate"			column="edit_Date" />
 		<result property="hit"				column="hit" />
+		<result property="imgOriginNm"		column="img_Origin_Nm" />
+		<result property="imgFileNm"		column="img_File_Nm" />
+		<result property="imgPath"			column="img_Path" />
 		<result property="type"				column="type" />
 		<result property="ip"				column="ip" />
 		<result property="addItem1"			column="add_Item1" />
@@ -44,12 +47,20 @@
 	<!-- (사용자) 게시글 작성 - INSERT -->
 	<insert id="artclRegist" parameterType="com.project.restaurant.bbs.BbsArtcl"
 		useGeneratedKeys="true" keyProperty="artcl_Seq">
-		INSERT INTO bbs_artcl (
-			title, content, writer, reg_date, edit_date, hit, type, ip,
+		INSERT INTO BBS_ARTCL (
+			title, content, writer, reg_date, edit_date, hit, img_Origin_Nm, img_File_Nm, img_Path, type, ip, 
 			add_Item1, add_Item2, add_Item3, add_Item4, add_Item5
 		) VALUES (
-			#{title}, #{content}, #{writer}, now(), now(), 0, #{type}, #{ip},
-			#{addItem1}, #{addItem2}, #{addItem3}, #{addItem4}, #{addItem5}
+			#{title}, #{content}, #{writer}, now(), now(), 0, 
+			<choose>
+				<when test="img_Origin_nm == null or img_Origin_Nm == ''">
+					null, null, null,
+				</when>
+				<otherwise>
+					#{imgOriginNm}, #{imgFileNm}, #{imgPath},
+				</otherwise>
+			</choose>
+			#{type}, #{ip}, #{addItem1}, #{addItem2}, #{addItem3}, #{addItem4}, #{addItem5}
 		)
 	</insert>
 	

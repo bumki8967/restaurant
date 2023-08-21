@@ -29,7 +29,6 @@ import com.project.restaurant.util.Decrypt;
 import com.project.restaurant.util.WebHelper;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
@@ -125,7 +124,6 @@ public class SnsLoginController {
 	
 	/**
 	 * SNS로그인 (카카오)
-	 * 23.07.31 주석 처리
 	 * @param 	user - 사용자
 	 * @return	index
 	 * @throws IOException 
@@ -134,12 +132,10 @@ public class SnsLoginController {
 	
 	@ResponseBody
 	@RequestMapping(value= "/kakao")
-	public ModelAndView kakaoLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) 
-			throws Exception {
+	public ModelAndView kakaoLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) throws Exception {
 		
 		ModelAndView mav = new ModelAndView("/index");
 		
-		web.init();
 		HttpSession session = request.getSession();
 		OAuth2AccessToken oauthToken = kakaoLoginBO.getAccessToken(session, code, state);
 		
@@ -184,10 +180,7 @@ public class SnsLoginController {
 			userService.insertUser(user);
 		}
 		
-		session.setAttribute("userId", email);
-		session.setAttribute("name", name);
-		session.setAttribute("userType", user.getUserType());
-		session.setAttribute("loginType", user.getLoginType());
+		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 10 * 1);
 		
 		return mav;
@@ -197,7 +190,6 @@ public class SnsLoginController {
 	
 	/**
 	 * SNS로그인 (네이버)
-	 * 23.07.31 주석처리
 	 * @param user
 	 * @param model
 	 * @param request
@@ -259,13 +251,7 @@ public class SnsLoginController {
 			userService.insertUser(user);
 		}
 		
-		rttr.addFlashAttribute("apiResult", apiResult);
 		session.setAttribute("user", user);
-		
-		session.setAttribute("userId", email);
-		session.setAttribute("name", name);
-		session.setAttribute("userType", user.getUserType());
-		session.setAttribute("loginType", user.getLoginType());
 		session.setMaxInactiveInterval(60 * 10 * 1);
 		
 		return mav;
@@ -369,8 +355,6 @@ public class SnsLoginController {
 			String name = (String) jsonObj.get("name");
 			String email = (String) jsonObj.get("email");
 
-			System.out.println("여기 지나가지??");
-			
 			int result = userService.duplicationUser(email, "google");
 			
 			if (result <= 0) {
@@ -382,12 +366,7 @@ public class SnsLoginController {
 				userService.insertUser(user);
 			}
 			
-			model.addAttribute("decodeInfo", decodeInfo);
-			
-			session.setAttribute("userId", email);
-			session.setAttribute("name", name);
-			session.setAttribute("userType", user.getUserType());
-			session.setAttribute("loginType", user.getLoginType());
+			session.setAttribute("user", user);
 			session.setMaxInactiveInterval(60 * 10 * 1);
 			
 			return mav;

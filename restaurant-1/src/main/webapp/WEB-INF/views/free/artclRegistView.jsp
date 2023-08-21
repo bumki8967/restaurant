@@ -61,6 +61,15 @@
         .cancelBtn {
             margin: 0 0 0 1rem;
         }
+        
+        .file_container {
+        	display: flex;
+        	justify-content: center;
+        }
+        
+        input[type="file"] {
+        	border : 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -129,6 +138,15 @@
                                 */
                             </script>
                         </div>
+                    </div>
+                    <!-- 이미지 INPUT 태그 부분 -->
+                    <div class="form-group file_container">
+                    	<div class="col-sm-10">
+                    		<input type="file" id="file2">
+                    		<label for="file2">
+                    			파일선택
+                    		</label>
+                    	</div>
                     </div>
                     <!-- 작성 버튼 부분 -->
                     <div class="form-group btn-group-justified">
