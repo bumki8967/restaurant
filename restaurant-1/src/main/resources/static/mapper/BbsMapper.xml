@@ -12,9 +12,9 @@
 		<result property="regDate"			column="reg_Date" />
 		<result property="editDate"			column="edit_Date" />
 		<result property="hit"				column="hit" />
-		<result property="imgOriginNm"		column="img_Origin_Nm" />
-		<result property="imgFileNm"		column="img_File_Nm" />
-		<result property="imgPath"			column="img_Path" />
+		<result property="imgOriginNm"		column="imgOriginNm" />
+		<result property="imgFileNm"		column="imgFileNm" />
+		<result property="imgPath"			column="imgPath" />
 		<result property="type"				column="type" />
 		<result property="ip"				column="ip" />
 		<result property="addItem1"			column="add_Item1" />
@@ -53,7 +53,7 @@
 		) VALUES (
 			#{title}, #{content}, #{writer}, now(), now(), 0, 
 			<choose>
-				<when test="img_Origin_nm == null or img_Origin_Nm == ''">
+				<when test="Img_Origin_Nm == null or Img_Origin_Nm == ''">
 					null, null, null,
 				</when>
 				<otherwise>

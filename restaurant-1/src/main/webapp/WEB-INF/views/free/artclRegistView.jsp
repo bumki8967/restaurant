@@ -142,11 +142,14 @@
                     <!-- 이미지 INPUT 태그 부분 -->
                     <div class="form-group file_container">
                     	<div class="col-sm-10">
-                    		<input type="file" id="file2">
-                    		<label for="file2">
+                    		<input type="file" id="input_img" name="img_Origin_Nm" />
+                    		<label for="input_img">
                     			파일선택
                     		</label>
                     	</div>
+                    	<div class="imgs_wrap">
+							<img id="img" />
+						</div>
                     </div>
                     <!-- 작성 버튼 부분 -->
                     <div class="form-group btn-group-justified">

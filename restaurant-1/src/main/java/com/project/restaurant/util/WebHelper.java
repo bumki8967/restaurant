@@ -391,19 +391,19 @@ public class WebHelper {
 	 * 
 	 * @return String
 	 */
-	public String getClientIP() {
-		String ip = request.getHeader("X-FORWARDED-FOR");
-		if (ip == null || ip.length() == 0) {
-			ip = request.getHeader("Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0) {
-			ip = request.getHeader("WL-Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0) {
-			ip = request.getRemoteAddr();
-		}
-		return ip;
-	}
+//	public String getClientIP() {
+//		String ip = request.getHeader("X-FORWARDED-FOR");
+//		if (ip == null || ip.length() == 0) {
+//			ip = request.getHeader("Proxy-Client-IP");
+//		}
+//		if (ip == null || ip.length() == 0) {
+//			ip = request.getHeader("WL-Proxy-Client-IP");
+//		}
+//		if (ip == null || ip.length() == 0) {
+//			ip = request.getRemoteAddr();
+//		}
+//		return ip;
+//	}
 
 	/**
 	 * 결과 메시지를 JSON으로 출력한다. JSON Api에서 web.redirect() 기능을 대체할 용도.
@@ -463,5 +463,30 @@ public class WebHelper {
 
 		// 조립된 결과를 문자열로 변환해서 리턴한다.
 		return builder.toString();
+	}
+	
+	
+	
+	
+	
+	public String getClientIP(HttpServletRequest request) {
+	    String ip = request.getHeader("X-Forwarded-For");
+
+	    if (ip == null) {
+	        ip = request.getHeader("Proxy-Client-IP");
+	    }
+	    if (ip == null) {
+	        ip = request.getHeader("WL-Proxy-Client-IP");
+	    }
+	    if (ip == null) {
+	        ip = request.getHeader("HTTP_CLIENT_IP");
+	    }
+	    if (ip == null) {
+	        ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+	    }
+	    if (ip == null) {
+	        ip = request.getRemoteAddr();
+	    }
+	    return ip;
 	}
 }

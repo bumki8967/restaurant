@@ -94,15 +94,16 @@ public class ArtclController {
 	 * @param artcl
 	 */
 	@RequestMapping("/{board}/artclRegist.do")
-	public String artclRegist(@PathVariable("board") String board, BbsArtcl artcl) {
+	public String artclRegist(@PathVariable("board") String board, BbsArtcl artcl, @RequestParam(value = "img_Origin_Nm", required = false) MultipartFile imgUploadFile) {
 		
 		System.out.println("artclRegist	Start!!!");
 
 		System.out.println("===================================");
 		System.out.println("content		::		" + artcl.getContent());
+		System.out.println("IP		::		" + web.getClientIP(request));
 		System.out.println("===================================");
 		
-		artcl.setIp(web.getClientIP());
+		artcl.setIp(web.getClientIP(request));
 		
 		bbsService.artclRegist(artcl);
 		
@@ -166,7 +167,7 @@ public class ArtclController {
 	 */
 	@RequestMapping("/{board}/imageUpload.do")
 	@ResponseBody
-	public void imgUpload(@PathVariable("board") String board, BbsArtcl artcl, MultipartHttpServletRequest multiFile) throws IOException {
+	public void editorImgUpload(@PathVariable("board") String board, BbsArtcl artcl, MultipartHttpServletRequest multiFile) throws IOException {
 		
 		System.out.println("Controller	imgUpload	Start!!!!");
 		
