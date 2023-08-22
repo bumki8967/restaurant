@@ -134,13 +134,21 @@ public class SnsLoginController {
 	@RequestMapping(value= "/kakao")
 	public ModelAndView kakaoLogin(User user, Model model, HttpServletRequest request, @RequestParam String code, @RequestParam String state) throws Exception {
 		
+		
+		System.out.println("kakaoLogin	Start!!!!!!!!!");
 		ModelAndView mav = new ModelAndView("/index");
 		
 		HttpSession session = request.getSession();
+		System.out.println("session		::	" + session);
+		
 		OAuth2AccessToken oauthToken = kakaoLoginBO.getAccessToken(session, code, state);
+		System.out.println("oauthToken		::	" + oauthToken);
+		
+		
 		
 		//로그인 사용자 정보를 읽어온다.
 		String apiResult = kakaoLoginBO.getUserProfile(oauthToken);
+		System.out.println("apiResult		::	" + apiResult);
 	    
         // apiResult값을 JSON형태로 변환
 	    JSONParser jsonParser = new JSONParser();
@@ -182,6 +190,8 @@ public class SnsLoginController {
 		
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 10 * 1);
+		
+		System.out.println("kakaoLogin	End!!!!!!!!!");
 		
 		return mav;
 		

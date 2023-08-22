@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-//@RequestMapping(value = "/user")
+@RequestMapping(value = "/user")
 public class UserController {
 
 	/* NaverLoginBO */
@@ -122,7 +122,7 @@ public class UserController {
 	 * 로그인 페이지
 	 * @return
 	 */
-	@RequestMapping(value = "/user/loginView")
+	@RequestMapping(value = "/loginView")
 	public String userLoginView(Model model, HttpSession session) {
 		
 		/* 네이버 로그인 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */

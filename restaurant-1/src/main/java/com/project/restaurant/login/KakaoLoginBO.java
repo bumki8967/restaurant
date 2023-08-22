@@ -66,8 +66,12 @@ public class KakaoLoginBO {
 	/* 카카오로그인 시 Callback 처리 및  AccessToken 획득 Method */
     public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException{
 
+    	System.out.println("==============		kakao getAccessToken Start");
+    	
         /* Callback으로 전달받은 세선검증용 난수값과 세션에 저장되어있는 값이 일치하는지 확인 */
         String sessionState = getSession(session);
+        System.out.println("sessionState		::	" + sessionState);
+        
         if(StringUtils.pathEquals(sessionState, state)){
 
             OAuth20Service oauthService = new ServiceBuilder()
@@ -76,9 +80,14 @@ public class KakaoLoginBO {
                     .callback(redirectUrl)
                     .state(state)
                     .build(KakaoOauthApi.instance());
+            
+            System.out.println("oauthService		::	" + oauthService);
 
             /* Scribe에서 제공하는 AccessToken 획득 기능으로 네아로 Access Token을 획득 */
             OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
+            System.out.println("accessToken		::	" + accessToken);
+        
+            System.out.println("==============		kakao getAccessToken End");
             
             return accessToken;
         }

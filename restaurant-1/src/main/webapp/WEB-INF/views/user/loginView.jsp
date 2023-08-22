@@ -42,110 +42,163 @@
 	<%-- <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script> --%>
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     <style>
-        .container {
-            /* border: 1px solid black; */
-            margin: auto;
-            padding: auto;
-        }
 
-        .header_inner {
-            position: relative;
-            margin: 0 auto;
-            box-sizing: border-box;
-            margin-top: 110px;
-            vertical-align: top;
-            text-align: center;
-        }
-
-
-        .menu_wrap {
-            /* border: 1px solid blue; */
-            display: table;
-            table-layout: fixed;
-            width: 40%;
-            margin: 3rem auto;
-            border-collapse: collapse;
-        }
-
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        a {
-            color: black;
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: black;
-        }
-
-        .menu_item {
-            position: relative;
-            display: table-cell;
-            vertical-align: top;
-            text-decoration: none;
-        }
-
-        .meni_id {
-            display: block;
-            position: relative;
-            height: 61px;
-            padding-top: 17px;
-            border : 1px solid #e3e3e3;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .menu_text {
-            position: relative;
-            padding-left: 24px;
-            font-size: 25px;
-            font-weight: 500;
-        }
-
-        .id_pw_wrap, .keep_join_findPw_btn_area {
-            /* border: 1px solid blue; */
-            width: 35%;
-            margin: 2rem auto;
-        }
-
-        .keep_check {
-            margin: 2rem auto;
-            /* font-size: 10px; */
-        }
-
-        .join_findPw, .btn_row {
-            font-size: 15px;
-            /* border: 1px solid red; */
-            /* width: 100%; */
-            text-align: center;
-            /* margin: auto; */
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            margin: 3rem;
-        }
-    </style>
+	/* sign in FORM */
+	#logreg-forms {
+		width: 550px;
+		margin: 10vh auto;
+		/* background-color: #f3f3f3; */
+		/* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+		transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+	}
+	
+	#logreg-forms form {
+		width: 100%;
+		max-width: 485px;
+		padding: 15px;
+		margin: auto;
+	}
+	
+	#logreg-forms .form-control {
+		position: relative;
+		box-sizing: border-box;
+		height: auto;
+		padding: 10px;
+		font-size: 16px;
+	}
+	
+	#logreg-forms .form-control:focus {
+		z-index: 2;
+	}
+	
+	#logreg-forms .form-signin input[type="email"] {
+		margin-bottom: -1px;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	
+	#logreg-forms .form-signin input[type="password"] {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	
+	#logreg-forms .social-login {
+	    width: 450px;
+	    margin: 0 auto;
+	    margin-bottom: 14px;
+	    display: flex;
+	    justify-content: space-between;
+	}
+	
+	#logreg-forms .social-btn {
+		font-weight: 100;
+		color: white;
+		width: 210px;
+		font-size: 1.5rem;
+	}
+	
+	#logreg-forms a {
+		display: block;
+		padding-top: 10px;
+		color: lightseagreen;
+	}
+	
+	#logreg-form .lines {
+		width: 200px;
+		border: 1px solid red;
+	}
+	
+	#logreg-forms button[type="submit"] {
+		margin-top: 10px;
+	}
+	
+	#logreg-forms .kakao-btn {
+		background-color: #fee500;
+	}
+	
+	#logreg-forms .naver-btn {
+		background-color : #03c75b;
+	}
+	
+	#logreg-forms .facebook-btn {
+		background-color: #3C589C;
+	}
+	
+	#logreg-forms .google-btn {
+		background-color: #DF4B3B;
+	}
+	
+	#logreg-forms .form-reset, #logreg-forms .form-signup {
+		display: none;
+	}
+	
+	#logreg-forms .form-signup .social-btn {
+		width: 210px;
+	}
+	
+	#logreg-forms .form-signup input {
+		margin-bottom: 2px;
+	}
+	
+	.form-signup .social-login {
+		width: 210px !important;
+		margin: 0 auto;
+	}
+	
+	/* Mobile */
+	@media screen and (max-width:500px) {
+		#logreg-forms {
+			width: 300px;
+		}
+		#logreg-forms  .social-login {
+			width: 200px;
+			margin: 0 auto;
+			margin-bottom: 10px;
+		}
+		#logreg-forms  .social-btn {
+			font-size: 1.3rem;
+			font-weight: 100;
+			color: white;
+			width: 200px;
+			height: 56px;
+		}
+		#logreg-forms .social-btn:nth-child(1) {
+			margin-bottom: 5px;
+		}
+		#logreg-forms .social-btn span {
+			display: none;
+		}
+		#logreg-forms  .kakao-btn:after {
+			content: 'Kakao';
+		}
+		#logreg-forms  .naver-btn:after {
+			content:  'Naver';
+		}
+		#logreg-forms  .facebook-btn:after {
+			content: 'Facebook';
+		}
+		#logreg-forms  .google-btn:after {
+			content: 'Google+';
+		}
+	}
+	</style>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
-			$("#keep").click(function(){
-		         if( $(this).is(":checked")){
-		            $("#keep").val("Y");
-		         }else{
-		        	 $("#keep").val("N");
-		         }
-		      });
-			
+
+			$("#keep").click(function() {
+				if ($(this).is(":checked")) {
+					$("#keep").val("Y");
+				} else {
+					$("#keep").val("N");
+				}
+			});
+
 			$("#login-btn").click(function() {
 				var userId = $("#userId").val();
 				var userPw = $("#userPw").val();
 				var keep = $("#keep").val();
-				
+
 				if (userId == "") {
 					alert("아이디를 입력해주세요.");
 					userId.focus();
@@ -156,18 +209,18 @@
 					return;
 				} else {
 					$.ajax({
-						Type	:	"POST",
-						url		:	"/user/login.do",
-						dataType:	"JSON",
-						data	:	{
+						Type : "POST",
+						url : "/user/login.do",
+						dataType : "JSON",
+						data : {
 							userId : userId,
 							userPw : userPw,
-							keep	: keep
+							keep : keep
 						},
 						success : function(data) {
-							location.href="/";
+							location.href = "/";
 						},
-						error	: function(error) {
+						error : function(error) {
 							alert("통신오류!!\n" + error);
 							return;
 						}
@@ -184,110 +237,61 @@
 	</header>
 	
 	
-    <div class="container">
-        <div class="header_inner">
-            <h1> 로그인 </h1>
-        </div>
-    </div>
+    <div id="logreg-forms">
+        <form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> 로그인</h1>
+            
+            <div>
+                <input type="email" id="inputEmail" class="form-control">
+                <input type="password" id="inputPassword" class="form-control">
+            </div>
 
-	
-    <div class="container">
-        <div class="login_wrap">
-			<form method="POST" id="loginForm">
-				<input type="hidden" name="name" id="name" />
-				<input type="hidden" name="birthday" id="birthday"/>
-				<input type="hidden" name="gender" id="gender" />
-				<input type="hidden" name="birthyear" id="birthyear" />
-				<input type="hidden" name="tel" id="tel" />
-				<input type="hidden" name="loginType" id="loginType" />
-
-				<div class="id_pw_wrap">
-					<!-- 아이디 입력 -->
-					<div class="input_row id_area">
-						<label for="inputId" class="visually-hidden">ID</label>
-						<input type="text" id="userId" name="userId" class="form-control col-md-5" placeholder="아이디" required autofocus>
-					</div>
-		
-					<!-- 비밀번호 입력 -->
-					<div class="input_row pw_area">
-						<label for="inputPassword" class="visually-hidden">Password</label>
-						<input type="password" id="userPw" name="userPw" class="form-control" placeholder="비밀번호" required>
-					</div>
-				</div>
-		
-				<div class="keep_join_findPw_btn_area">
-					<!-- 로그인 상태 유지 -->
-					<div class="keep_check">
-						<label> 
-							<input type="checkbox" id="keep" name="keep" value="N"> 로그인 상태 유지 
-						</label>
-					</div>
-		
-					<!-- 회원가입 | 비밀번호 찾기-->
-					<div class="join_findPw">
-						<div class="join_area">
-							<label for="join" class="visually-hidden">
-								<a href="${pagecontext.request.contextPath }/user/userRegistView">
-									회원가입
-								</a>
-							</label>
-						</div>
-		
-						<div class="findPw_area">
-							<label for="findPw" class="visually-hidden">
-								<a href="${pagecontext.request.contextPath }/user/userFindPwView">
-									비밀번호 찾기
-								</a>
-							</label>
-						</div>
-					</div>
-				</div>
-			</form>
-                
-			<!-- 로그인 버튼 -->
-			<div class="btn_row">
-				<button type="submit" class="w-100 btn btn-lg btn-primary" id="login-btn"> 로그인 </button>
-			</div>    
-
-			<!-- SNS 로그인 -->
-			<div class="sns_login" style="width: 400px; margin: auto;">
-				<span>
-					<label for="kakao_login" class="visually-hidden">
-						<a href="${kakaoAuthUrl }">
-						 <!--<a href="javascript:kakao_Login();"> -->
-							<%-- <img src="${pageContext.request.contextPath }/assets/image/kakao.png" alt="카카오로그인" />  --%>
-							<img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인" /> 
-						</a>
-					</label>
-					
-					<label for="naver_login"  class="visually-hidden">
-						<a href="${naverAuthUrl }">
-							<img src="${pageContext.request.contextPath }/assets/image/naver.png" style="width: 183px; height: 45px;" alt="네이버로그인" />
-						</a>	
-							<%-- <div id="naverIdLogin"></div>  --%>
-					</label>
-
-					<label for="google_login"  class="visually-hidden">
-						<a href="${googleAuthUrl }">
-							<img src="${pageContext.request.contextPath }/assets/image/google.png" />
-						</a>
-					</label>
-
-					<label for="facebook_login"  class="visually-hidden">
-						<a href="javascript:alert('페이스북 로그인 기능 준비 중 입니다.');">
-							<img src="${pageContext.request.contextPath }/assets/image/facebook.png" />
-						</a>
-					</label>
-
-					<label for="apple_login"  class="visually-hidden">
-						<a href="javascript:alert('애플 로그인 기능 준비 중 입니다.');">
-							<img src="${pageContext.request.contextPath }/assets/image/apple.png" style="width: 309px; height: 40px;">
-						</a>
-					</label>
-				</span>
+            <br>
+    
+            <button class="btn btn-primary btn-block" type="button" id="btn-signup">
+            	<i class="fas fa-user-plus"></i> 회원가입
+           	</button>
+           	<button type="submit" class="btn btn-success btn-block">
+            	<i class="fas fa-sign-in-alt"></i> 로그인
+           	</button>
+           	
+            <a href="/user/userFindPwView" id="forgot_pswd"> 비밀번호 찾기</a>
+            
+            <hr>
+            
+            <div class="social-login">
+            	<a href="${kakaoAuthUrl }" class="btn kakao-btn social-btn">
+            		<span>
+            			<!-- <img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인">  -->
+            			<i class="fab fa-kaggle"></i> 카카오톡 로그인
+            		</span>
+            	</a>
+            	
+            	<a href="${naverAuthUrl }" class="btn naver-btn social-btn">
+            		<span>
+	            		<!-- <img src="/assets/image/naver.png" alt="네이버로그인">  -->
+	            		<i class="fab fa-neos"></i> 네이버 로그인
+            		</span>
+            	</a>
 			</div>
-        </div>
+			
+			 <div class="social-login">           	
+            	<a href="#" class="btn facebook-btn social-btn" onclick="javascript:alert('기능을 준비중입니다.');"> 
+                	<span>
+                		<i class="fab fa-facebook-f"></i> 페이스북 로그인
+               		</span> 
+            	</a> 
+            	
+            	<a href="${googleAuthUrl }" class="btn google-btn social-btn">
+                	<span>
+                		<i class="fab fa-google-plus-g"></i> 구글 로그인
+               		</span> 
+            	</a>
+            </div>
+            <!-- <p>Don't have an account!</p>  -->
+		</form>
     </div>
+    
     
    	<footer>
 		<c:import url="${pageContext.request.contextPath }/assets/include/footer.jsp" />
