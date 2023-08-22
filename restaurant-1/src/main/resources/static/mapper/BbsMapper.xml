@@ -5,7 +5,7 @@
    
 <mapper namespace="com.project.restaurant.bbs.BbsService">
 	<resultMap type="com.project.restaurant.bbs.BbsArtcl" id="BbsArtcl">
-		<result property="artclSeq"			column="ARTCL_SEQ" />
+		<result property="artclSeq"			column="artcl_Seq" />
 		<result property="title"			column="title" />
 		<result property="content"			column="content" />
 		<result property="writer"			column="writer" />
@@ -27,7 +27,7 @@
 
 	<resultMap type="com.project.restaurant.bbs.BbsAtchmnfl" id="BbsAtchmnfl">
 		<result property="atchmnflSeq"		column="atchmnfl_Seq" />
-		<result property="artclSeq"			column="ARTCL_SEQ" />
+		<result property="artclSeq"		column="artcl_Seq" />
 		<result property="writer"			column="writer" />
 		<result property="regDate"			column="reg_Date" />
 		<result property="editDate"			column="edit_Date" />
@@ -46,14 +46,14 @@
 
 	<!-- (사용자) 게시글 작성 - INSERT -->
 	<insert id="artclRegist" parameterType="com.project.restaurant.bbs.BbsArtcl"
-		useGeneratedKeys="true" keyProperty="artcl_Seq">
+		useGeneratedKeys="true" keyProperty="artclSeq">
 		INSERT INTO BBS_ARTCL (
 			title, content, writer, reg_date, edit_date, hit, img_Origin_Nm, img_File_Nm, img_Path, type, ip, 
 			add_Item1, add_Item2, add_Item3, add_Item4, add_Item5
 		) VALUES (
 			#{title}, #{content}, #{writer}, now(), now(), 0, 
 			<choose>
-				<when test="Img_Origin_Nm == null or Img_Origin_Nm == ''">
+				<when test="imgOriginNm == null or imgOriginNm == ''">
 					null, null, null,
 				</when>
 				<otherwise>
@@ -77,7 +77,7 @@
 	<select id="selectByArtclSeq" parameterType="int" resultMap="BbsArtcl">
 		SELECT	*
 		FROM	bbs_artcl
-		WHERE	artcl_Seq = #{artclSeq}
+		WHERE	artcl_Seq = #{artcl_Seq}
 	</select>
 	
 	
@@ -86,6 +86,6 @@
 		UPDATE	bbs_artcl
 		SET		title = #{title}, content = #{content}, edit_date = now(), hit = #{hit}, type = #{type}, ip = #{ip},
 				add_Item1 = #{addItem1}, add_Item2 = #{addItem2}, add_Item3 = #{addItem3}, add_Item4 = #{addItem4}, add_Item5 = #{addItem5},
-		WHERE	artcl_Seq = #{artclSeq}					
+		WHERE	artcl_Seq = #{artcl_Seq}					
 	</update>
 </mapper>

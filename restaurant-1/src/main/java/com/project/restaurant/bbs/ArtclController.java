@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ArtclController {
 	
 	@Autowired
-	private BbsService bbsService;
+	private BbsServiceImpl bbsService;
 
 	@Autowired
 	private WebHelper web;
@@ -96,20 +96,9 @@ public class ArtclController {
 	@RequestMapping("/{board}/artclRegist.do")
 	public String artclRegist(@PathVariable("board") String board, BbsArtcl artcl, @RequestParam(value = "img_Origin_Nm", required = false) MultipartFile imgUploadFile) {
 		
-		System.out.println("artclRegist	Start!!!");
-
-		System.out.println("===================================");
-		System.out.println("content		::		" + artcl.getContent());
-		System.out.println("IP		::		" + web.getClientIP(request));
-		System.out.println("===================================");
-		
 		artcl.setIp(web.getClientIP(request));
 		
 		bbsService.artclRegist(artcl);
-		
-		System.out.println("artcl	Type	::	" + artcl.getType());
-		
-		System.out.println("artclRegist	End!!!");
 		
 		return "redirect:/{board}/artclList";
 	}

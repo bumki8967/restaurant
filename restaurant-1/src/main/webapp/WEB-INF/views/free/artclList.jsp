@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html class="no-js" lang="kor">
@@ -207,10 +208,10 @@
                     <c:if test="${list.type == '자유게시판'}">
                       <tr>
                         <td>
-                          ${list.artcl_Seq }
+                          ${list.artclSeq }
                         </td>
                         <td>
-                          <a href="${pageContext.request.contextPath }/notice/artclUpdateView?artcl_Seq=${list.artcl_Seq}">
+                          <a href="${pageContext.request.contextPath }/free/artclDetailView?artclSeq=${list.artclSeq}">
                             ${list.title }
                           </a>
                         </td>
@@ -218,7 +219,7 @@
                           ${list.writer }
                         </td>
                         <td>
-                          <fmt:formatDate value="${list.reg_Date }" type="date"/>
+                          <fmt:formatDate type="date" value="${list.regDate }" pattern="yyy-MM-dd" />
                         </td>
                         <td>
                           ${list.hit }
