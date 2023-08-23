@@ -65,7 +65,6 @@ public class NaverLoginBO {
         String sessionState = getSession(session);
         
         if(StringUtils.pathEquals(sessionState, state)){
-
             OAuth20Service oauthService = new ServiceBuilder()
                     .apiKey(clientId)
                     .apiSecret(clientSecret)

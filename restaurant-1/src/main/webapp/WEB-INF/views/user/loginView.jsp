@@ -238,7 +238,7 @@
 	
 	
     <div id="logreg-forms">
-        <form class="form-signin">
+        <form method="POST" class="form-signin" action="${pageContext.request.contextPath }/user/login.do">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> 로그인</h1>
             
             <div>
@@ -263,14 +263,14 @@
             	<a href="${kakaoAuthUrl }" class="btn kakao-btn social-btn">
             		<span>
             			<!-- <img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오로그인">  -->
-            			<i class="fab fa-kaggle"></i> 카카오톡 로그인
+            			<i class="fab" style="font-weight: bold;">K</i> 카카오톡 로그인
             		</span>
             	</a>
             	
             	<a href="${naverAuthUrl }" class="btn naver-btn social-btn">
             		<span>
 	            		<!-- <img src="/assets/image/naver.png" alt="네이버로그인">  -->
-	            		<i class="fab fa-neos"></i> 네이버 로그인
+	            		<i class="fab" style="font-weight: bold;">N</i> 네이버 로그인
             		</span>
             	</a>
 			</div>
