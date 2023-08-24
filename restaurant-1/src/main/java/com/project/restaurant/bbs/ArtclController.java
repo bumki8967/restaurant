@@ -94,7 +94,8 @@ public class ArtclController {
 	 * @param artcl
 	 */
 	@RequestMapping("/{board}/artclRegist.do")
-	public String artclRegist(@PathVariable("board") String board, BbsArtcl artcl, @RequestParam(value = "img_Origin_Nm", required = false) MultipartFile imgUploadFile) {
+	public String artclRegist(@PathVariable("board") String board, BbsArtcl artcl, 
+							  @RequestParam(value = "img_Origin_Nm", required = false) MultipartFile imgUploadFile) {
 		
 		artcl.setIp(web.getClientIP(request));
 		
@@ -189,6 +190,10 @@ public class ArtclController {
 						String uploadPath = request.getSession().getServletContext().getRealPath("/image/bbs/" + today + "/"); //저장경로
 						File uploadFile = new File(uploadPath);
 						
+						System.out.println("fileName		::	" + fileName);
+						System.out.println("uploadPath		::	" + uploadPath);
+						System.out.println("uploadFile		::	" + uploadFile);
+						
 			            if(!uploadFile.exists()) {
 			            	uploadFile.mkdir();
 			            }
@@ -196,6 +201,8 @@ public class ArtclController {
 						// 파일이름을 랜덤하게 생성
 						String fileName2 = UUID.randomUUID().toString();
 						uploadPath = uploadPath + "/" + fileName2 + fileName;
+						System.out.println("fileName2		::	" + fileName2);
+						System.out.println("uploadPath		::	" + uploadPath);
 						
 						out = new FileOutputStream(new File(uploadPath));
 			            out.write(bytes);
@@ -205,12 +212,15 @@ public class ArtclController {
 			            response.setContentType("text/html");
 			            
 			            // 파일이 연결되는 Url 주소 설정
-			            String fileUrl = request.getContextPath() + "/image/bbs/" + today +	"/" + fileName2 + fileName;
+			            String fileUrl = request.getContextPath() + "/image/bbs/" + today +	"/" + fileName2;
+//			            String fileUrl = request.getContextPath() + "/image/bbs/" + today +	"/" + fileName2 + fileName;
+			            System.out.println("fileUrl		::	" + fileUrl);
 			            
 			            // 생성된 Json 객체를 이용해 파일 업로드 + 이름 + 주소를 CkEditor에 전송
 			            json.addProperty("uploaded", 1);
 			            json.addProperty("fileName", fileName);
 			            json.addProperty("url", fileUrl);
+			            System.out.println("json		::	" + json);
 			            
 			            printWriter.print(json);
 					} catch (IOException e) {
@@ -226,7 +236,7 @@ public class ArtclController {
 				}
 			}
 		}
-		
+		System.out.println("Controller	imgUpload	End!!!!");
 	}
 	
 }
